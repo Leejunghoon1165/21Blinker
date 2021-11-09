@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+   
     public GameObject playerCanvas;
     public GameObject[] weapons;
     public bool[] hasWeapons;
 
 
     public float speed;
-    public float HP = 100;
 
 
     float hAxis;
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     bool sWeapon1;
     bool sWeapon2;
     bool isFireReady;
-
+    bool doDie;
     
     
 
@@ -40,9 +40,18 @@ public class Player : MonoBehaviour
     Weapon earlyWeapon;
     int equiWeaponIndex = -1;
     float fireDelay;
-    
+    float PlayerHP;
+    float CurrentHP;
+
+    private void Start()
+    {
+        PlayerHP = PlayerHpBar.maxHp;
+        CurrentHP = PlayerHpBar.currentHp;
+    }
+
     void Awake()
     {
+        
         rigid = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();  //애니메이션
         meshs = GetComponentsInChildren<MeshRenderer>();
@@ -58,9 +67,7 @@ public class Player : MonoBehaviour
         GetItem();
         Attack();
         Swap();
-        //Die();
-
-
+        Die();
          Physics.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("monster"),true);
         
 
@@ -80,11 +87,16 @@ public class Player : MonoBehaviour
 
     void Move()  //플레이어 움직임
     {
+
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //normalized : 방향 값이 1로 보정된 벡터
+            if (doDie)
+                moveVec = Vector3.zero;
+
 
         transform.position += moveVec * speed * Time.deltaTime;
-
         anim.SetBool("isWalk", moveVec != Vector3.zero);
+        
+        
     }
 
     void Turn() //대각선 움직임
@@ -94,7 +106,7 @@ public class Player : MonoBehaviour
 
     void Dash()  //대시 기능 
     {
-        if(DashDown && moveVec != Vector3.zero && isDash == false)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
+        if(DashDown && moveVec != Vector3.zero && isDash == false && !doDie)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
         {
             anim.SetTrigger("doDash");   //대시 애니메이션 동작
             isDash = true;             //isDash true로 변경
@@ -175,9 +187,14 @@ public class Player : MonoBehaviour
 
     void Damage()
     {
-           //Enemy 공격력 가져옴
-       // HP = HP - enemyStr.Str;
-        StartCoroutine(OnDamage());
+        //Enemy 공격력 가져옴
+        // HP = HP - enemyStr.Str;
+        if(!doDie)
+        {
+            CurrentHP = PlayerHpBar.currentHp;
+            StartCoroutine(OnDamage());
+        }
+        
     }
     IEnumerator OnDamage()
     {
@@ -187,15 +204,21 @@ public class Player : MonoBehaviour
     }
 
 
-    /*void Die()
+    void Die()
     {
-        if (HP == 0)
+        if (CurrentHP == 0)
+        {
+            StartCoroutine(DODIE());
+        }
+        IEnumerator DODIE()
         {
             anim.SetTrigger("doDie");
-            Destroy(gameObject,2);
-
+            doDie = true;
+            yield return new WaitForSeconds(2f);
+            gameObject.SetActive(false);
         }
-    }*/
+        
+    }
 
         
     private void OnCollisionEnter(Collision other)

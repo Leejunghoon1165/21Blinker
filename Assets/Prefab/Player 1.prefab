@@ -34,11 +34,11 @@ RectTransform:
   - {fileID: 2132960773580183688}
   - {fileID: 2132960772914453182}
   m_Father: {fileID: 2132960773636228952}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.86, y: 1.71}
+  m_AnchoredPosition: {x: -0.86, y: 1.7099998}
   m_SizeDelta: {x: 1159, y: 528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2132960772385221160
@@ -116,8 +116,6 @@ MonoBehaviour:
   hpBar: {fileID: 2132960772914453183}
   BackHpSlider: {fileID: 2132960773580183689}
   player: {fileID: 6009765484959627947}
-  maxHp: 1000
-  currentHp: 1000
   backHpHit: 0
 --- !u!1 &2132960772438192465
 GameObject:
@@ -766,8 +764,8 @@ Transform:
   m_LocalPosition: {x: 1.6953094, y: 2.9462245, z: 0.6005456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6009765484959627947}
   - {fileID: 2132960772385221141}
+  - {fileID: 6009765484959627947}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -932,7 +930,7 @@ PrefabInstance:
     - target: {fileID: 7332154499869637576, guid: c9d217793a2876c409da34c886d42d0a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7332154499869637576, guid: c9d217793a2876c409da34c886d42d0a,
         type: 3}

@@ -9,8 +9,8 @@ public class PlayerHpBar : MonoBehaviour
     public Slider BackHpSlider;
 
     public Transform player;
-    public float maxHp = 100;
-    public float currentHp = 100;
+    public static float maxHp = 100;
+    public static float currentHp = 100;
     public bool backHpHit = false;
     // Start is called before the first frame update
     void Start()
