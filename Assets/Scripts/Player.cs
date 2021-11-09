@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
         DashDown = Input.GetButtonDown("Dash");
-        Attk = Input.GetButtonDown("Shoot");
+        Attk = Input.GetButton("Shoot");
         ItemGet = Input.GetButtonDown("Get");
         sWeapon1 = Input.GetButtonDown("Swap1");
         sWeapon2 = Input.GetButtonDown("Swap2");
@@ -155,9 +155,19 @@ public class Player : MonoBehaviour
 
         if(Attk && isFireReady && !isDash)
         {
-            earlyWeapon.Use();
-            anim.SetTrigger("doShoot");
-            fireDelay = 0;
+            if(equiWeaponIndex == 0)
+            {
+                earlyWeapon.Use();
+                anim.SetTrigger("doShoot");
+                fireDelay = 0;
+            }
+            else if(equiWeaponIndex == 1 && moveVec == Vector3.zero)
+            {
+                earlyWeapon.Use();
+                anim.SetTrigger("doShootMinigun");
+                fireDelay = 0;
+            }
+            
         }
         
         
