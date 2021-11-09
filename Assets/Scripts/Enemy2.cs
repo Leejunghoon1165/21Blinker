@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy2 : MonoBehaviour
 {
     Transform target;
 
@@ -21,9 +21,10 @@ public class Enemy : MonoBehaviour
     private Transform Enemytransform;
 
     float Dist;
-    public float AttackDist = 1.35f;
+    public float AttackDist = 7.5f;
 
     float time;
+    float attacktime;
 
     public Transform bulletPos;
     public GameObject bullet;
@@ -32,17 +33,20 @@ public class Enemy : MonoBehaviour
     {
 
         anim = GetComponent<Animator>();
+
+        CurHP = MAXHP;
         
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        time = 3;
-        
-        CurHP = MAXHP;
+        attacktime = 0;
+
+        time = 0;
 
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -51,6 +55,7 @@ public class Enemy : MonoBehaviour
         Enemytransform = this.gameObject.GetComponent<Transform>();
         //플레이어 위치
         PlayerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+
     }
 
 
@@ -59,33 +64,30 @@ public class Enemy : MonoBehaviour
     {
 
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
-        
+
         nav.SetDestination(target.position);
         
         if(AttackDist >= Dist)
         {
             //nav.SetDestination(Enemytransform.position);
-            anim.SetBool("IsWalk", false);
-            anim.SetBool("IsAttack", true);
-            //Debug.Log("공격중중중중중중중");
-            this.nav.velocity = Vector3.zero;
+             RLAttack(true);
+            //anim.SetBool("IsWalk", false);
+            //anim.SetBool("IsLRAttack", true);
+            
 
-            time = 0;
+            transform.LookAt(PlayerTransform);
         }
         else
         {
             //nav.SetDestination(target.transform.position);
             anim.SetBool("IsWalk", true);
-            anim.SetBool("IsAttack", false);
-            //Debug.Log("찾는중");
-
-            time += Time.deltaTime;
-            if(time <= 2 && time >= 0.8)
-                this.nav.velocity = Vector3.zero;
+            anim.SetBool("IsLRAttack", false);
         }
 
+        //Debug.Log(attacktime);
+
         if(CurHP <= 0)
-        this.nav.velocity = Vector3.zero;
+        this.nav.velocity = Vector3.zero;   
         
     }
 
@@ -95,18 +97,43 @@ public class Enemy : MonoBehaviour
             CurHP -= 4;
 
         if(CurHP <= 0)
-        {   
+        {
             //gameObject.GetComponent<NavMeshAgent>().enabled = false;
             anim.SetTrigger("DoDie");
-            Destroy(gameObject, 2);
+            Destroy(gameObject, 1);
+        }
+    }
+
+    private void RLAttack(bool attack)
+    {
+        attacktime += Time.deltaTime;
+
+        if(attack == true && attacktime <= 1.35)
+        {
+            anim.SetBool("IsWalk", false);
+            anim.SetBool("IsLRAttack", true);
+            if(time == 0 && attacktime >= 1.3){
+                StartCoroutine("Shot");
+                time = 1;
+            }
+        }
+
+        if(attacktime >= 1.35)
+        {
+             anim.SetBool("IsLRAttack", false);
+        }
+
+        if(attacktime >= 2.72){
+            attacktime = 0;
+            time = 0;
         }
     }
 
     IEnumerator Shot()
     {
-        GameObject intantBullet = Instantiate(bullet, transform.position, transform.rotation);
+        GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
-        bulletRigid.velocity = transform.forward * 50;
+        bulletRigid.velocity = transform.forward * 15;
 
         yield return null;
     }

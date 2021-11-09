@@ -36,10 +36,21 @@ public class PlayerHpBar : MonoBehaviour
 
     public void Dmg()
     {
-        Enemy enemyStr = GameObject.Find("zombie").GetComponent<Enemy>();
+        Debug.Log("DD");
+        Enemy enemyStr = GameObject.Find("ZombieA(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
         Invoke("BackHpFun", 0.5f);
 ;    }
+
+    public void Dmg2()
+    {
+        Debug.Log("원거리");
+        Enemy2 enemyStr = GameObject.Find("ZombieB(Clone)").GetComponent<Enemy2>();
+        currentHp -= enemyStr.Str;
+        Invoke("BackHpFun", 0.5f);
+        ;
+    }
+
 
     void BackHpFun()
     {

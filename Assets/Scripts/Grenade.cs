@@ -35,7 +35,7 @@ public class Grenade : MonoBehaviour
 
         foreach(RaycastHit hitobj in rayHits)
         {
-            hitobj.transform.GetComponent<Enemy>().HitByGrenade(transform.position);
+            //hitobj.transform.GetComponent<Enemy>().HitByGrenade(transform.position);
         }
         
         yield return new WaitForSeconds(0.5f);

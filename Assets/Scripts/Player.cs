@@ -9,20 +9,9 @@ public class Player : MonoBehaviour
     public GameObject[] weapons;
     public bool[] hasWeapons;
 
-    
-
-
-    //수류탄 및 아이템
-    public int hasGrenades;
-    public int MaxhasGrenades;
-
-    public GameObject grenadeobj;
-    float MaxDistance = 100f;
-    
-
 
     public float speed;
-    public float HP;
+    public float HP = 100;
 
 
     float hAxis;
@@ -36,8 +25,6 @@ public class Player : MonoBehaviour
     bool sWeapon1;
     bool sWeapon2;
     bool isFireReady;
-
-    bool Itemdown;
 
     
     
@@ -71,9 +58,7 @@ public class Player : MonoBehaviour
         GetItem();
         Attack();
         Swap();
-        Die();
-
-        useitem();
+        //Die();
 
 
          Physics.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("monster"),true);
@@ -86,12 +71,10 @@ public class Player : MonoBehaviour
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
         DashDown = Input.GetButtonDown("Dash");
-        Attk = Input.GetButtonDown("Shoot");
+        Attk = Input.GetButton("Shoot");
         ItemGet = Input.GetButtonDown("Get");
         sWeapon1 = Input.GetButtonDown("Swap1");
         sWeapon2 = Input.GetButtonDown("Swap2");
-
-        Itemdown = Input.GetButtonDown("Fire1");
 
     }
 
@@ -149,64 +132,19 @@ public class Player : MonoBehaviour
 
     void GetItem()
     {
-
-         
         if(ItemGet && nearobject != null)
         {
-            
             if(nearobject.tag =="weapon")
             {
-               
                 Item item = nearobject.GetComponent<Item>();
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;
 
                 Destroy(nearobject);
-                
-            }
-
-
-            if(nearobject.tag =="Item")
-            {   
-                
-                Item item = nearobject.GetComponent<Item>();
-                
-                switch (item.type)
-                {
-                    case Item.Type.grenade:
-                       
-                        hasGrenades += item.value;
-                        if (hasGrenades > MaxhasGrenades)
-                            hasGrenades = MaxhasGrenades;
-                        break;
-                }
-                Destroy(nearobject);
             }
         }
-
-
-        
-
     }
 
-
-    void useitem()
-    {
-       if(hasGrenades ==0)
-            return;
-
-      
-       if(Itemdown)
-       {
-                      
-                GameObject instantGrenade = Instantiate(grenadeobj, transform.position, transform.rotation);
-                Rigidbody rigidGrenade = instantGrenade.GetComponent<Rigidbody>();
-                rigidGrenade.AddForce(transform.position * 10, ForceMode.Impulse);
-                rigidGrenade.AddTorque(Vector3.back * 10, ForceMode.Impulse);
-
-                hasGrenades--;            
-       }
-    }
 
     void Attack()
     {
@@ -217,9 +155,19 @@ public class Player : MonoBehaviour
 
         if(Attk && isFireReady && !isDash)
         {
-            earlyWeapon.Use();
-            anim.SetTrigger("doShoot");
-            fireDelay = 0;
+            if(equiWeaponIndex == 0)
+            {
+                earlyWeapon.Use();
+                anim.SetTrigger("doShoot");
+                fireDelay = 0;
+            }
+            else if(equiWeaponIndex == 1 && moveVec == Vector3.zero)
+            {
+                earlyWeapon.Use();
+                anim.SetTrigger("doShootMinigun");
+                fireDelay = 0;
+            }
+            
         }
         
         
@@ -239,7 +187,7 @@ public class Player : MonoBehaviour
     }
 
 
-    void Die()
+    /*void Die()
     {
         if (HP == 0)
         {
@@ -247,10 +195,25 @@ public class Player : MonoBehaviour
             Destroy(gameObject,2);
 
         }
+    }*/
+
+        
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            playerCanvas.GetComponent<PlayerHpBar>().Dmg();
+            Damage();
+        }
+        else if(other.gameObject.tag == "EnemyBullet")
+        {
+            playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
+            Damage();
+        }
+                
+
     }
-
-
-
+   /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
@@ -259,22 +222,13 @@ public class Player : MonoBehaviour
             Damage();
 
         }
-
-        
-
-        
             
-    }
+    }*/
 
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "weapon")
             nearobject = other.gameObject;
-        if (other.tag == "Item")
-            nearobject = other.gameObject;
-            
-        
-        
        
     }
     
