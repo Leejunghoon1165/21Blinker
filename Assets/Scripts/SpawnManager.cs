@@ -10,9 +10,11 @@ public class SpawnManager : MonoBehaviour
     public Transform spawnpoint2;
     public Transform spawnpoint3;
 
-    public int MaxEnemy = 10;
+    public int MaxEnemy = 20;
     public int CurEnemy;
-    public GameObject enemyprefabs;
+    public GameObject EnemyA;
+
+    public GameObject EnemyB;
 
     float RamdomNum;
 
@@ -36,28 +38,37 @@ public class SpawnManager : MonoBehaviour
          RamdomNum = Random.Range(0, 4);
             if(RamdomNum == 0)
             {
-                Instantiate(enemyprefabs, spawnpoint.position, spawnpoint.rotation);
-                CurEnemy += 1;
+                Instantiate(EnemyA, spawnpoint.position, spawnpoint.rotation);
+                Instantiate(EnemyB, spawnpoint.position, spawnpoint.rotation);
+                CurEnemy += 2;
             }
 
             if(RamdomNum == 1)
             {
-                Instantiate(enemyprefabs, spawnpoint1.position, spawnpoint1.rotation);
-                CurEnemy += 1;
+                Instantiate(EnemyA, spawnpoint1.position, spawnpoint1.rotation);
+                Instantiate(EnemyB, spawnpoint1.position, spawnpoint1.rotation);
+                CurEnemy += 2;
             }
 
             if(RamdomNum == 2)
             {
-                Instantiate(enemyprefabs, spawnpoint2.position, spawnpoint2.rotation);
-                CurEnemy += 1;
+                Instantiate(EnemyA, spawnpoint2.position, spawnpoint2.rotation);
+                Instantiate(EnemyB, spawnpoint2.position, spawnpoint2.rotation);
+                CurEnemy += 2;
             }
 
             if(RamdomNum == 3)
             {
-                Instantiate(enemyprefabs, spawnpoint3.position, spawnpoint3.rotation);
-                CurEnemy += 1;
+                Instantiate(EnemyA, spawnpoint3.position, spawnpoint3.rotation);
+                Instantiate(EnemyB, spawnpoint3.position, spawnpoint3.rotation);
+                CurEnemy += 2;
             }
+            
     }
+
+    
+
+
 
     // Update is called once per frame
     void Update()
