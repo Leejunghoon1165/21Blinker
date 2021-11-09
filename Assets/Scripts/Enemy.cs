@@ -93,4 +93,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void HitByGrenade(Vector3 explosionPos)
+    {
+        CurHP -= 50;
+        Vector3 reactvec = transform.position - explosionPos;
+    }
+
 }
