@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnRamdom()
     {
-         RamdomNum = Random.Range(0, 4);
+        RamdomNum = Random.Range(0, 4);
             if(RamdomNum == 0)
             {
                 Instantiate(EnemyA, spawnpoint.position, spawnpoint.rotation);
@@ -74,9 +74,10 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         
+        SpawnTime += Time.deltaTime;
+
         if(CurEnemy <= MaxEnemy)
         {
-            SpawnTime += Time.deltaTime;
             Debug.Log(SpawnTime);
 
             if(SpawnTime >= 5 || SpawnTime <= 5.25)

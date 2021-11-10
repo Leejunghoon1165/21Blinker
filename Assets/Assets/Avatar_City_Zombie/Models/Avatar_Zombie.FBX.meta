@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 159c4ecee7d28d148b4ce36d24684277
 ModelImporter:
-  serializedVersion: 25
+  serializedVersion: 19301
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
@@ -693,7 +693,7 @@ ModelImporter:
       name: hole
     second: {fileID: 2100000, guid: 103f3f2a07abe404eb770397af7b26ef, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -755,10 +755,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -783,17 +785,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - e98d7424ca383eb468b4145cb2200d35
-  - 7c60cb23f72a6b34da7e0f0814b1e62f
-  - d3cc54a3dbcf7e4448d86aff45ed67cb
-  - 526b6f0fca691b547b6d65ab54f5f612
-  - 0d4fd1c011fd18142ae557d99b1ca8d7
-  - 53a2f7fd72022324ca65028177814690
-  - 3417f9e31879978489deb9de46d07ca5
-  - beff867a2e918564d983c21ae9a04e4c
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human:
@@ -2439,8 +2432,10 @@ ModelImporter:
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -102,13 +102,4 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator Shot()
-    {
-        GameObject intantBullet = Instantiate(bullet, transform.position, transform.rotation);
-        Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
-        bulletRigid.velocity = transform.forward * 50;
-
-        yield return null;
-    }
-
 }
