@@ -11,6 +11,8 @@ TagManager:
   - Bullet_001
   - Enemy
   - PlayerArea
+  - Item
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
