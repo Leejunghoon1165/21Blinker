@@ -25,9 +25,6 @@ public class Enemy : MonoBehaviour
 
     float time;
 
-    public Transform bulletPos;
-    public GameObject bullet;
-
     private void Awake()
     {
 
@@ -64,20 +61,16 @@ public class Enemy : MonoBehaviour
         
         if(AttackDist >= Dist)
         {
-            //nav.SetDestination(Enemytransform.position);
             anim.SetBool("IsWalk", false);
             anim.SetBool("IsAttack", true);
-            //Debug.Log("공격중중중중중중중");
             this.nav.velocity = Vector3.zero;
 
             time = 0;
         }
         else
         {
-            //nav.SetDestination(target.transform.position);
             anim.SetBool("IsWalk", true);
             anim.SetBool("IsAttack", false);
-            //Debug.Log("찾는중");
 
             time += Time.deltaTime;
             if(time <= 2 && time >= 0.8)
@@ -100,15 +93,6 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("DoDie");
             Destroy(gameObject, 2);
         }
-    }
-
-    IEnumerator Shot()
-    {
-        GameObject intantBullet = Instantiate(bullet, transform.position, transform.rotation);
-        Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
-        bulletRigid.velocity = transform.forward * 50;
-
-        yield return null;
     }
 
 }

@@ -13,6 +13,7 @@ TagManager:
   - PlayerArea
   - Item
   - EnemyBullet
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
