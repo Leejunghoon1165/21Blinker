@@ -220,7 +220,7 @@ public class Player : MonoBehaviour
         
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "EnemyAttack")
         {
             playerCanvas.GetComponent<PlayerHpBar>().Dmg();
             Damage();
@@ -229,9 +229,7 @@ public class Player : MonoBehaviour
         {
             playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
             Damage();
-        }
-                
-
+        }            
     }
    /*
     private void OnTriggerEnter(Collider other)

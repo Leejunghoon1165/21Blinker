@@ -2956,9 +2956,9 @@ GameObject:
   - component: {fileID: 7253933286123542936}
   - component: {fileID: 7253933286342092887}
   - component: {fileID: 7253933286342092886}
-  - component: {fileID: 7253933286342092905}
   - component: {fileID: 7253933286342092904}
   - component: {fileID: 7253933286342092907}
+  - component: {fileID: 3995388619961918747}
   m_Layer: 0
   m_Name: ZombieB
   m_TagString: Enemy
@@ -3129,24 +3129,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7253933286342092905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7253933286342092906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf8b3c9039e450468a3257a4e6b92a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Str: 20
-  MAXHP: 10
-  CurHP: 0
-  AttackDist: 10.5
-  bulletPos: {fileID: 7253933286635343727}
-  bullet: {fileID: 4990696528300553093, guid: 242d0f0348d46cf44b24753d3caaac85, type: 3}
 --- !u!54 &7253933286342092904
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3177,6 +3159,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3995388619961918747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253933286342092906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123b2b846f7bbba448ddeadf82d6fe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  Str: 0
+  MAXHP: 10
+  CurHP: 0
+  AttackDist: 10.5
+  bulletPos: {fileID: 7253933286635343727}
+  bullet: {fileID: 4990696528300553093, guid: 242d0f0348d46cf44b24753d3caaac85, type: 3}
 --- !u!1 &7253933286357186067
 GameObject:
   m_ObjectHideFlags: 0
