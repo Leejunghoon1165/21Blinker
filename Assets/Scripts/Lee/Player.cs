@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     bool sWeapon2;
     bool isFireReady;
     bool doDie;
+    bool Item_Use;
     
     
 
@@ -68,8 +69,10 @@ public class Player : MonoBehaviour
         Attack();
         Swap();
         Die();
+        ItemUse();
     }
 
+   
     void GetInput()  //입력받기 
     {
         hAxis = Input.GetAxisRaw("Horizontal");
@@ -79,6 +82,7 @@ public class Player : MonoBehaviour
         ItemGet = Input.GetButtonDown("Get");
         sWeapon1 = Input.GetButtonDown("Swap1");
         sWeapon2 = Input.GetButtonDown("Swap2");
+        Item_Use = Input.GetButtonDown("ItemUse");
 
     }
 
@@ -152,6 +156,11 @@ public class Player : MonoBehaviour
                 Destroy(nearobject);
             }
         }
+    }
+
+    void ItemUse()
+    {
+
     }
 
 
