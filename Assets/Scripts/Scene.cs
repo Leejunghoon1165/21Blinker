@@ -71,6 +71,16 @@ public class Scene : MonoBehaviour
         Debug.Log(AsyncLoad.progress);
     }
 
+    IEnumerator LoadSceneAsync3()  //비동기
+    {
+        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Item", LoadSceneMode.Additive);
+        while (!AsyncLoad.isDone)
+        {
+            yield return null;
+        }
+        Debug.Log(AsyncLoad.progress);
+    }
+
     // Update is called once per frame
     void Update()
     {
