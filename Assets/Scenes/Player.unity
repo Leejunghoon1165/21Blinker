@@ -335,6 +335,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433f97f1039e6f846928c1e0225865f3, type: 3}
+--- !u!1 &424678285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3908191744142436394, guid: 4e3540b11381c944dafd475e7e680eb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 165095260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &424678286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424678285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933984ca4be2a2a42b6fe943547151b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadeObj: {fileID: 0}
+  hasGrenades: 0
+  hasHealingPotion: 34
+  hasStimulant: 0
+  hasCoin: 0
+  MaxhasGrenades: 0
+  MaxHealingPotion: 0
+  MaxStimulant: 0
+  MaxCoin: 0
+  heallingPotionValue: 50
+  stimulantDamage: 10
+  stimulantMoveSpeed: 0
+  stimulantAttackSpeed: 0
+  stimulantSight: 0
+  stimulantTime: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
