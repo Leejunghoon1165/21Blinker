@@ -77,7 +77,7 @@ public class SpawnManager : MonoBehaviour
         if(CurEnemy <= MaxEnemy)
         {
             SpawnTime += Time.deltaTime;
-            Debug.Log(SpawnTime);
+            //Debug.Log(SpawnTime);
 
             if(SpawnTime >= 5 || SpawnTime <= 5.25)
             {
