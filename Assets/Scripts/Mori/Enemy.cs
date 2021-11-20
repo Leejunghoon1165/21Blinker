@@ -60,6 +60,8 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
+        anim.SetBool("IsWalk", true);
+
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
         nav.SetDestination(target.position);
 
@@ -123,6 +125,7 @@ public class Enemy : MonoBehaviour
         if(attacktime >= 1.35)
         {
             anim.SetBool("IsLRAttack", false);
+            anim.SetBool("IsWalk", false);
         }
         if(attacktime >= 2.72){
             attacktime = 0;
