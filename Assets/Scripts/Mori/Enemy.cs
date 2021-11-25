@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public enum Type { A, B, C}
+    public enum Type {A, B, C}
 
     public Type enemyType;
     Transform target;
@@ -31,6 +31,9 @@ public class Enemy : MonoBehaviour
 
     public Transform bulletPos;
     public GameObject bullet;
+
+    public GameObject RecoverFX;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -41,6 +44,9 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        RecoverFX.SetActive(false);
+
         attacktime = 0;
         time = 0;
         
@@ -59,7 +65,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         anim.SetBool("IsWalk", true);
 
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
@@ -84,9 +89,9 @@ public class Enemy : MonoBehaviour
                 AttackMotion_B();
                 break;
             case Type.C:
+                AttackMotion_C();
                 break;
         }
-
     }
 
     void AttackMotion_A()
@@ -133,6 +138,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void AttackMotion_C()
+    {
+        if(AttackDist >= Dist)
+        {
+            anim.SetBool("IsWalk", false);
+            this.nav.velocity = Vector3.zero;
+        }
+        else
+        {
+            anim.SetBool("IsWalk", true);
+        }
+    }
+
     IEnumerator Shot()
     {
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
@@ -146,6 +164,12 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet_001")
             CurHP -= 4;
+    }
+
+    public void RecoverHP()
+    {
+        CurHP += 2;
+        Debug.Log("2의 체력을 회복함!");
     }
 
 }

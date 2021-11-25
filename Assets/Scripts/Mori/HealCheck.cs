@@ -7,27 +7,31 @@ public class HealCheck : MonoBehaviour
     float time;
     bool healcheck;
 
+    public GameObject heal;
 
-    // Start is called before the first frame update
     void Start()
     {
         time = 0;   
         healcheck = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(healcheck == true)
         {
             time += Time.deltaTime;
-            if(time >= 2.5)
+
+            if(time >= 1)
             {
-                Debug.Log("회복 시키는 중");
+                heal.SetActive(true);
+            }
+
+            if(time >= 3f)
+            {
                 time = 0;
+                heal.SetActive(false);
             }
         }
-        Debug.Log(healcheck);
     }
 
     private void OnTriggerStay(Collider collider)
