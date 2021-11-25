@@ -12825,7 +12825,6 @@ Transform:
   - {fileID: 3034717158109809056}
   - {fileID: 3034717158349792893}
   - {fileID: 3034717158779016071}
-  - {fileID: 3384342668842903597}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12914,12 +12913,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   Str: 20
-  MAXHP: 10
-  CurHP: 0
   AttackDist: 1.35
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
   RecoverFX: {fileID: 1055585006069982, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
+  MAXHP: 10
+  CurHP: 0
 --- !u!1 &3034717158660035821
 GameObject:
   m_ObjectHideFlags: 0
@@ -17522,48 +17521,3 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.16824138, y: 0.02104126, z: 0.24704957}
     m_Extent: {x: 0.3374747, y: 0.12736957, z: 0.33720493}
   m_DirtyAABB: 0
---- !u!1 &7486616472568670397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3384342668842903597}
-  - component: {fileID: 2830598221783815297}
-  m_Layer: 0
-  m_Name: HealCheck
-  m_TagString: EnemyHeal
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3384342668842903597
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7486616472568670397}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3034717158358907750}
-  m_RootOrder: 107
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2830598221783815297
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7486616472568670397}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

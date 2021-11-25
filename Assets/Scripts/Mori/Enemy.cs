@@ -6,33 +6,30 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public enum Type {A, B, C}
-
     public Type enemyType;
     Transform target;
-
     Animator anim;
-    
     NavMeshAgent nav;
     BoxCollider boxCollider;
     Rigidbody rigid;
 
     public float Str;
+    private Transform PlayerTransform;
+    private Transform Enemytransform;
+    float Dist;
+    public float AttackDist;
+    float time;
+    float attacktime;
+    public Transform bulletPos;
+    public GameObject bullet;
+    public GameObject RecoverFX;
+
     public int MAXHP = 10;
     public int CurHP;
 
-    private Transform PlayerTransform;
-    private Transform Enemytransform;
-
-    float Dist;
-    public float AttackDist;
-
-    float time;
-    float attacktime;
-
-    public Transform bulletPos;
-    public GameObject bullet;
-
-    public GameObject RecoverFX;
+    bool recover;
+    bool HealDlay;
+    bool HealerHealDlay;
 
     private void Awake()
     {
@@ -45,12 +42,15 @@ public class Enemy : MonoBehaviour
     void Start()
     {
 
+        CurHP = MAXHP;
+        recover = false;
+        HealDlay = false;
+        HealerHealDlay = false;
+
         RecoverFX.SetActive(false);
 
         attacktime = 0;
         time = 0;
-        
-        CurHP = MAXHP;
 
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -77,6 +77,10 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("DoDie");
             Destroy(gameObject, 1);
         }
+        if(CurHP >= 10)
+            CurHP = 10;
+
+         Debug.Log(CurHP);   
     }
 
     void Attack()
@@ -150,7 +154,31 @@ public class Enemy : MonoBehaviour
             anim.SetBool("IsWalk", true);
         }
     }
+    
 
+    private void OnTriggerStay(Collider col)
+    {
+        //힐범위와 충돌하면(피가10미만일때) 2초마다 체력2를 회복한다.
+        if (col.gameObject.tag == "EnemyHeal" && HealDlay == false && CurHP <=10)
+        {
+            CurHP += 2;
+            HealDlay = true;
+            HealerHealDlay = true;
+            StartCoroutine(RecoverDelay());
+        }
+        //총알에 맞으면 피가 닳는다.
+        if (col.gameObject.tag == "Bullet_001")
+            CurHP -= 4;
+    }
+
+    //2초동안 힐을 다시 못받게 딜레이 시킨다.
+    IEnumerator RecoverDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        HealDlay = false;
+    }
+
+    //원거리적 공격함수
     IEnumerator Shot()
     {
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
@@ -159,17 +187,4 @@ public class Enemy : MonoBehaviour
 
         yield return null;
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bullet_001")
-            CurHP -= 4;
-    }
-
-    public void RecoverHP()
-    {
-        CurHP += 2;
-        Debug.Log("2의 체력을 회복함!");
-    }
-
 }

@@ -1,50 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4889766400908314169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2894495468600613044}
-  - component: {fileID: 2137071046645292361}
-  m_Layer: 0
-  m_Name: HealCheck
-  m_TagString: EnemyHeal
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2894495468600613044
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4889766400908314169}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7253933286123542936}
-  m_RootOrder: 108
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2137071046645292361
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4889766400908314169}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7253933285995925957
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,7 +3085,6 @@ Transform:
   - {fileID: 7253933286114559107}
   - {fileID: 7253933286744600953}
   - {fileID: 7253933286635343727}
-  - {fileID: 2894495468600613044}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3219,12 +3173,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   Str: 0
-  MAXHP: 10
-  CurHP: 0
   AttackDist: 10.5
   bulletPos: {fileID: 7253933286635343727}
   bullet: {fileID: 4990696528300553093, guid: 242d0f0348d46cf44b24753d3caaac85, type: 3}
   RecoverFX: {fileID: 1055585006069982, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
+  MAXHP: 10
+  CurHP: 0
 --- !u!1 &7253933286357186067
 GameObject:
   m_ObjectHideFlags: 0
