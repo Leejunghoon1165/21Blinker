@@ -6,6 +6,7 @@ public class Camera : MonoBehaviour
 {
     public Transform target;
     public Vector3 offset;
+    internal CameraClearFlags clearFlags;
 
     void Update()
     {
