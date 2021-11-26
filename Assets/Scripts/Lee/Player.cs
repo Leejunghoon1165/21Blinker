@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
 
 
     bool DashDown;
-    bool Attk;
-    bool ItemGet;
+    public bool Attk;
+    public bool ItemGet;
     bool isDash;
     bool sWeapon1;
     bool sWeapon2;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     GameObject nearobject;
     Weapon earlyWeapon;
     int equiWeaponIndex = -1;
-    float fireDelay;
+    public float fireDelay;
     float PlayerHP;
     float CurrentHP;
 
@@ -149,9 +149,67 @@ public class Player : MonoBehaviour
         {
             if(nearobject.tag =="weapon")
             {
-                Item item = nearobject.GetComponent<Item>();
+                FieldItemData item = nearobject.GetComponent<FieldItemData>();
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;
+
+                Destroy(nearobject);
+            }
+
+            
+            if(nearobject.tag =="Item")
+            {
+                FieldItemData item = nearobject.GetComponent<FieldItemData>();
+                PlayerItem_Data item_Data = GameObject.Find("Player").GetComponent<PlayerItem_Data>();
+                int value = (int) item.type;
+                if(value == 0) // 그레네이드
+                {
+                    item_Data.hasGrenades++;
+                    item_Data.Grenadehasstate = true;
+                    
+                    item_Data.hasHealingPotion=0;
+                    item_Data.heallingPotionhasstate=false;
+
+                    item_Data.hasStimulant=0;
+                    item_Data.stimulanthasstate = false;
+                    if(item_Data.hasGrenades >= item_Data.MaxhasGrenades)
+                    {
+                        item_Data.hasGrenades = item_Data.MaxhasGrenades;
+                    }
+                }
+                else if(value ==1) // 힐링포션
+                {
+                    item_Data.hasHealingPotion++;
+                    item_Data.heallingPotionhasstate = true;
+                    
+                    item_Data.hasGrenades=0;
+                    item_Data.Grenadehasstate=false;
+
+                    item_Data.hasStimulant=0;
+                    item_Data.stimulanthasstate = false;
+                    if(item_Data.hasHealingPotion >= item_Data.MaxHealingPotion)
+                    {
+                        item_Data.hasHealingPotion = item_Data.MaxHealingPotion;
+                    }
+
+
+                }
+                else if(value ==2) // 각성제
+                {
+                     item_Data.hasStimulant++;
+                    item_Data.stimulanthasstate = true;
+                   
+                    item_Data.hasHealingPotion=0;
+                    item_Data.heallingPotionhasstate=false;
+
+                    item_Data.hasGrenades=0;
+                    item_Data.Grenadehasstate = false;
+                    if(item_Data.hasStimulant >= item_Data.MaxStimulant)
+                    {
+                        item_Data.hasStimulant = item_Data.MaxStimulant;
+                    }
+                }
+
 
                 Destroy(nearobject);
             }
@@ -229,7 +287,7 @@ public class Player : MonoBehaviour
         
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "EnemyAttack")
         {
             playerCanvas.GetComponent<PlayerHpBar>().Dmg();
             Damage();
@@ -238,9 +296,7 @@ public class Player : MonoBehaviour
         {
             playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
             Damage();
-        }
-                
-
+        }            
     }
    /*
     private void OnTriggerEnter(Collider other)
