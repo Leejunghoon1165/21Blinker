@@ -12959,7 +12959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  Str: 20
+  Str: 15
   AttackDist: 1.35
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
@@ -12967,6 +12967,8 @@ MonoBehaviour:
   MAXHP: 10
   CurHP: 0
   heal: {fileID: 3493423261934829869}
+  bomb: {fileID: 0}
+  mat: []
 --- !u!1 &3034717158660035821
 GameObject:
   m_ObjectHideFlags: 0
@@ -17579,6 +17581,10 @@ PrefabInstance:
     - target: {fileID: 1055585006069982, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
       propertyPath: m_Name
       value: FX_Heal_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055585006069982, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4367362870695974, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
       propertyPath: m_RootOrder

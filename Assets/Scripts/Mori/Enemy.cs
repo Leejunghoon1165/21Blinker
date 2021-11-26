@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public enum Type {A, B, C}
+    public enum Type {A, B, C, D}
     public Type enemyType;
     Transform target;
     Animator anim;
@@ -26,12 +26,16 @@ public class Enemy : MonoBehaviour
     public int CurHP;
     bool HealDlay;
     public ParticleSystem heal;
+    public ParticleSystem bomb1;
+    public ParticleSystem bomb2;
+    Renderer rend;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
+        rend = GetComponent<Renderer>();
     }
 
     // Start is called before the first frame update
@@ -93,6 +97,9 @@ public class Enemy : MonoBehaviour
             case Type.C:
                 AttackMotion_C();
                 break;
+            case Type.D:
+                AttackMotion_D();
+                break;
         }
     }
 
@@ -141,7 +148,6 @@ public class Enemy : MonoBehaviour
             time = 0;
         }
     }
-
     void AttackMotion_C()
     {
         if(AttackDist >= Dist)
@@ -154,7 +160,18 @@ public class Enemy : MonoBehaviour
             anim.SetBool("IsWalk", true);
         }
     }
-    
+    void AttackMotion_D()
+    {
+        if(AttackDist >= Dist)
+        {
+            anim.SetBool("IsWalk", false);
+            anim.SetTrigger("DoDie");
+            bomb1.Play();
+            bomb2.Play();
+            this.nav.velocity = Vector3.zero;
+            Destroy(gameObject, 2f);
+        }
+    }
 
     private void OnTriggerStay(Collider col)
     {
@@ -188,4 +205,5 @@ public class Enemy : MonoBehaviour
 
         yield return null;
     }
+
 }
