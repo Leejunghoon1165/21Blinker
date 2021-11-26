@@ -11,7 +11,7 @@ public class Player_Raycast : MonoBehaviour
     public GameObject Target;
 
     //레이 길이를 지정할 변수
-    public float distance = 10.0f;
+    public float distance = 20.0f;
 
     //충돌 정보를 가져올 레이케스트 히트
     public RaycastHit hit;
@@ -55,8 +55,9 @@ public class Player_Raycast : MonoBehaviour
             for (int i = 0; i < hits.Length; i++)
             {
                 hits[i].collider.gameObject.GetComponent<Mesh>();
-               // hits[i].collider.gameObject.
+                // hits[i].collider.gameObject.
                 //print(hits[i].collider.gameObject.name + " " + i);
+               // hits[i].collider.gameObject.GetComponent<EnemyFinder>().Look();
             }
         }
 

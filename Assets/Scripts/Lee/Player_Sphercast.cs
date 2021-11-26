@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_Sphercast : MonoBehaviour
 {
+    public float radius = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +18,16 @@ public class Player_Sphercast : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, 6, Vector3.up, 0f, LayerMask.GetMask("Enemy"));
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, radius, Vector3.up, 0f, LayerMask.GetMask("Enemy"));
 
-        if (rayHits.Length > 0)
+        if (hits.Length > 0)
         {
-            for (int i = 0; i < rayHits.Length; i++)
+            for (int i = 0; i < hits.Length; i++)
             {
-                print(rayHits[i].collider.gameObject.name + "" + i);
+                print(hits[i].collider.gameObject.name + " " + i);
+                hits[i].collider.gameObject.GetComponent<EnemyFinder>().Look();
+                
+
             }
         }
 
@@ -32,7 +36,7 @@ public class Player_Sphercast : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 6);
+        Gizmos.DrawWireSphere(transform.position, radius);
         //Gizmos.DrawSphere(transform.position, 10);
     }
 }
