@@ -5,32 +5,29 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public enum Type { A, B, C}
-
+    public enum Type {A, B, C}
     public Type enemyType;
     Transform target;
-
     Animator anim;
-    
     NavMeshAgent nav;
     BoxCollider boxCollider;
     Rigidbody rigid;
-
     public float Str;
-    public int MAXHP = 10;
-    public int CurHP;
-
     private Transform PlayerTransform;
     private Transform Enemytransform;
-
     float Dist;
     public float AttackDist;
-
     float time;
     float attacktime;
-
     public Transform bulletPos;
     public GameObject bullet;
+    public GameObject RecoverFX;
+    public int MAXHP = 10;
+    public int CurHP;
+    bool recover;
+    bool HealDlay;
+    public ParticleSystem heal;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -41,10 +38,15 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        CurHP = MAXHP;
+        recover = false;
+        HealDlay = false;
+
+        RecoverFX.SetActive(false);
+
         attacktime = 0;
         time = 0;
-        
-        CurHP = MAXHP;
 
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -59,6 +61,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //플레이어를 항상 바라보게 함
+        transform.LookAt(PlayerTransform);
+        anim.SetBool("IsWalk", true);
 
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
         nav.SetDestination(target.position);
@@ -70,6 +75,12 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("DoDie");
             Destroy(gameObject, 1);
         }
+        if(CurHP >= 10)
+        {
+            CurHP = 10;
+            heal.Stop();
+        }
+        Debug.Log(CurHP);   
     }
 
     void Attack()
@@ -82,9 +93,9 @@ public class Enemy : MonoBehaviour
                 AttackMotion_B();
                 break;
             case Type.C:
+                AttackMotion_C();
                 break;
         }
-
     }
 
     void AttackMotion_A()
@@ -108,7 +119,6 @@ public class Enemy : MonoBehaviour
     }
     void AttackMotion_B()
     {
-        transform.LookAt(PlayerTransform);
         if(AttackDist >= Dist)
             attacktime += Time.deltaTime;
         if(AttackDist >= Dist && attacktime <= 1.35)
@@ -123,6 +133,7 @@ public class Enemy : MonoBehaviour
         if(attacktime >= 1.35)
         {
             anim.SetBool("IsLRAttack", false);
+            anim.SetBool("IsWalk", false);
         }
         if(attacktime >= 2.72){
             attacktime = 0;
@@ -130,6 +141,44 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void AttackMotion_C()
+    {
+        if(AttackDist >= Dist)
+        {
+            anim.SetBool("IsWalk", false);
+            this.nav.velocity = Vector3.zero;
+        }
+        else
+        {
+            anim.SetBool("IsWalk", true);
+        }
+    }
+    
+
+    private void OnTriggerStay(Collider col)
+    {
+        //힐범위와 충돌하면(피가10미만일때) 2초마다 체력2를 회복한다.
+        if (col.gameObject.tag == "EnemyHeal" && HealDlay == false && CurHP <=10)
+        {
+            CurHP += 2;
+            heal.Play();
+            HealDlay = true;
+            StartCoroutine(RecoverDelay());
+        }
+        //총알에 맞으면 피가 닳는다.
+        if (col.gameObject.tag == "Bullet_001")
+            CurHP -= 4;
+    }
+
+    //2초동안 힐을 다시 못받게 딜레이 시킨다.
+    IEnumerator RecoverDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        HealDlay = false;
+        heal.Stop();
+    }
+
+    //원거리적 공격함수
     IEnumerator Shot()
     {
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
@@ -138,11 +187,4 @@ public class Enemy : MonoBehaviour
 
         yield return null;
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bullet_001")
-            CurHP -= 4;
-    }
-
 }

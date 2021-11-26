@@ -14,6 +14,7 @@ TagManager:
   - Item
   - EnemyBullet
   - EnemyAttack
+  - EnemyHeal
   layers:
   - Default
   - TransparentFX
