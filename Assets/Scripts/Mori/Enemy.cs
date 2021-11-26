@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     NavMeshAgent nav;
     BoxCollider boxCollider;
     Rigidbody rigid;
-
     public float Str;
     private Transform PlayerTransform;
     private Transform Enemytransform;
@@ -23,13 +22,11 @@ public class Enemy : MonoBehaviour
     public Transform bulletPos;
     public GameObject bullet;
     public GameObject RecoverFX;
-
     public int MAXHP = 10;
     public int CurHP;
-
     bool recover;
     bool HealDlay;
-    bool HealerHealDlay;
+    public ParticleSystem heal;
 
     private void Awake()
     {
@@ -45,7 +42,6 @@ public class Enemy : MonoBehaviour
         CurHP = MAXHP;
         recover = false;
         HealDlay = false;
-        HealerHealDlay = false;
 
         RecoverFX.SetActive(false);
 
@@ -65,6 +61,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //플레이어를 항상 바라보게 함
+        transform.LookAt(PlayerTransform);
         anim.SetBool("IsWalk", true);
 
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
@@ -78,9 +76,11 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject, 1);
         }
         if(CurHP >= 10)
+        {
             CurHP = 10;
-
-         Debug.Log(CurHP);   
+            heal.Stop();
+        }
+        Debug.Log(CurHP);   
     }
 
     void Attack()
@@ -119,7 +119,6 @@ public class Enemy : MonoBehaviour
     }
     void AttackMotion_B()
     {
-        transform.LookAt(PlayerTransform);
         if(AttackDist >= Dist)
             attacktime += Time.deltaTime;
         if(AttackDist >= Dist && attacktime <= 1.35)
@@ -162,8 +161,8 @@ public class Enemy : MonoBehaviour
         if (col.gameObject.tag == "EnemyHeal" && HealDlay == false && CurHP <=10)
         {
             CurHP += 2;
+            heal.Play();
             HealDlay = true;
-            HealerHealDlay = true;
             StartCoroutine(RecoverDelay());
         }
         //총알에 맞으면 피가 닳는다.
@@ -176,6 +175,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         HealDlay = false;
+        heal.Stop();
     }
 
     //원거리적 공격함수
