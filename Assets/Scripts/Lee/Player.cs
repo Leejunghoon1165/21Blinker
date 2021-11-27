@@ -19,14 +19,14 @@ public class Player : MonoBehaviour
 
 
     bool DashDown;
-    public bool Attk;
+    bool Attk;
     public bool ItemGet;
     bool isDash;
     bool sWeapon1;
     bool sWeapon2;
     bool isFireReady;
     bool doDie;
-    bool Item_Use;
+    public bool Item_Use;
     
     
 
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         Attack();
         Swap();
         Die();
-        ItemUse();
+        
     }
 
    
@@ -216,10 +216,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void ItemUse()
-    {
-
-    }
+    
 
 
     void Attack()

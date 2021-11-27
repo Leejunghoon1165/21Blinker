@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour
 
     public Transform bulletPos;
     public GameObject bullet;
+
+    public GrenadeData grenadeData;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -144,5 +146,21 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Bullet_001")
             CurHP -= 4;
     }
+
+
+
+    
+    public void HitByGrenade()
+    {
+        Debug.Log("monster a!!");
+        //체력 - 수류탄 데미지;
+        CurHP -= grenadeData.Damage;
+
+
+        //모리의 피격 로직StartCoroutine();
+
+    }
+    
+
 
 }

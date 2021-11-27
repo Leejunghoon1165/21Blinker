@@ -33,10 +33,10 @@ public class PlayerItem_Data : MonoBehaviour
     public Transform grenadePos;
 
     //아이템 보유 변수
-    public int hasGrenades;
-    public int hasHealingPotion;
-    public int hasStimulant;
-    public int hasCoin;
+    public int hasGrenades;            //수류탄
+    public int hasHealingPotion;        // 힐포
+    public int hasStimulant;             // 각성제
+    public int hasCoin;                // 돈
 
     public int MaxhasGrenades;
     public int MaxHealingPotion;
@@ -59,8 +59,7 @@ public class PlayerItem_Data : MonoBehaviour
     public float stimulantTime = 2f;
 
     //아이템 사용허가
-    bool stimulantstate;
-
+   
     public bool stimulanthasstate;
     public bool heallingPotionhasstate;
 
@@ -86,14 +85,15 @@ public class PlayerItem_Data : MonoBehaviour
             Grenadehasstate=false;
             return;
         }
-        if(Grenadehasstate && playerState.Attk && Item_Use_OK)
+        if(Grenadehasstate && playerState.Item_Use && Item_Use_OK)
         {
+            Debug.Log("grenade");
             Item_Use_OK = false;  
             
-
+            
             GameObject Cr_Grenade = Instantiate(grenadeObj, grenadePos.position, grenadePos.rotation);
             Rigidbody bulletRigid = Cr_Grenade.GetComponent<Rigidbody>();
-            bulletRigid.velocity = (grenadePos.forward  + grenadePos.up ) * 50;
+            bulletRigid.velocity = (grenadePos.forward  + grenadePos.up ) * 10;
 
             
             hasGrenades--;
@@ -112,9 +112,9 @@ public class PlayerItem_Data : MonoBehaviour
         }
 
         
-        if(heallingPotionhasstate && playerState.Attk && Item_Use_OK)
+        if(heallingPotionhasstate && playerState.Item_Use && Item_Use_OK)
         {
-            
+            Debug.Log("heal");
             Item_Use_OK = false;  
             PlayerHpBar.currentHp += heallingPotionValue;       
             
@@ -135,12 +135,13 @@ public class PlayerItem_Data : MonoBehaviour
             stimulanthasstate=false;
             return;
         } 
-        if(stimulantstate && playerState.Attk && Item_Use_OK)
+        if(stimulanthasstate && playerState.Item_Use && Item_Use_OK)
         {
+            Debug.Log("Stiuse");
             Item_Use_OK = false; 
 
             playerState.speed += stimulantMoveSpeed;
-            playerState.fireDelay -=stimulantAttackSpeed;
+            //playerState.fireDelay +=stimulantAttackSpeed;
             //playerState.sight += stimulantSight;
             PlayerHpBar.currentHp -= stimulantDamage;
             StartCoroutine(stimulantTimer());
@@ -157,11 +158,11 @@ public class PlayerItem_Data : MonoBehaviour
     IEnumerator stimulantTimer()
     {
         yield return new WaitForSeconds(stimulantTime);
-        stimulantstate = false;
+        Debug.Log("stidown");
         playerState.speed -= stimulantMoveSpeed;
-        playerState.fireDelay +=stimulantAttackSpeed;
+        //playerState.fireDelay = 0;
         //playerState.sight -= stimulantSight;
-        PlayerHpBar.currentHp += stimulantDamage;
+        
     }
    
     
