@@ -15,6 +15,7 @@ TagManager:
   - EnemyBullet
   - EnemyAttack
   - EnemyHeal
+  - SGBullet
   layers:
   - Default
   - TransparentFX

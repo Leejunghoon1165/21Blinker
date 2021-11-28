@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
             CurHP = 10;
             heal.Stop();
         }
-        Debug.Log(CurHP);
+        //Debug.Log(CurHP);
     }
 
     void Attack()

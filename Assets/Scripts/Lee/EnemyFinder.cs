@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyFinder : MonoBehaviour
 {
-    public MeshRenderer render;
+    public SkinnedMeshRenderer render;
+    //public MeshRenderer render;
     // Start is called before the first frame update
     void Start()
     {
-        render = GetComponent<MeshRenderer>();
+        render = GetComponent<SkinnedMeshRenderer>();
         render.enabled = false;
     }
 

@@ -128,6 +128,7 @@ public class Player : MonoBehaviour
             return;
 
 
+
         int weaponIndex = -1;
         if (sWeapon1) weaponIndex = 0;
         if (sWeapon2) weaponIndex = 1;
