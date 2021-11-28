@@ -14,6 +14,7 @@ public class Scene : MonoBehaviour
         StartCoroutine(LoadSceneAsync());
         StartCoroutine(LoadSceneAsync2());
         StartCoroutine(LoadSceneAsync3());
+        StartCoroutine(LoadSceneAsync4());
         
         //SceneManager.LoadScene("Player", LoadSceneMode.Additive);  //동기
         // SceneManager.LoadScene("Enemy", LoadSceneMode.Additive);
@@ -71,7 +72,7 @@ public class Scene : MonoBehaviour
         Debug.Log(AsyncLoad.progress);
     }
 
-    IEnumerator LoadSceneAsync3()  //비동기
+    IEnumerator LoadSceneAsync4()  //비동기
     {
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Item", LoadSceneMode.Additive);
         while (!AsyncLoad.isDone)
