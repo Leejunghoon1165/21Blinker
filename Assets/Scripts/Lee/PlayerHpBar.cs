@@ -9,20 +9,21 @@ public class PlayerHpBar : MonoBehaviour
     public Slider BackHpSlider;
 
     public Transform player;
-    public static float maxHp = 100;
-    public static float currentHp = 100;
+    public static float maxHp;
+    public static float currentHp;
     public bool backHpHit = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxHp = Player.PlayerHP;   //최대 체력은 플레이어 스크립트에서 받아온다.
+        currentHp = Player.CurrentHP;  //currenthp 또한 플레이어 스크립트에서 받아옴
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.position + new Vector3(0, 3.5f,0);
-        hpBar.value = Mathf.Lerp( hpBar.value, currentHp / maxHp ,Time.deltaTime * 5f) ;
+        transform.position = player.position + new Vector3(0, 3.5f,0); //체력바의 위치 고정
+        hpBar.value = Mathf.Lerp(hpBar.value, currentHp / maxHp, Time.deltaTime * 5f);  //체력바의 벨류는 maxhp/currenthp 즉 100/100 = 1
         if(backHpHit)
         {
             BackHpSlider.value = Mathf.Lerp(BackHpSlider.value, currentHp / maxHp, Time.deltaTime * 10f);
@@ -34,7 +35,7 @@ public class PlayerHpBar : MonoBehaviour
         }
     }
 
-    public void Dmg()
+    public void Dmg()   //피해를 받을때
     {
         Enemy enemyStr = GameObject.Find("ZombieA").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;

@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     public GameObject[] weapons;
     public bool[] hasWeapons;
 
-
+    public static float PlayerHP;
+    public static float CurrentHP = 100;
     public float speed;
+    
 
 
     float hAxis;
@@ -41,13 +43,16 @@ public class Player : MonoBehaviour
     Weapon earlyWeapon;
     int equiWeaponIndex = -1;
     public float fireDelay;
-    float PlayerHP;
-    float CurrentHP;
+   
 
-    private void Start()
+    public void Start()
     {
-        PlayerHP = PlayerHpBar.maxHp;
-        CurrentHP = PlayerHpBar.currentHp;
+        //PlayerHP = PlayerHpBar.maxHp;
+        //CurrentHP = PlayerHpBar.currentHp;
+        // Debug.Log(PlayerHP);
+        //PlayerHP = Test2.PlayerHP;
+        //Debug.Log(PlayerHP);
+       
     }
 
     void Awake()
@@ -70,6 +75,7 @@ public class Player : MonoBehaviour
         Swap();
         Die();
         ItemUse();
+        CurrentHP = PlayerHpBar.currentHp;
     }
 
    
@@ -153,7 +159,6 @@ public class Player : MonoBehaviour
                 FieldItemData item = nearobject.GetComponent<FieldItemData>();
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;
-
                 Destroy(nearobject);
             }
 
@@ -254,9 +259,9 @@ public class Player : MonoBehaviour
     {
         //Enemy 공격력 가져옴
         // HP = HP - enemyStr.Str;
-        if(!doDie)
+        if(doDie == false)
         {
-            CurrentHP = PlayerHpBar.currentHp;
+            //CurrentHP = PlayerHpBar.currentHp;
             StartCoroutine(OnDamage());
         }
         
@@ -271,17 +276,19 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        if (CurrentHP == 0)
+        if (CurrentHP <= 0)
         {
-            StartCoroutine(DODIE());
-        }
-        IEnumerator DODIE()
-        {
-            anim.SetTrigger("doDie");
             doDie = true;
-            yield return new WaitForSeconds(2f);
-            gameObject.SetActive(false);
+            anim.SetTrigger("doDie");
+            Destroy(gameObject, 2f);
         }
+        //IEnumerator DODIE()
+        //{
+        //    anim.SetTrigger("doDie");
+        //    doDie = true;
+        //    yield return new WaitForSeconds(2f);
+        //    gameObject.SetActive(false);
+        //}
         
     }
 

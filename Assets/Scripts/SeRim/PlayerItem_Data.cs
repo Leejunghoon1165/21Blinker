@@ -116,7 +116,7 @@ public class PlayerItem_Data : MonoBehaviour
         {
             
             Item_Use_OK = false;  
-            PlayerHpBar.currentHp += heallingPotionValue;       
+            //PlayerHpBar.currentHp += heallingPotionValue;       
             
             hasHealingPotion--;
             Invoke("Item_off", Item_timer); 
@@ -142,7 +142,7 @@ public class PlayerItem_Data : MonoBehaviour
             playerState.speed += stimulantMoveSpeed;
             playerState.fireDelay -=stimulantAttackSpeed;
             //playerState.sight += stimulantSight;
-            PlayerHpBar.currentHp -= stimulantDamage;
+           // PlayerHpBar.currentHp -= stimulantDamage;
             StartCoroutine(stimulantTimer());
 
             hasStimulant--;
@@ -161,7 +161,7 @@ public class PlayerItem_Data : MonoBehaviour
         playerState.speed -= stimulantMoveSpeed;
         playerState.fireDelay +=stimulantAttackSpeed;
         //playerState.sight -= stimulantSight;
-        PlayerHpBar.currentHp += stimulantDamage;
+      // PlayerHpBar.currentHp += stimulantDamage;
     }
    
     
