@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Test2 : MonoBehaviour
 {
-    public static float PlayerHP;
+    public static float player_hp;
     // Start is called before the first frame update
 
-    void Start()
+    private void Awake()
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("playerdata_csv");
-        PlayerHP = float.Parse((data_Dialog[2]["player_hp"].ToString()));
-        //Debug.Log(PlayerHP);
-        //for (int i = 0; i < data_Dialog.Count; i++)
-        //{
-        //    data_Dialog[i]["player_hp"].ToString();
-        //}
-        
+        player_hp = float.Parse((data_Dialog[0]["player_hp"].ToString()));
+    }
+    void Start()
+    {    
         
     }
 

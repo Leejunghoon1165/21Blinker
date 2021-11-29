@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public bool[] hasWeapons;
 
     public static float PlayerHP;
-    public static float CurrentHP = 100;
+    public static float CurrentHP;
     public float speed;
     
 
@@ -50,9 +50,9 @@ public class Player : MonoBehaviour
         //PlayerHP = PlayerHpBar.maxHp;
         //CurrentHP = PlayerHpBar.currentHp;
         // Debug.Log(PlayerHP);
-        //PlayerHP = Test2.PlayerHP;
-        //Debug.Log(PlayerHP);
-       
+        PlayerHP = Test2.player_hp;
+        CurrentHP = PlayerHP;
+        //Debug.Log(PlayerHP); 
     }
 
     void Awake()
