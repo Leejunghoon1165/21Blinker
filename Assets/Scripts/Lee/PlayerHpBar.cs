@@ -12,20 +12,22 @@ public class PlayerHpBar : MonoBehaviour
     public static float maxHp;
     public static float currentHp;
     public bool backHpHit = false;
+    public bool backHpHealing = false;
+    public static float playerhealing;
+    bool flag2;
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxHp = Test2.player_hp;
+        currentHp = maxHp;
+        //Debug.Log(currentHp);
        
     }
 
     // Update is called once per frame
     void Update()
     {
-        maxHp = Player.PlayerHP;   //최대 체력은 플레이어 스크립트에서 받아온다.
-        currentHp = Player.CurrentHP;  //currenthp 또한 플레이어 스크립트에서 받아옴
-        Debug.Log(maxHp);
-        Debug.Log(currentHp);
+        //Debug.Log(playerhealing);
         transform.position = player.position + new Vector3(0, 3.5f,0); //체력바의 위치 고정
         hpBar.value = Mathf.Lerp(hpBar.value, currentHp / maxHp, Time.deltaTime * 5f);  //체력바의 벨류는 maxhp/currenthp 즉 100/100 = 1
         if(backHpHit)
@@ -37,6 +39,11 @@ public class PlayerHpBar : MonoBehaviour
                 BackHpSlider.value = hpBar.value;
             }
         }
+        if(backHpHealing)
+        {
+
+        }
+
     }
 
     public void Dmg()   //피해를 받을때
@@ -53,9 +60,25 @@ public class PlayerHpBar : MonoBehaviour
         Invoke("BackHpFun", 0.5f);
     }
 
+    public void heal()
+    {
+        // playerhealing = TestSkill.PlayercurrentHP;
+        currentHp += TestSkill.PlayermaxHPskill;
+        if(currentHp >= maxHp)
+        {
+            currentHp = maxHp;
+        }
+        Invoke("BackHpHeal", 0.5f);
+    }
+
 
     void BackHpFun()
     {
         backHpHit = true;
+    }
+
+    void BackHpHeal()
+    {
+        backHpHealing = true;
     }
 }

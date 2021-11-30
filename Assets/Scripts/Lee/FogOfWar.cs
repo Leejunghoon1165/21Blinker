@@ -36,6 +36,7 @@ public class FogOfWar : MonoBehaviour
                     float alpha = Mathf.Min(m_colors[i].a, dist / m_radiusSqr);
                     m_colors[i].a = alpha;
                 }
+                
             }
             UpdateColor();
         }

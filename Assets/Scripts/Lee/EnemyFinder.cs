@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemyFinder : MonoBehaviour
 {
-    public SkinnedMeshRenderer render;
+    public MeshRenderer render2;
+  //  public SkinnedMeshRenderer render;
     //public MeshRenderer render;
     // Start is called before the first frame update
     void Start()
     {
-        render = GetComponent<SkinnedMeshRenderer>();
-        render.enabled = false;
+        render2 = GetComponent<MeshRenderer>();
+        //render = GetComponent<SkinnedMeshRenderer>();
+        render2.enabled = false;
     }
 
     // Update is called once per frame
@@ -21,6 +23,11 @@ public class EnemyFinder : MonoBehaviour
 
     public void Look()
     {
-        render.enabled = true;
+        render2.enabled = true;
+    }
+
+    public void UnLook()
+    {
+        render2.enabled = false;
     }
 }
