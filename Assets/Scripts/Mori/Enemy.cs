@@ -21,17 +21,18 @@ public class Enemy : MonoBehaviour
     float attacktime;
     public Transform bulletPos;
     public GameObject bullet;
+
+
+    public GrenadeData grenadeData;
     public int MAXHP = 10;
     public int CurHP;
     bool HealDlay;
-
     public GameObject HealCheck;
     public ParticleSystem HealFX;
     public ParticleSystem RecoverFX;
     public ParticleSystem bomb1FX;
     public ParticleSystem bomb2FX;
     Renderer rend;
-
 
     private void Awake()
     {
@@ -227,5 +228,24 @@ public class Enemy : MonoBehaviour
 
         yield return null;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet_001")
+            CurHP -= 4;
+    }
+    
+    public void HitByGrenade()
+    {
+        Debug.Log("monster a!!");
+        //체력 - 수류탄 데미지;
+        CurHP -= grenadeData.Damage;
+
+
+        //모리의 피격 로직StartCoroutine();
+
+    }
+    
+
 
 }

@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class GrenadeData : MonoBehaviour
 {
-     public GameObject Meshobj; 
+    
+    public Renderer Meshobj; 
     public GameObject Effectobj;    //  이펙트 오브젝트
     public Rigidbody Gr_rigid;     
     public int Damage;
@@ -14,14 +15,9 @@ public class GrenadeData : MonoBehaviour
     
     public float Exp_Time = 3.0f; // 터지는 타이머
    
-    void Start() {
-        StartCoroutine(Explosion());
-    }
-
-    void Update() {
-               
-       
-
+    void Start() 
+    {
+        StartCoroutine(Explosion());        
     }
 
     IEnumerator Explosion()
@@ -29,27 +25,64 @@ public class GrenadeData : MonoBehaviour
         yield return new WaitForSeconds(Exp_Time);
         Gr_rigid.velocity = Vector3.zero;
         Gr_rigid.angularVelocity = Vector3.zero;
-        Effectobj.SetActive(true);
-        //Meshobj.SetActive(false);  렌더링 꺼버리기
+        //Effectobj.SetActive(true);  // 이펙트 끄기
 
-        Destroy(gameObject);
+        //Meshobj.SetActive(false);  //렌더링 꺼버리기
+        Meshobj.enabled = false;   
 
-        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, 15, Vector3.up, 0f, LayerMask.GetMask("Enemy"));
 
+        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, 30, Vector3.up, 0f, LayerMask.GetMask("monster"));
+        
+        Debug.Log(rayHits);
+        
         foreach(RaycastHit hitobj in rayHits)
         {
-            //hitobj.transform.GetComponent<Enemy>().HitByGrenade(transform.position);
-            //hitobj.transform.GetComponent<Enemy2>().HitByGrenade(transform.position);
+            hitobj.transform.GetComponent<Enemy>().HitByGrenade();           
         }
 
+        Destroy(gameObject, 5);
+
     }
 
-    public void HitByGrenade (Vector3 explosionPos)
+   /*
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("수류탄과의 플레이어충돌발생");
+        }
+
+        if(other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("수류탄과의 몬스터충돌발생");
+        }
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
     {
-        //체력 - 수류탄 데미지;
-        //모리의 피격 로직StartCoroutine();
+        
+            Debug.Log("수류탄과의 물체충돌발생");
+            Gr_rigid.velocity = Vector3.zero;
+            Gr_rigid.angularVelocity = Vector3.zero;
+            //Effectobj.SetActive(true);  // 이펙트 끄기
+            //Meshobj.SetActive(false);  //렌더링 꺼버리기
+            Meshobj.enabled = false;
 
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("수류탄과의 몬스터충돌발생");
+        }
+
+            
     }
+    */
+   
+
+    
+
+   
+
+    
 
 
 
