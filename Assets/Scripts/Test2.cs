@@ -11,6 +11,7 @@ public class Test2 : MonoBehaviour
     {
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read("playerdata_csv");
         player_hp = float.Parse((data_Dialog[0]["player_hp"].ToString()));
+        
     }
     void Start()
     {    

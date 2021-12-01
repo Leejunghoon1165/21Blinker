@@ -26,23 +26,10 @@ public class Player : MonoBehaviour
     bool sWeapon2;
     bool isFireReady;
     bool doDie;
-
     public bool Item_Use;
-    
-    
-
-
-    bool Item_Use;
     bool Player_skill1;
     bool Player_skill2;
-
-
-
-    public bool Item_Use;
-    
-    
-
-
+    bool skillready;
 
     Vector3 moveVec;
 
@@ -62,6 +49,7 @@ public class Player : MonoBehaviour
     {
         PlayerHP = PlayerHpBar.maxHp;
         CurrentHP = PlayerHpBar.currentHp;
+        //Debug.Log(PlayerHP);
     }
 
     void Awake()
@@ -83,9 +71,6 @@ public class Player : MonoBehaviour
         Attack();
         Swap();
         Die();
-
-
-        ItemUse();
         Player_Skill();
 
 
@@ -103,6 +88,9 @@ public class Player : MonoBehaviour
         sWeapon1 = Input.GetButtonDown("Swap1");
         sWeapon2 = Input.GetButtonDown("Swap2");
         Item_Use = Input.GetButtonDown("ItemUse");
+
+        Player_skill1 = Input.GetButtonDown("Skill1");
+        Player_skill2 = Input.GetButtonDown("Skill2");
 
     }
 
@@ -287,21 +275,42 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        if (CurrentHP == 0)
+        if (CurrentHP <= 0)
         {
-            StartCoroutine(DODIE());
-        }
-        IEnumerator DODIE()
-        {
-            anim.SetTrigger("doDie");
             doDie = true;
-            yield return new WaitForSeconds(2f);
-            gameObject.SetActive(false);
+            anim.SetTrigger("doDie");
+            Destroy(gameObject, 2f);
         }
-        
+        //IEnumerator DODIE()
+        //{
+        //    anim.SetTrigger("doDie");
+        //    doDie = true;
+        //    yield return new WaitForSeconds(2f);
+        //    gameObject.SetActive(false);
+        //}
+
+    }
+    
+    void Player_Skill()
+    {
+        if (Player_skill1)
+        {
+            TestSkill player_skill1 = GetComponent<TestSkill>();
+            if (player_skill1 && TestSkill.skill1flag == false)
+                player_skill1.lightskill();
+            else
+                Debug.Log("불가능");
+
+        }
+        if (Player_skill2)
+        {
+            //TestSkill player_skill2 = GetComponent<TestSkill>();
+            TestSkill.healskill();
+            playerCanvas.GetComponent<PlayerHpBar>().heal();
+        }
     }
 
-        
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "EnemyAttack")
