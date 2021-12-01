@@ -22,6 +22,5 @@ public class RenderManager : MonoBehaviour
         time += Time.deltaTime;
         if(time >= 3)
             body.SetActive(true);
-        Debug.Log(time);
     }
 }
