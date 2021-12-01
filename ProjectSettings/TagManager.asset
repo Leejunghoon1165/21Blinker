@@ -14,6 +14,7 @@ TagManager:
   - Item
   - EnemyBullet
   - EnemyAttack
+  - EnemyHeal
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - player
   - monster
   - Weapon
-  - 
-  - 
+  - Enemy
+  - FogOfWar
   - 
   - 
   - 
