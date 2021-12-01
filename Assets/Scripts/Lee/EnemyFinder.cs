@@ -11,8 +11,13 @@ public class EnemyFinder : MonoBehaviour
     void Start()
     {
         render2 = GetComponent<MeshRenderer>();
+        if(render2==null)
+        {
+            Debug.Log("빔");
+        }
         //render = GetComponent<SkinnedMeshRenderer>();
         render2.enabled = false;
+
     }
 
     // Update is called once per frame

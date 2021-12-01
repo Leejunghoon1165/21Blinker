@@ -475,6 +475,7 @@ MonoBehaviour:
   BackHpSlider: {fileID: 1627596044007792778}
   player: {fileID: 1627596045459549272}
   backHpHit: 0
+  backHpHealing: 0
 --- !u!1 &1627596044731868776
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +988,8 @@ PrefabInstance:
       propertyPath: playerCanvas
       value: 
       objectReference: {fileID: 1627596044619683950}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5546044519914427249, guid: c9d217793a2876c409da34c886d42d0a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c9d217793a2876c409da34c886d42d0a, type: 3}
 --- !u!4 &1627596045459549272 stripped
 Transform:

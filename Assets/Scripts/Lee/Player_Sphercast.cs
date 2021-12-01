@@ -25,7 +25,7 @@ public class Player_Sphercast : MonoBehaviour
             for (int i = 0; i < hits.Length; i++)
             {
                 print(hits[i].collider.gameObject.name + " " + i);
-                hits[i].collider.gameObject.GetComponent<EnemyFinder>().Look();
+               // hits[i].collider.gameObject.GetComponent<EnemyTest>().LON();
                 
 
             }

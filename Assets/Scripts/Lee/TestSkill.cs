@@ -13,11 +13,14 @@ public class TestSkill : MonoBehaviour
     {
         PlayermaxHPskill = Test2.player_hp * 0.2f;
     }
-
+    private void Awake()
+    {
+       
+    }
     // Update is called once per frame
     void Update()
     {
-        PlayercurrentHP = PlayerHpBar.currentHp;
+       
     }
 
     public void lightskill()
@@ -26,24 +29,27 @@ public class TestSkill : MonoBehaviour
     }
     IEnumerator OnSkill()
     {
-        EnemyFinder CHeck = GameObject.Find("Cube").GetComponent<EnemyFinder>();
-        GameObject A = GameObject.Find("Plane");
-        A.SetActive(false);
-        CHeck.Look();
+        //랜덤탐색후 배열에 담음
+        GameObject[] Enemylist = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject B = GameObject.Find("Plane");
+        B.SetActive(false);
+        for (int i = 0; i < Enemylist.Length; i++)
+        {
+            Enemylist[i].GetComponent<EnemyFinder>().Look();
+        }
         yield return new WaitForSeconds(2f);
-        A.SetActive(true);
-        CHeck.UnLook();
+        B.SetActive(true);
+        for (int i = 0; i < Enemylist.Length; i++)
+        {
+            Enemylist[i].GetComponent<EnemyFinder>().UnLook();
+        }
     }
 
     public static void healskill()
     {
+        PlayercurrentHP = PlayerHpBar.currentHp;
         flag = true;
-        //Debug.Log(PlayercurrentHP);
-       // Debug.Log(flag);
         PlayercurrentHP += PlayermaxHPskill;
-        //Debug.Log(PlayercurrentHP);
-        //Debug.Log(flag);
-        //Debug.Log(PlayerHPskill);     
     }
     
 

@@ -275,7 +275,6 @@ public class Player : MonoBehaviour
         // HP = HP - enemyStr.Str;
         if(doDie == false)
         {
-            //CurrentHP = PlayerHpBar.currentHp;
             StartCoroutine(OnDamage());
         }
         
@@ -318,9 +317,7 @@ public class Player : MonoBehaviour
         {
             //TestSkill player_skill2 = GetComponent<TestSkill>();
             TestSkill.healskill();
-            playerCanvas.GetComponent<PlayerHpBar>().heal();
-            Debug.Log(CurrentHP);
-           
+            playerCanvas.GetComponent<PlayerHpBar>().heal();      
         }
     }
 

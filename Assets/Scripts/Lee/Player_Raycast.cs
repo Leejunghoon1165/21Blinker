@@ -54,10 +54,10 @@ public class Player_Raycast : MonoBehaviour
         {
             for (int i = 0; i < hits.Length; i++)
             {
-                hits[i].collider.gameObject.GetComponent<Mesh>();
+                //hits[i].collider.gameObject.GetComponent<Mesh>();
                 // hits[i].collider.gameObject.
                 //print(hits[i].collider.gameObject.name + " " + i);
-                hits[i].collider.gameObject.GetComponent<EnemyFinder>().Look();
+               // hits[i].collider.gameObject.GetComponent<EnemyFinder>().Look();
             }
         }
 
