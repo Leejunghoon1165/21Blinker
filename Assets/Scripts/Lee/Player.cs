@@ -8,33 +8,27 @@ public class Player : MonoBehaviour
    
     public GameObject playerCanvas;
     public GameObject[] weapons;
-    
     public bool[] hasWeapons;
 
-    public static float PlayerHP;
-    public static float CurrentHP;
+
     public float speed;
 
-
-   
 
     float hAxis;
     float vAxis;
 
 
     bool DashDown;
-    public bool Attk;
+    bool Attk;
     public bool ItemGet;
     bool isDash;
     bool sWeapon1;
     bool sWeapon2;
     bool isFireReady;
     bool doDie;
-    bool Item_Use;
-    bool Player_skill1;
-    bool Player_skill2;
-
-
+    public bool Item_Use;
+    
+    
 
     Vector3 moveVec;
 
@@ -44,21 +38,16 @@ public class Player : MonoBehaviour
 
     Enemy StrAtk;
     GameObject nearobject;
-
-    
     Weapon earlyWeapon;
     int equiWeaponIndex = -1;
     public float fireDelay;
-   
+    float PlayerHP;
+    float CurrentHP;
 
-    public void Start()
+    private void Start()
     {
-        //PlayerHP = PlayerHpBar.maxHp;
-        //CurrentHP = PlayerHpBar.currentHp;
-        // Debug.Log(PlayerHP);
-        PlayerHP = Test2.player_hp;
-        CurrentHP = PlayerHP;
-        //Debug.Log(CurrentHP); 
+        PlayerHP = PlayerHpBar.maxHp;
+        CurrentHP = PlayerHpBar.currentHp;
     }
 
     void Awake()
@@ -72,8 +61,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        CurrentHP = PlayerHpBar.currentHp;  //주기적으로 체력바의 현재 체력 상황을 받아옴
-
         GetInput();
         Move();
         Turn();
@@ -82,8 +69,6 @@ public class Player : MonoBehaviour
         Attack();
         Swap();
         Die();
-        ItemUse();
-        Player_Skill();
         
     }
 
@@ -98,11 +83,6 @@ public class Player : MonoBehaviour
         sWeapon1 = Input.GetButtonDown("Swap1");
         sWeapon2 = Input.GetButtonDown("Swap2");
         Item_Use = Input.GetButtonDown("ItemUse");
-
-        Player_skill1 = Input.GetButtonDown("Skill1");
-        Player_skill2 = Input.GetButtonDown("Skill2");
-       
-
 
     }
 
@@ -148,7 +128,6 @@ public class Player : MonoBehaviour
             return;
 
 
-
         int weaponIndex = -1;
         if (sWeapon1) weaponIndex = 0;
         if (sWeapon2) weaponIndex = 1;
@@ -173,6 +152,7 @@ public class Player : MonoBehaviour
                 FieldItemData item = nearobject.GetComponent<FieldItemData>();
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;
+
                 Destroy(nearobject);
             }
 
@@ -236,10 +216,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void ItemUse()
-    {
-
-    }
+    
 
 
     void Attack()
@@ -273,8 +250,9 @@ public class Player : MonoBehaviour
     {
         //Enemy 공격력 가져옴
         // HP = HP - enemyStr.Str;
-        if(doDie == false)
+        if(!doDie)
         {
+            CurrentHP = PlayerHpBar.currentHp;
             StartCoroutine(OnDamage());
         }
         
@@ -289,36 +267,18 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        if (CurrentHP <= 0)
+        if (CurrentHP == 0)
         {
-            doDie = true;
+            StartCoroutine(DODIE());
+        }
+        IEnumerator DODIE()
+        {
             anim.SetTrigger("doDie");
-            Destroy(gameObject, 2f);
+            doDie = true;
+            yield return new WaitForSeconds(2f);
+            gameObject.SetActive(false);
         }
-        //IEnumerator DODIE()
-        //{
-        //    anim.SetTrigger("doDie");
-        //    doDie = true;
-        //    yield return new WaitForSeconds(2f);
-        //    gameObject.SetActive(false);
-        //}
         
-    }
-
-    void Player_Skill()
-    {
-        
-        if(Player_skill1)
-        {
-            TestSkill player_skill1 = GetComponent<TestSkill>();
-            player_skill1.lightskill();
-        }
-        if(Player_skill2)
-        {
-            //TestSkill player_skill2 = GetComponent<TestSkill>();
-            TestSkill.healskill();
-            playerCanvas.GetComponent<PlayerHpBar>().heal();      
-        }
     }
 
         
