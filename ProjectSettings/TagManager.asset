@@ -15,6 +15,7 @@ TagManager:
   - EnemyBullet
   - EnemyAttack
   - EnemyHeal
+  - SGBullet
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Weapon
   - Enemy
   - FogOfWar
-  - 
+  - Spot
   - 
   - 
   - 

@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scenes/Test/NavMesh.asset.meta
+guid: 505fef8468fbb1a4c923a5ce22ac73b2
+NativeFormatImporter:
+=======
 guid: 84ffe4f1f07119748afbf334378bf03d
 folderAsset: yes
 DefaultImporter:
+>>>>>>> main:Assets/Assets/PolygonParticleFX/Materials/Materials.meta
   externalObjects: {}
+  mainObjectFileID: 23800000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
