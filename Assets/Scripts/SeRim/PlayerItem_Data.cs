@@ -162,7 +162,7 @@ public class PlayerItem_Data : MonoBehaviour
         playerState.speed -= stimulantMoveSpeed;
         //playerState.fireDelay = 0;
         //playerState.sight -= stimulantSight;
-        
+
     }
    
     

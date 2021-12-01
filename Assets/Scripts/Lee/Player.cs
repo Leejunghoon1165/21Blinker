@@ -26,9 +26,23 @@ public class Player : MonoBehaviour
     bool sWeapon2;
     bool isFireReady;
     bool doDie;
+
     public bool Item_Use;
     
     
+
+
+    bool Item_Use;
+    bool Player_skill1;
+    bool Player_skill2;
+
+
+
+    public bool Item_Use;
+    
+    
+
+
 
     Vector3 moveVec;
 
@@ -69,6 +83,12 @@ public class Player : MonoBehaviour
         Attack();
         Swap();
         Die();
+
+
+        ItemUse();
+        Player_Skill();
+
+
         
     }
 
