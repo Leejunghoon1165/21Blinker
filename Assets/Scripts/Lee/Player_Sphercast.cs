@@ -26,6 +26,8 @@ public class Player_Sphercast : MonoBehaviour
             {
                 print(hits[i].collider.gameObject.name + " " + i);
                 hits[i].collider.GetComponent<EnemyTest>().LON();
+                if (hits == null)
+                    Debug.Log("불가능");
                // hits[i].collider.gameObject.GetComponent<EnemyTest>().LON();
                 
             

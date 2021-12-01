@@ -95,7 +95,9 @@ public class Enemy : MonoBehaviour
             RecoverFX.Stop();
         }
 
+
         //Debug.Log(CurHP);
+
 
     }
 

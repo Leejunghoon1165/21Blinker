@@ -7,11 +7,13 @@ public class TestSkill : MonoBehaviour
     public static float PlayermaxHPskill;
     public static float PlayercurrentHP;
     public static float PlayerhealHP;
-    public static bool flag;
+    public static bool skill1flag;
+    public static bool skill2flag;
     // Start is called before the first frame update
     void Start()
     {
         PlayermaxHPskill = Test2.player_hp * 0.2f;
+        
     }
     private void Awake()
     {
@@ -26,30 +28,52 @@ public class TestSkill : MonoBehaviour
     public void lightskill()
     {
         StartCoroutine(OnSkill());
+        //StartCoroutine(Ontime(4f));
     }
+    IEnumerator Ontime(float cool)
+    {
+        while(cool > 1.0f)
+        {
+            cool -= Time.deltaTime;
+            Debug.Log(cool);
+        }
+        yield return null;
+    
+    }
+    
     IEnumerator OnSkill()
     {
-        //랜덤탐색후 배열에 담음
+        skill1flag = true;
         GameObject[] Enemylist = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject B = GameObject.Find("Plane");
-        B.SetActive(false);
-        for (int i = 0; i < Enemylist.Length; i++)
+        //Debug.Log("실행중");
+        //랜덤탐색후 배열에 담음
+        //GameObject B = GameObject.Find("Plane");
+        //B.SetActive(false);
+        if (Enemylist != null)
         {
-            Enemylist[i].GetComponent<EnemyFinder>().Look();
+            for (int i = 0; i < Enemylist.Length; i++)
+            {
+                Enemylist[i].GetComponent<EnemyFinder>().Look();
+            }
         }
         yield return new WaitForSeconds(2f);
-        B.SetActive(true);
-        for (int i = 0; i < Enemylist.Length; i++)
+        //B.SetActive(true);
+        if (Enemylist != null)
         {
-            Enemylist[i].GetComponent<EnemyFinder>().UnLook();
+            for (int i = 0; i < Enemylist.Length; i++)
+            {
+                Enemylist[i].GetComponent<EnemyFinder>().UnLook();
+            }
         }
+        skill1flag = false;
     }
 
     public static void healskill()
     {
+        skill2flag = true;
         PlayercurrentHP = PlayerHpBar.currentHp;
-        flag = true;
         PlayercurrentHP += PlayermaxHPskill;
+        skill2flag = false;
     }
     
 
