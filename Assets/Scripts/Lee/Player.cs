@@ -23,17 +23,23 @@ public class Player : MonoBehaviour
 
 
     bool DashDown;
-    public bool Attk;
+    bool Attk;
     public bool ItemGet;
     bool isDash;
     bool sWeapon1;
     bool sWeapon2;
     bool isFireReady;
     bool doDie;
+
     bool Item_Use;
     bool Player_skill1;
     bool Player_skill2;
 
+
+
+    public bool Item_Use;
+    
+    
 
 
     Vector3 moveVec;
@@ -82,8 +88,10 @@ public class Player : MonoBehaviour
         Attack();
         Swap();
         Die();
+
         ItemUse();
         Player_Skill();
+
         
     }
 
@@ -236,10 +244,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void ItemUse()
-    {
-
-    }
+    
 
 
     void Attack()
