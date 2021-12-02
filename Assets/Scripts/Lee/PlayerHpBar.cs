@@ -18,9 +18,9 @@ public class PlayerHpBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHp = Test2.player_hp;
+        maxHp = GameManager.player_hp;
         currentHp = maxHp;
-        //Debug.Log(currentHp);
+        Debug.Log(currentHp);
        
     }
 
@@ -56,7 +56,7 @@ public class PlayerHpBar : MonoBehaviour
 
     public void Dmg2()
     {
-        Enemy enemyStr = GameObject.Find("Zombie_C").GetComponent<Enemy>();
+        Enemy enemyStr = GameObject.Find("Zombie_B").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
         Invoke("BackHpFun", 0.5f);
         

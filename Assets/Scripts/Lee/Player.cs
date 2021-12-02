@@ -45,11 +45,11 @@ public class Player : MonoBehaviour
     float PlayerHP;
     float CurrentHP;
 
-    private void Start()
+    void Start()
     {
-        PlayerHP = PlayerHpBar.maxHp;
-        CurrentHP = PlayerHpBar.currentHp;
-        //Debug.Log(PlayerHP);
+        PlayerHP = GameManager.player_hp; 
+        CurrentHP = PlayerHP;
+        Debug.Log(CurrentHP);
     }
 
     void Awake()
@@ -112,8 +112,8 @@ public class Player : MonoBehaviour
     {
         if(DashDown && moveVec != Vector3.zero && isDash == false && !doDie)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
         {
+            isDash = true; //isDash true로 변경
             anim.SetTrigger("doDash");   //대시 애니메이션 동작
-            isDash = true;             //isDash true로 변경
             Invoke("DashOff", 1f);    //1초 뒤 DashOff 함수 실행
         }
     }
@@ -256,6 +256,7 @@ public class Player : MonoBehaviour
         if(!doDie)
         {
             CurrentHP = PlayerHpBar.currentHp;
+            Debug.Log("아야");
             StartCoroutine(OnDamage());
         }
         
@@ -270,12 +271,12 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        if (CurrentHP <= 0)
-        {
-            doDie = true;
-            anim.SetTrigger("doDie");
-            Destroy(gameObject, 2f);
-        }
+        //if (CurrentHP <= 0)
+        //{
+        //    doDie = true;
+        //    anim.SetTrigger("doDie");
+        //    Destroy(gameObject, 2f);
+        //}
         //IEnumerator DODIE()
         //{
         //    anim.SetTrigger("doDie");

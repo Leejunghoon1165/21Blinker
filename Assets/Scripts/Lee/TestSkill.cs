@@ -9,10 +9,15 @@ public class TestSkill : MonoBehaviour
     public static float PlayerhealHP;
     public static bool skill1flag;
     public static bool skill2flag;
+    public GameObject plane;
+    public Material Fogmeterial;
+    public Color color;
     // Start is called before the first frame update
     void Start()
     {
         PlayermaxHPskill = Test2.player_hp * 0.2f;
+        Fogmeterial = GameObject.Find("Plane").GetComponent<Material>();
+        color = Fogmeterial.color;
         
     }
     private void Awake()
@@ -44,11 +49,20 @@ public class TestSkill : MonoBehaviour
     IEnumerator OnSkill()
     {
         skill1flag = true;
+        for (float i = 1.0f; i >= 0.0f; i -= 0.01f)
+        {
+            color.a = i;
+            Fogmeterial.color = color;
+        }
+       
         GameObject[] Enemylist = GameObject.FindGameObjectsWithTag("Enemy");
         //Debug.Log("실행중");
         //랜덤탐색후 배열에 담음
         //GameObject B = GameObject.Find("Plane");
+
         //B.SetActive(false);
+        //plane.SetActive(false);
+        
         if (Enemylist != null)
         {
             for (int i = 0; i < Enemylist.Length; i++)
@@ -57,6 +71,7 @@ public class TestSkill : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(2f);
+        //plane.SetActive(true);
         //B.SetActive(true);
         if (Enemylist != null)
         {

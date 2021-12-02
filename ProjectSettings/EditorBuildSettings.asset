@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Item.unity
     guid: 1fcac02a9caee094099a1f2dabe5600c
+  - enabled: 1
+    path: Assets/Scenes/UIScene/GamelobbyScene.unity
+    guid: 8228970dcdbc4b74f962d88ba98ac5f2
+  - enabled: 1
+    path: Assets/Scenes/UIScene/PlayerStatus.unity
+    guid: 6346e5762f4fb9c4ba136f33eced0087
+  - enabled: 1
+    path: Assets/Scenes/UIScene/StageSelect.unity
+    guid: dabd8f8ac8ece8248a8852feeb601f9d
   m_configObjects: {}
