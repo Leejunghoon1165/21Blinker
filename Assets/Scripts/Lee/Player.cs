@@ -54,11 +54,9 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        
         rigid = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();  //애니메이션
         //meshs = GetComponentsInChildren<MeshRenderer>();
-       
     }
 
     void Update()
@@ -72,9 +70,6 @@ public class Player : MonoBehaviour
         Swap();
         Die();
         Player_Skill();
-
-
-        
     }
 
    
@@ -340,7 +335,6 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "weapon")
             nearobject = other.gameObject;
-       
     }
     
 
