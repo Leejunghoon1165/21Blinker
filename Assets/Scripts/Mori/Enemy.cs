@@ -161,7 +161,7 @@ public class Enemy : MonoBehaviour
         if(attacktime >= 0.95f)
         {
             anim.SetBool("IsLRAttack", false);
-            anim.SetBool("IsWalk", false);
+            anim.SetBool("IsWalk", true);
         }
         if(attacktime >= 2f){
             attacktime = 0;
