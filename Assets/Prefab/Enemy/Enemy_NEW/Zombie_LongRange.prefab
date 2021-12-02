@@ -15127,7 +15127,7 @@ GameObject:
   - component: {fileID: 2224900214427450893}
   - component: {fileID: 4851072502808888709}
   m_Layer: 11
-  m_Name: Zombie_B
+  m_Name: Zombie_LongRange
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15225,7 +15225,6 @@ MonoBehaviour:
   RecoverFX: {fileID: 421361705675012166}
   bomb1FX: {fileID: 0}
   bomb2FX: {fileID: 0}
-  AttckArea: {fileID: 0}
 --- !u!195 &4851072502808888709
 NavMeshAgent:
   m_ObjectHideFlags: 0

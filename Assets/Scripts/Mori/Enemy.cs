@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
 
     float playerHP;
 
+    bool RLAttack;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -50,7 +52,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         playerHP = PlayerHpBar.currentHp;
-
+        RLAttack = false;
         CurHP = MAXHP;
         HealDlay = false;
         attacktime = 0;
@@ -144,30 +146,16 @@ public class Enemy : MonoBehaviour
     }
     void AttackMotion_B()
     {
-        if(AttackDist >= Dist)
+        if(AttackDist >= Dist && RLAttack == false)
         {
-            attacktime += Time.deltaTime;
-            this.nav.velocity = Vector3.zero;
-        }
-        if(AttackDist >= Dist && attacktime <= 0.95f)
-        {
-            anim.SetBool("IsWalk", false);
-            anim.SetBool("IsLRAttack", true);
-            if(time == 0 && attacktime >= 0.9f){
-                StartCoroutine("Shot");
-                time = 1;
-            }
-        }
-        if(attacktime >= 0.95f)
-        {
-            anim.SetBool("IsLRAttack", false);
-            anim.SetBool("IsWalk", true);
-        }
-        if(attacktime >= 2f){
-            attacktime = 0;
-            time = 0;
+            StartCoroutine(Shot());
         }
         transform.LookAt(PlayerTransform);
+        if(AttackDist <= Dist)
+            anim.SetBool("IsWalk", true);
+        else
+            anim.SetBool("IsWalk", false);
+
     }
     void AttackMotion_C()
     {
@@ -247,11 +235,17 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Shot()//원거리 공격함수
     {
+        RLAttack = true;
+        anim.SetBool("IsLRAttack", true);
+        yield return new WaitForSeconds(0.65f);
+
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
         bulletRigid.velocity = transform.forward * 15;
 
-        yield return null;
+        yield return new WaitForSeconds(0.87f);
+        anim.SetBool("IsLRAttack", false);
+        RLAttack = false;
     }
     IEnumerator OnDamage()//데미지를 입을 때 마다 색깔이 바뀜
     {
