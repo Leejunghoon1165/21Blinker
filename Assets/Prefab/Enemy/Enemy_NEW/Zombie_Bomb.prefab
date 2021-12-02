@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 2545315688599554940}
   - component: {fileID: 3678645522398659794}
   - component: {fileID: 8392985685222947483}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Explosion_Body_Body_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5730,7 +5730,7 @@ GameObject:
   - component: {fileID: 8887137866935746026}
   - component: {fileID: 2431954370685615924}
   - component: {fileID: 2778543057225246950}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Explosion_Body_Blood_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10816,7 +10816,7 @@ GameObject:
   - component: {fileID: 8454228903917816526}
   - component: {fileID: 7145660113395385340}
   - component: {fileID: 7350647369381696034}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Grenade_Explosive_Ember_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15366,7 +15366,7 @@ GameObject:
   - component: {fileID: 5599573593431035458}
   - component: {fileID: 8759251286294169332}
   - component: {fileID: 672141351804259529}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Explosion_Body_Fire_Core_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20319,7 +20319,7 @@ GameObject:
   - component: {fileID: 6822140746815784881}
   - component: {fileID: 1816994590411811584}
   - component: {fileID: 3904854112879938712}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Explosion_Body_Chunk_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25725,7 +25725,7 @@ GameObject:
   - component: {fileID: 8552434099131616960}
   - component: {fileID: 4076878283959877357}
   - component: {fileID: 533260156361429227}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Grenade_Explosive_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30549,7 +30549,7 @@ GameObject:
   - component: {fileID: 8773947050441386208}
   - component: {fileID: 3698600133904826613}
   - component: {fileID: 7587291804668596429}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Zombie_D
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -30641,6 +30641,7 @@ MonoBehaviour:
   AttackDist: 1.5
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
+  grenadeData: {fileID: 0}
   MAXHP: 10
   CurHP: 0
   HealCheck: {fileID: 0}
@@ -30648,6 +30649,7 @@ MonoBehaviour:
   RecoverFX: {fileID: 7756971958980284773}
   bomb1FX: {fileID: 7700267755695038197}
   bomb2FX: {fileID: 4351894843731650008}
+  AttckArea: {fileID: 0}
 --- !u!195 &3698600133904826613
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -30755,7 +30757,7 @@ GameObject:
   - component: {fileID: 4025866210242787575}
   - component: {fileID: 3124248397673283760}
   - component: {fileID: 2235251887850878440}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Heal_Sparkles_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36982,7 +36984,7 @@ GameObject:
   - component: {fileID: 126207262370756304}
   - component: {fileID: 5414388665589045573}
   - component: {fileID: 185227342306369981}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Explosion_Body_Embers_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41676,7 +41678,7 @@ GameObject:
   - component: {fileID: 4977579657352724362}
   - component: {fileID: 7756971958980284773}
   - component: {fileID: 6427940901343236850}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Rcover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46770,7 +46772,7 @@ GameObject:
   - component: {fileID: 7117835613305071868}
   - component: {fileID: 3215039504639682824}
   - component: {fileID: 7166140470534296016}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Grenade_Explosive_Debris_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51682,7 +51684,7 @@ GameObject:
   - component: {fileID: 86262472733209009}
   - component: {fileID: 4351894843731650008}
   - component: {fileID: 459455654021124415}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Grenade_Explosive_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57913,7 +57915,7 @@ GameObject:
   - component: {fileID: 6461805599421163004}
   - component: {fileID: 9019852947178375574}
   - component: {fileID: 7227908417038820889}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Explosion_Body_Fire_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63005,7 +63007,7 @@ GameObject:
   - component: {fileID: 7144512845921057051}
   - component: {fileID: 6795865181620589368}
   - component: {fileID: 3273999543240942817}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63336,7 +63338,7 @@ GameObject:
   - component: {fileID: 7111714579741186573}
   - component: {fileID: 546083166521218490}
   - component: {fileID: 5411303587792389229}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Grenade_Explosive_Smoke_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68175,7 +68177,7 @@ GameObject:
   - component: {fileID: 7492934230659040204}
   - component: {fileID: 7700267755695038197}
   - component: {fileID: 6601469301321403270}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Explosion_Body_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72778,7 +72780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6682534252684364905}
   - component: {fileID: 903997348008078909}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX_Grenade_Explosive_Light_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 2533246700195024248}
   - component: {fileID: 6076985426951626251}
   - component: {fileID: 1050910916424081174}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1287,7 +1287,7 @@ GameObject:
   - component: {fileID: 8953572226982936074}
   - component: {fileID: 4512012803031730946}
   - component: {fileID: 6743465281775084721}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Zombie_A
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1308,6 +1308,7 @@ Transform:
   - {fileID: 3203157703173303350}
   - {fileID: 3554786372728633297}
   - {fileID: 2533246700195024248}
+  - {fileID: 2918856421338263369}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1363,6 +1364,7 @@ MonoBehaviour:
   AttackDist: 1.25
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
+  grenadeData: {fileID: 0}
   MAXHP: 10
   CurHP: 0
   HealCheck: {fileID: 0}
@@ -1380,8 +1382,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2.5
-  m_Acceleration: 2.5
+  m_Speed: 3
+  m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 10000
   m_StoppingDistance: 1.5
@@ -2198,6 +2200,50 @@ Transform:
   m_Father: {fileID: 3082182992253634850}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4996507668114838243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2918856421338263369}
+  - component: {fileID: 5284755025726712996}
+  m_Layer: 11
+  m_Name: AttackArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2918856421338263369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996507668114838243}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 8486195874200380907}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5284755025726712996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996507668114838243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5216586370405338463
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,16 +11,16 @@ public class RenderManager : MonoBehaviour
     float time;
     void Start()
     {
-        body.SetActive(false);
-
-        time = 0;
+        show();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void show()
     {
-        time += Time.deltaTime;
-        if(time >= 3)
-            body.SetActive(true);
+        body.SetActive(true);
     }
+    public void hide()
+    {
+        body.SetActive(false);
+    }
+
 }
