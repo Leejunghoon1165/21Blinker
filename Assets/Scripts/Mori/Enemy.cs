@@ -245,10 +245,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("monster a!!");
         //체력 - 수류탄 데미지;
         CurHP -= grenadeData.Damage;
-
-
         //모리의 피격 로직StartCoroutine();
-
     }
     
 

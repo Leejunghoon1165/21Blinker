@@ -1303,7 +1303,7 @@ Transform:
   m_GameObject: {fileID: 2925795194650495691}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.245, y: 0, z: 0}
-  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
+  m_LocalScale: {x: 1.75, y: 0.75, z: 1.75}
   m_Children:
   - {fileID: 3203157703173303350}
   - {fileID: 3554786372728633297}
@@ -1363,6 +1363,7 @@ MonoBehaviour:
   AttackDist: 1.25
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
+  grenadeData: {fileID: 0}
   MAXHP: 10
   CurHP: 0
   HealCheck: {fileID: 0}
