@@ -256,7 +256,7 @@ public class Player : MonoBehaviour
         if(!doDie)
         {
             CurrentHP = PlayerHpBar.currentHp;
-            Debug.Log("아야");
+            //Debug.Log("아야");
             StartCoroutine(OnDamage());
         }
         
