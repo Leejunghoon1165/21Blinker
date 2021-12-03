@@ -21,8 +21,6 @@ public class Enemy : MonoBehaviour
     float attacktime;
     public Transform bulletPos;
     public GameObject bullet;
-
-
     public GrenadeData grenadeData;
     public int MAXHP = 10;
     public int CurHP;
@@ -34,18 +32,27 @@ public class Enemy : MonoBehaviour
     public ParticleSystem bomb2FX;
     Renderer rend;
 
+    MeshRenderer[] meshs;
+
+    float playerHP;
+
+    bool RLAttack;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         rend = GetComponent<Renderer>();
+        meshs = GetComponentsInChildren<MeshRenderer>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        playerHP = PlayerHpBar.currentHp;
+        RLAttack = false;
         CurHP = MAXHP;
         HealDlay = false;
         attacktime = 0;
@@ -95,10 +102,7 @@ public class Enemy : MonoBehaviour
             RecoverFX.Stop();
         }
 
-
         //Debug.Log(CurHP);
-
-
     }
 
     void Attack()
@@ -127,7 +131,6 @@ public class Enemy : MonoBehaviour
         if(AttackDist >= Dist)
         {
             anim.SetBool("IsWalk", false);
-            anim.SetBool("IsAttack", true);
             this.nav.velocity = Vector3.zero;
             time = 0;
         }
@@ -135,39 +138,24 @@ public class Enemy : MonoBehaviour
         {
             anim.SetBool("IsWalk", true);
             anim.SetBool("IsAttack", false);
-
             time += Time.deltaTime;
-            if(time <= 2 && time >= 0.8)
+            if(time <= 1.5 && time >= 0.8)
                 this.nav.velocity = Vector3.zero;
         }
         transform.LookAt(PlayerTransform);
     }
     void AttackMotion_B()
     {
-        if(AttackDist >= Dist)
+        if(AttackDist >= Dist && RLAttack == false)
         {
-            attacktime += Time.deltaTime;
-            this.nav.velocity = Vector3.zero;
-        }
-        if(AttackDist >= Dist && attacktime <= 0.95f)
-        {
-            anim.SetBool("IsWalk", false);
-            anim.SetBool("IsLRAttack", true);
-            if(time == 0 && attacktime >= 0.9f){
-                StartCoroutine("Shot");
-                time = 1;
-            }
-        }
-        if(attacktime >= 0.95f)
-        {
-            anim.SetBool("IsLRAttack", false);
-            anim.SetBool("IsWalk", true);
-        }
-        if(attacktime >= 2f){
-            attacktime = 0;
-            time = 0;
+            StartCoroutine(Shot());
         }
         transform.LookAt(PlayerTransform);
+        if(AttackDist <= Dist)
+            anim.SetBool("IsWalk", true);
+        else
+            anim.SetBool("IsWalk", false);
+
     }
     void AttackMotion_C()
     {
@@ -196,9 +184,11 @@ public class Enemy : MonoBehaviour
             bomb2FX.Play();
             this.nav.velocity = Vector3.zero;
             Destroy(gameObject, 0.75f);
+            playerHP -= Str;
         }
         else
             transform.LookAt(PlayerTransform);
+
     }
 
     private void OnTriggerStay(Collider col)
@@ -224,20 +214,67 @@ public class Enemy : MonoBehaviour
         RecoverFX.Stop();
     }
 
-    //원거리적 공격함수
-    IEnumerator Shot()
+    private void FixedUpdate() {
+        targerting();
+    }
+    //근접공격함수
+    void targerting()
     {
+        float targetRaius = 1f;
+        float targetRange = 1.5f;
+
+        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRaius, transform.forward, targetRange, LayerMask.GetMask("player"));
+        StartCoroutine(Bite());
+    }
+    IEnumerator Bite()
+    {
+        anim.SetBool("IsAttack", true);
+        playerHP -= Str;
+        yield return new WaitForSeconds(2.01f);
+    }
+
+    IEnumerator Shot()//원거리 공격함수
+    {
+        RLAttack = true;
+        anim.SetBool("IsLRAttack", true);
+        yield return new WaitForSeconds(0.65f);
+
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
         bulletRigid.velocity = transform.forward * 15;
 
-        yield return null;
+        yield return new WaitForSeconds(0.87f);
+        anim.SetBool("IsLRAttack", false);
+        RLAttack = false;
     }
+    IEnumerator OnDamage()//데미지를 입을 때 마다 색깔이 바뀜
+    {
+        foreach(MeshRenderer meshs in meshs){
+            meshs.material.color = Color.red;
+        }
 
+        yield return new WaitForSeconds(0.1f);
+
+        if(CurHP > 0){
+            foreach(MeshRenderer meshs in meshs) {
+            meshs.material.color = Color.white;
+            }
+        }
+        else {
+            foreach(MeshRenderer meshs in meshs) {
+            meshs.material.color = Color.grey;
+            }
+            anim.SetTrigger("doDie");
+            nav.enabled = false;
+        }
+    }
+    //총알에 맞았을 떄
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Bullet_001")
+        if (collision.gameObject.tag == "Bullet_001") {
             CurHP -= 4;
+            StartCoroutine(OnDamage());
+        }
     }
     
     public void HitByGrenade()
@@ -245,12 +282,6 @@ public class Enemy : MonoBehaviour
         Debug.Log("monster a!!");
         //체력 - 수류탄 데미지;
         CurHP -= grenadeData.Damage;
-
-
         //모리의 피격 로직StartCoroutine();
-
     }
-    
-
-
 }
