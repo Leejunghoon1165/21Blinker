@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static float player_hp;
     public GameManager gamemanager;
+    
     private void Awake()
     {
         DontDestroyOnLoad(gamemanager);

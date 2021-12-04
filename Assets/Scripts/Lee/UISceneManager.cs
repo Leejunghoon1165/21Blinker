@@ -37,10 +37,18 @@ public class UISceneManager : MonoBehaviour
         Invoke("Loadinggame", 0.1f);
     }
 
+    public void BackLobbyStageButton()
+    {
+        Invoke("BackGameLobby",0.1f);
+    }
+    private void BackGameLobby()
+    {
+        SceneManager.LoadScene("GamelobbyScene");
+    }
+
     private void startgame()
     {
         SceneManager.LoadScene("GamelobbyScene");
-
     }
 
     private void StageSelect()

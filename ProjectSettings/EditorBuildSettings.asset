@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UIScene/StageSelect.unity
     guid: dabd8f8ac8ece8248a8852feeb601f9d
+  - enabled: 1
+    path: Assets/Scenes/UIScene/EndScene.unity
+    guid: 79c8786b798243840952d45f2232dbd9
   m_configObjects: {}

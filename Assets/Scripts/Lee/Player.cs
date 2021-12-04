@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
 {
+    //[SerializeField] private int PlayerID = 0;
+    //[SerializeField] private Player player;
    
     public GameObject playerCanvas;
     public GameObject[] weapons;
@@ -17,6 +20,8 @@ public class Player : MonoBehaviour
     float hAxis;
     float vAxis;
 
+    bool DashButton = false;
+    public static bool AttkButton = false;
 
     bool DashDown;
     bool Attk;
@@ -47,9 +52,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+       // player = ReInput.players.GetPlayer(PlayerID);
         PlayerHP = GameManager.player_hp; 
         CurrentHP = PlayerHP;
-        Debug.Log(CurrentHP);
+       // Debug.Log(CurrentHP);
     }
 
     void Awake()
@@ -73,7 +79,7 @@ public class Player : MonoBehaviour
     }
 
    
-    void GetInput()  //입력받기 
+    public void GetInput()  //입력받기 
     {
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
@@ -89,12 +95,14 @@ public class Player : MonoBehaviour
 
     }
 
-    void Move()  //플레이어 움직임
+    public void Move(/*Vector3 inputDirection*/)  //플레이어 움직임
     {
-
+       // moveVec = inputDirection;
+       //moveVec = new Vector3(InputDirection, 0, InputDirection).normalized;
+        
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //normalized : 방향 값이 1로 보정된 벡터
-            if (doDie)
-                moveVec = Vector3.zero;
+        if (doDie)
+            moveVec = Vector3.zero;
 
 
         transform.position += moveVec * speed * Time.deltaTime;
@@ -102,25 +110,33 @@ public class Player : MonoBehaviour
         
         
     }
+   
 
     void Turn() //대각선 움직임
     {
         transform.LookAt(transform.position + moveVec);
     }
 
-    void Dash()  //대시 기능 
+    public void Dashbutton()
     {
-        if(DashDown && moveVec != Vector3.zero && isDash == false && !doDie)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
+        DashButton = true;
+    }
+
+    public void Dash()  //대시 기능 
+    {
+        if(DashDown && moveVec != Vector3.zero && isDash == false && !doDie || DashButton)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
         {
+            Debug.Log("대시");
             isDash = true; //isDash true로 변경
             anim.SetTrigger("doDash");   //대시 애니메이션 동작
-            Invoke("DashOff", 1f);    //1초 뒤 DashOff 함수 실행
+            Invoke("DashOff", 5f);    //1초 뒤 DashOff 함수 실행
         }
     }
 
     void DashOff()    //isDash 거짓으로 변경
     {
         isDash = false;
+        DashButton = false;
     }
 
     void Swap()
@@ -219,17 +235,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+    public void Attkbutton()
+    {
+        AttkButton = true;
+    }
 
 
-    void Attack()
+    public void Attack()
     {
         if (earlyWeapon == null)
             return;
         fireDelay += Time.deltaTime;
         isFireReady = earlyWeapon.rate < fireDelay;
 
-        if(Attk && isFireReady && !isDash)
+        if(Attk && isFireReady && !isDash || AttkButton)
         {
             if(equiWeaponIndex == 0)
             {
@@ -243,6 +262,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("doShootMinigun");
                 fireDelay = 0;
             }
+            AttkButton = false;
             
         }
         
@@ -271,12 +291,24 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        //if (CurrentHP <= 0)
-        //{
-        //    doDie = true;
-        //    anim.SetTrigger("doDie");
-        //    Destroy(gameObject, 2f);
-        //}
+        if (CurrentHP <= 0)
+        {
+            StartCoroutine(LoadSceneAsync());  
+            //Destroy(gameObject, 2f)
+        }
+        IEnumerator LoadSceneAsync()
+        {
+            doDie = true;
+            anim.SetTrigger("doDie");
+           // yield return new WaitForSeconds(1);
+            AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("EndScene");
+            
+            while (!AsyncLoad.isDone)
+            {
+                yield return null;
+            }
+            
+        }
         //IEnumerator DODIE()
         //{
         //    anim.SetTrigger("doDie");
@@ -300,10 +332,16 @@ public class Player : MonoBehaviour
         }
         if (Player_skill2)
         {
+            StartCoroutine(healskill());
             //TestSkill player_skill2 = GetComponent<TestSkill>();
-            TestSkill.healskill();
-            playerCanvas.GetComponent<PlayerHpBar>().heal();
+            
         }
+    }
+    IEnumerator healskill()
+    {
+        TestSkill.healskill();
+        playerCanvas.GetComponent<PlayerHpBar>().heal();
+        yield return new WaitForSeconds(15f);
     }
 
 

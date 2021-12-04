@@ -20,7 +20,7 @@ public class PlayerHpBar : MonoBehaviour
     {
         maxHp = GameManager.player_hp;
         currentHp = maxHp;
-        Debug.Log(currentHp);
+        //Debug.Log(currentHp);
        
     }
 
@@ -66,6 +66,7 @@ public class PlayerHpBar : MonoBehaviour
 
     public void heal()
     {
+        //Debug.Log("체력바에서 힐적용");
         // playerhealing = TestSkill.PlayercurrentHP;
         currentHp += TestSkill.PlayermaxHPskill;
         if(currentHp >= maxHp)

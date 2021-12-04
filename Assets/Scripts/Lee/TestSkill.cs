@@ -75,10 +75,9 @@ public class TestSkill : MonoBehaviour
 
     public static void healskill()
     {
-        skill2flag = true;
+        //Debug.Log("스킬에서 힐 사용");
         PlayercurrentHP = PlayerHpBar.currentHp;
         PlayercurrentHP += PlayermaxHPskill;
-        skill2flag = false;
     }
     
 
