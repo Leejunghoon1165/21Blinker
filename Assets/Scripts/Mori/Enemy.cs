@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     float attacktime;
     public Transform bulletPos;
     public GameObject bullet;
-    public GrenadeData grenadeData;
+    GrenadeData grenadeData;
     public int MAXHP;
     public int CurHP;
     bool HealDlay;
@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         rend = GetComponent<Renderer>();
         meshs = GetComponentsInChildren<MeshRenderer>();
+        grenadeData = GetComponent<GrenadeData>();
 
     }
 
@@ -333,7 +334,9 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("monster a!!");
         //체력 - 수류탄 데미지;
-        CurHP -= grenadeData.Damage;
+        CurHP -= 100;
+
+        Debug.Log("monster b!!");
         //모리의 피격 로직StartCoroutine();
     }
 }

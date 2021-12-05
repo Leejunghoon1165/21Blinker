@@ -167,11 +167,13 @@ public class Player : MonoBehaviour
             
             if(nearobject.tag =="Item")
             {
+                
                 FieldItemData item = nearobject.GetComponent<FieldItemData>();
                 PlayerItem_Data item_Data = GameObject.Find("Player").GetComponent<PlayerItem_Data>();
                 int value = (int) item.type;
                 if(value == 0) // 그레네이드
                 {
+                    
                     item_Data.hasGrenades++;
                     item_Data.Grenadehasstate = true;
                     
@@ -187,6 +189,7 @@ public class Player : MonoBehaviour
                 }
                 else if(value ==1) // 힐링포션
                 {
+                    
                     item_Data.hasHealingPotion++;
                     item_Data.heallingPotionhasstate = true;
                     
@@ -204,6 +207,7 @@ public class Player : MonoBehaviour
                 }
                 else if(value ==2) // 각성제
                 {
+                    
                      item_Data.hasStimulant++;
                     item_Data.stimulanthasstate = true;
                    
@@ -217,8 +221,20 @@ public class Player : MonoBehaviour
                         item_Data.hasStimulant = item_Data.MaxStimulant;
                     }
                 }
+                
 
 
+                Destroy(nearobject);
+            }
+        }
+        else if(nearobject != null)
+        {
+            FieldItemData item = nearobject.GetComponent<FieldItemData>();
+            PlayerItem_Data item_Data = GameObject.Find("Player").GetComponent<PlayerItem_Data>();
+            int value = (int) item.type;
+            if(value == 5)
+            {
+                item_Data.hasCoin += item.value;
                 Destroy(nearobject);
             }
         }
@@ -322,7 +338,7 @@ public class Player : MonoBehaviour
         {
             playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
             Damage();
-        }            
+        }        
     }
    /*
     private void OnTriggerEnter(Collider other)
@@ -340,7 +356,8 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "weapon")
             nearobject = other.gameObject;
-       
+        if(other.tag == "Item")
+            nearobject = other.gameObject;
     }
     
 
