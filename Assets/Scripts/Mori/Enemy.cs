@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
     bool DoDie;
     bool Hited;
 
+    Vector3 lookrotation;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -73,7 +75,7 @@ public class Enemy : MonoBehaviour
         PlayerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
         RecoverFX.Pause();
-
+        //처음 시작시 이펙트를 끄기
         switch (enemyType){
             case Type.C:
                 HealFX.Pause();
@@ -90,8 +92,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //플레이어와 enemy의 거리계산
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
+        //플레이어 쫓기
         nav.SetDestination(target.position);
+        //플레이어 바라보는 속도를 프레임마다 계산해서 보다 빨리 돌아보게 만듦
+        lookrotation = nav.steeringTarget-transform.position;
 
         Attack();
         
@@ -120,15 +126,12 @@ public class Enemy : MonoBehaviour
         switch (enemyType){
             case Type.A:
                 AttackMotion_A();
-                 transform.LookAt(PlayerTransform);
                 break;
             case Type.B:    
                 AttackMotion_B();
-                 transform.LookAt(PlayerTransform);
                 break;
             case Type.C:
                 AttackMotion_C();
-                 transform.LookAt(PlayerTransform);
                 break;
             case Type.D:
                 AttackMotion_D();
@@ -150,27 +153,33 @@ public class Enemy : MonoBehaviour
             time += Time.deltaTime;
             if(time <= 1.25 && time >= 0.8)
                 this.nav.velocity = Vector3.zero;
+            transform.LookAt(PlayerTransform);
         }
-        transform.LookAt(PlayerTransform);
     }
     void AttackMotion_B() //LR_Enemy
     {
+        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookrotation), 1*Time.deltaTime);
         if(AttackDist >= Dist && !RLAttack && !Hited)
         {
             StartCoroutine(Shot());
+            this.nav.velocity = Vector3.zero;
         }
-        transform.LookAt(PlayerTransform);
         
-        if(AttackDist <= Dist)
+        if(AttackDist <= Dist) {
             anim.SetBool("IsWalk", true);
+            transform.LookAt(PlayerTransform);
+        }
         else
+        {
             anim.SetBool("IsWalk", false);
-
+            this.nav.velocity = Vector3.zero;
+        }
     }
     void AttackMotion_C() //HealEnemy
     {
         if(AttackDist >= Dist)
         {
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookrotation), 1*Time.deltaTime);
             anim.SetBool("IsWalk", false);
             this.nav.velocity = Vector3.zero;
             HealCheck.gameObject.SetActive(true);
@@ -178,11 +187,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            transform.LookAt(PlayerTransform);
             anim.SetBool("IsWalk", true);
             HealCheck.gameObject.SetActive(false);
             HealFX.Pause();
         }
-        transform.LookAt(PlayerTransform);
     }
     void AttackMotion_D() //BombEnemy
     {
@@ -204,8 +213,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay(Collider col)
     {
-        //힐범위와 충돌하면(피가10미만일때) 2초마다 체력2를 회복한다.
-        if (col.gameObject.tag == "EnemyHeal" && HealDlay == false && CurHP <=10) 
+        //힐범위와 충돌하면(피가 MAXHP미만일때) 2초마다 체력2를 회복한다.
+        if (col.gameObject.tag == "EnemyHeal" && !HealDlay && CurHP <= MAXHP) 
         {
             CurHP += 2;
             RecoverFX.Play();
@@ -299,11 +308,8 @@ public class Enemy : MonoBehaviour
         foreach(MeshRenderer meshs in meshs){
             meshs.material.color = Color.red;
         }
-
         yield return new WaitForSeconds(0.2f);
-
         anim.SetBool("IsHit", false);
-
         yield return new WaitForSeconds(0.1f);
 
         if(CurHP > 0){
@@ -326,9 +332,8 @@ public class Enemy : MonoBehaviour
         }
         yield return new WaitForSeconds(0.3f);
         BombZomColorChange = false;
-
     }
-    
+
     public void HitByGrenade()
     {
         Debug.Log("monster a!!");
@@ -336,4 +341,5 @@ public class Enemy : MonoBehaviour
         CurHP -= grenadeData.Damage;
         //모리의 피격 로직StartCoroutine();
     }
+    
 }
