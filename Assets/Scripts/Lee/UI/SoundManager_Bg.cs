@@ -18,10 +18,15 @@ public class SoundManager_Bg : MonoBehaviour
             Destroy(gameObject);
     }
     #endregion singleton
+
+    public void SetMusicVolume(float volume)
+    {
+        AudS.volume = volume;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        Sound_Slider.Bg_Slider.value = 1;
+        
     }
 
     // Update is called once per frame
