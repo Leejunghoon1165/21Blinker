@@ -33,6 +33,16 @@ public class Enemy : MonoBehaviour
     public ParticleSystem bomb1FX;
     public ParticleSystem bomb2FX;
     Renderer rend;
+<<<<<<< HEAD
+=======
+    MeshRenderer[] meshs;
+    float playerHP;
+    bool RLAttack;
+    bool BombZomColorChange;
+    bool Ondamage;
+    bool DoDie;
+    bool Hited;
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
 
     private void Awake()
     {
@@ -77,8 +87,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         anim.SetBool("IsWalk", true);
 
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
         nav.SetDestination(target.position);
 
@@ -144,6 +157,7 @@ public class Enemy : MonoBehaviour
     }
     void AttackMotion_B()
     {
+<<<<<<< HEAD
         if(AttackDist >= Dist)
         {
             attacktime += Time.deltaTime;
@@ -168,6 +182,19 @@ public class Enemy : MonoBehaviour
             time = 0;
         }
         transform.LookAt(PlayerTransform);
+=======
+        if(AttackDist >= Dist && !RLAttack && !Hited)
+        {
+            StartCoroutine(Shot());
+        }
+        transform.LookAt(PlayerTransform);
+        
+        if(AttackDist <= Dist)
+            anim.SetBool("IsWalk", true);
+        else
+            anim.SetBool("IsWalk", false);
+
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
     }
     void AttackMotion_C()
     {
@@ -239,6 +266,66 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Bullet_001")
             CurHP -= 4;
     }
+<<<<<<< HEAD
+=======
+    /*
+    IEnumerator OnDamage()//데미지를 입을 때 마다 색깔이 바뀜
+    {
+        Ondamage = true;
+        //맞으면 빨간색
+        foreach(MeshRenderer meshs in meshs){
+            meshs.material.color = Color.red;
+        }
+        yield return new WaitForSeconds(0.3f);
+        //피가 0이상이면 다시 원래색으로 돌아옴
+        if(CurHP > 0){
+            foreach(MeshRenderer meshs in meshs) {
+            meshs.material.color = Color.white;
+            }
+        }
+        Ondamage = false;
+    }
+    */
+    //0.3초동안 제자리에 서있으면서 피격애니 실행
+    IEnumerator hited() {
+        Hited = true;
+
+        anim.SetBool("IsHit", true);
+        this.nav.velocity = Vector3.zero;
+
+        foreach(MeshRenderer meshs in meshs){
+            meshs.material.color = Color.red;
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        anim.SetBool("IsHit", false);
+
+        yield return new WaitForSeconds(0.1f);
+
+        if(CurHP > 0){
+            foreach(MeshRenderer meshs in meshs) {
+            meshs.material.color = Color.white;
+            }
+        }
+        Hited = false;
+    }
+
+    IEnumerator ReadyToBomb()//폭발좀비 터지기전에 깜빡거리에 하기
+    {
+        BombZomColorChange = true;
+        foreach(MeshRenderer meshs in meshs){
+            meshs.material.color = Color.red;
+        }
+        yield return new WaitForSeconds(0.3f);
+        foreach(MeshRenderer meshs in meshs) {
+            meshs.material.color = Color.white;
+        }
+        yield return new WaitForSeconds(0.3f);
+        BombZomColorChange = false;
+
+    }
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
     
     public void HitByGrenade()
     {
@@ -247,7 +334,10 @@ public class Enemy : MonoBehaviour
         CurHP -= grenadeData.Damage;
         //모리의 피격 로직StartCoroutine();
     }
+<<<<<<< HEAD
     
 
 
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
 }
