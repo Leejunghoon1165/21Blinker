@@ -49,7 +49,7 @@ public class Scene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync2()  //비동기
     {
-        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Test", LoadSceneMode.Additive);
+        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Map2", LoadSceneMode.Additive);
         while (!AsyncLoad.isDone)
         {
             yield return null;

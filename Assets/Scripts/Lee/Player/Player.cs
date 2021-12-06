@@ -358,12 +358,14 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyAttack")
         {
-            playerCanvas.GetComponent<PlayerHpBar>().Dmg();
+            PlayerHpBar.Dmg();
+           // playerCanvas.GetComponent<PlayerHpBar>().Dmg();
             Damage();
         }
         else if(other.gameObject.tag == "EnemyBullet")
         {
-            playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
+            PlayerHpBar.Dmg2();
+            //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
             Damage();
         }            
     }
