@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.Time_start = true;
         GameManager.Instance.Time_count = true;
         PlayerHP = GameManager.Instance.player_hp; 
-        CurrentHP = PlayerHP;
+        CurrentHP = PlayerHP-50;
        //Debug.Log(CurrentHP);
     }
 
