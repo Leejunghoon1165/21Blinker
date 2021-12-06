@@ -42,6 +42,9 @@ public class Enemy : MonoBehaviour
     bool Ondamage;
     bool DoDie;
     bool Hited;
+<<<<<<< HEAD
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
+=======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
 
     private void Awake()
@@ -88,8 +91,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         anim.SetBool("IsWalk", true);
 
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
 =======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
@@ -158,6 +164,7 @@ public class Enemy : MonoBehaviour
     void AttackMotion_B()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(AttackDist >= Dist)
         {
             attacktime += Time.deltaTime;
@@ -183,6 +190,8 @@ public class Enemy : MonoBehaviour
         }
         transform.LookAt(PlayerTransform);
 =======
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
         if(AttackDist >= Dist && !RLAttack && !Hited)
         {
             StartCoroutine(Shot());
@@ -194,6 +203,9 @@ public class Enemy : MonoBehaviour
         else
             anim.SetBool("IsWalk", false);
 
+<<<<<<< HEAD
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
+=======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
     }
     void AttackMotion_C()
@@ -325,6 +337,9 @@ public class Enemy : MonoBehaviour
         BombZomColorChange = false;
 
     }
+<<<<<<< HEAD
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
+=======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
     
     public void HitByGrenade()
@@ -335,9 +350,12 @@ public class Enemy : MonoBehaviour
         //모리의 피격 로직StartCoroutine();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 
 
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
 =======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
 }

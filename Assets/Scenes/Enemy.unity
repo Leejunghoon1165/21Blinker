@@ -205,6 +205,7 @@ PrefabInstance:
       value: ZombieC
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 9035288066886494248, guid: 5032b879ceb53d249838653c04b5c332,
         type: 3}
       propertyPath: m_IsActive
@@ -215,10 +216,15 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
 =======
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
     - target: {fileID: 6355596721820416730, guid: a2fba5f97d4ca6e4ebd237b933180224,
         type: 3}
       propertyPath: m_RootOrder
       value: 3
+<<<<<<< HEAD
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
+=======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -271,11 +277,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 2894495468600613044, guid: 83c00cf1aa94a3e4e9580cf5d40c783e,
         type: 3}
       propertyPath: m_RootOrder
       value: 108
 =======
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
     - target: {fileID: 2925795194650495691, guid: 1e8d8037b9efa3b45ba8bde63cfee0e9,
         type: 3}
       propertyPath: m_Name
@@ -521,6 +530,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 3034717158644386452, guid: dfa46aea9b6cda34ca8f0be2b47feb05,
         type: 3}
       propertyPath: m_Name
@@ -531,10 +541,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
 =======
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
     - target: {fileID: 6269974713928618570, guid: 4c8c87f6030ddf044b0a0d97bcc6a8c5,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+<<<<<<< HEAD
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
+=======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -602,6 +617,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 7253933286342092906, guid: 83c00cf1aa94a3e4e9580cf5d40c783e,
         type: 3}
       propertyPath: m_Name
@@ -639,6 +655,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100889410192142097, guid: 4c8c87f6030ddf044b0a0d97bcc6a8c5,
 =======
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
     - target: {fileID: 4231613902391526417, guid: 49e12081f357ba945a843559f4b49722,
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
         type: 3}
@@ -650,6 +668,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
     - target: {fileID: 218280368801651257, guid: 4c8c87f6030ddf044b0a0d97bcc6a8c5,
         type: 3}
@@ -673,6 +692,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 411149308638380946, guid: 4c8c87f6030ddf044b0a0d97bcc6a8c5,
 =======
+=======
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
     - target: {fileID: 5806420277890653695, guid: 49e12081f357ba945a843559f4b49722,
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
         type: 3}
@@ -767,6 +788,9 @@ PrefabInstance:
 =======
       propertyPath: m_RootOrder
       value: 4
+<<<<<<< HEAD
+>>>>>>> parent of 987a87c1 (회전 속도 조절)
+=======
 >>>>>>> parent of 987a87c1 (회전 속도 조절)
       objectReference: {fileID: 0}
     - target: {fileID: 961883828030215124, guid: 4c8c87f6030ddf044b0a0d97bcc6a8c5,
