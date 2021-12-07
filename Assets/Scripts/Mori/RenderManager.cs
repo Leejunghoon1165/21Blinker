@@ -11,7 +11,7 @@ public class RenderManager : MonoBehaviour
     float time;
     void Start()
     {
-        show();
+        hide();
     }
 
     public void show()

@@ -57,7 +57,6 @@ public class PlayerHpBar : MonoBehaviour
 
     public static void Dmg2()  //롱렌지 원거리좀비
     {
-        
         Enemy enemyStr = GameObject.Find("Zombie_LongRange").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
         BackHpFun();
