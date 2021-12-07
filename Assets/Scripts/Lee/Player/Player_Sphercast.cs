@@ -19,19 +19,19 @@ public class Player_Sphercast : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, radius, Vector3.up, 0f, LayerMask.GetMask("Enemy"));
-
         if (hits.Length > 0)
         {
             for (int i = 0; i < hits.Length; i++)
             {
+                hits[i].collider.GetComponent<RenderManager>().show();
                 //print(hits[i].collider.gameObject.name + " " + i);
-                //hits[i].collider.GetComponent<EnemyTest>().LON();
-                if (hits == null)
-                    Debug.Log("불가능");
+                //hits[i].collider.GetComponent<EnemyTest>().LON();    
                // hits[i].collider.gameObject.GetComponent<EnemyTest>().LON();
-                
-            
             }
+        }
+        else
+        {
+           
         }
 
 

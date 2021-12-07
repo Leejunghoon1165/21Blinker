@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+    public int Granddmg = 20;
     public GameObject Gold_record;
-    public float Gold = 0;
+    public int hasCoin;
     public  float player_hp;
     private static GameManager _instance;
     public bool Time_start;   //남은 시간 타이머

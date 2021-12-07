@@ -26848,6 +26848,7 @@ GameObject:
   - component: {fileID: 6835697484953457067}
   - component: {fileID: 6835697485910144565}
   - component: {fileID: 999400905062318832}
+  - component: {fileID: 4384049127086540279}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -26970,6 +26971,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c938e6be263e24b8619fdf9fe422de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plane: {fileID: 0}
+--- !u!114 &4384049127086540279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835697484953457065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933984ca4be2a2a42b6fe943547151b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadeObj: {fileID: 4756968543020724216, guid: 92f6cafe7274ce34081f17718e5c2c22,
+    type: 3}
+  grenadePos: {fileID: 0}
+  hasGrenades: 0
+  hasHealingPotion: 0
+  hasStimulant: 0
+  hasCoin: 0
+  MaxhasGrenades: 0
+  MaxHealingPotion: 0
+  MaxStimulant: 0
+  MaxCoin: 0
+  heallingPotionValue: 50
+  stimulantDamage: 10
+  stimulantMoveSpeed: 0
+  stimulantAttackSpeed: 0
+  stimulantSight: 0
+  stimulantTime: 2
+  stimulanthasstate: 0
+  heallingPotionhasstate: 0
+  Grenadehasstate: 0
+  Item_timer: 3
+  Item_Use_OK: 1
 --- !u!1 &6835697485003385811
 GameObject:
   m_ObjectHideFlags: 0

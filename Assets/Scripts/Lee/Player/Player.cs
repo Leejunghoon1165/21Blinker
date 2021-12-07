@@ -47,9 +47,17 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
+        // player = ReInput.players.GetPlayer(PlayerID);
+        GameManager.Instance.Time_start = true;
+        GameManager.Instance.Time_count = true;
+        PlayerHP = GameManager.Instance.player_hp; 
+        CurrentHP = PlayerHP-50;
+       //Debug.Log(CurrentHP);
         PlayerHP = PlayerHpBar.maxHp;
         CurrentHP = PlayerHpBar.currentHp;
         //Debug.Log(PlayerHP);
+
     }
 
     void Awake()
@@ -332,12 +340,14 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyAttack")
         {
-            playerCanvas.GetComponent<PlayerHpBar>().Dmg();
+            PlayerHpBar.Dmg();
+           // playerCanvas.GetComponent<PlayerHpBar>().Dmg();
             Damage();
         }
         else if(other.gameObject.tag == "EnemyBullet")
         {
-            playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
+            PlayerHpBar.Dmg2();
+            //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
             Damage();
         }        
     }

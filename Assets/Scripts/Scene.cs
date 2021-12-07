@@ -22,7 +22,7 @@ public class Scene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync()
     {
-        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Player");
+        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Map2");
         AsyncLoad.allowSceneActivation = false;
         float timer = 0f;
         while (!AsyncLoad.isDone)
@@ -40,7 +40,6 @@ public class Scene : MonoBehaviour
                 {
                     AsyncLoad.allowSceneActivation = true;
                     yield break;
-                   
                 }
                 
             }
@@ -49,20 +48,12 @@ public class Scene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync2()  //비동기
     {
-        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Test", LoadSceneMode.Additive);
+        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
         while (!AsyncLoad.isDone)
         {
             yield return null;
         }
-        
-
-        //안되면 주석지우셈
-        /*AsyncOperation*/  /*AsyncLoad = SceneManager.LoadSceneAsync("Item", LoadSceneMode.Additive);
-       while (!AsyncLoad.isDone)
-        {
-            yield return null;
-        }
-        Debug.Log(AsyncLoad.progress);*/
+        Debug.Log(AsyncLoad.progress);
     }
 
     IEnumerator LoadSceneAsync3()  //비동기
