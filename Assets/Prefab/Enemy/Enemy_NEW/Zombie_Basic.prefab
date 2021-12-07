@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8775353306639153276}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_ R Calf02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6033905350520279288}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2213766028576309111}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4772495986633983894}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8443250119354106929}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Forearm01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5387140891817903511}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659056292700238209}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger3_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2726988438131944338}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4907952211970746291}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4022762929665339980}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 RThighTwist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5298703276839082660}
   - component: {fileID: 2648028928698431968}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_head007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131765189311783551}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R UpperArm01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9069108668926628790}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R ForeTwist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 5198815999566871349}
   - component: {fileID: 4648736814974925069}
   - component: {fileID: 2964008960811205936}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2228535525409683937}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4084229492785275268}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4311862912040004808}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 RUpArmTwist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259679169541871939}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 RUpArmTwist1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6746350504826964243}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4263030945626203531}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6211492050238314151}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger3_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8381437260514872153}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_eyebrowL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 188279129678088111}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7061347269261620183}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -898,7 +898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913006021596634626}
   - component: {fileID: 8353969875831254756}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_Student_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +1000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4369263354781357217}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1032,7 +1032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5948336190837051691}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,7 +1066,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860598304410138631}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Thigh02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4085166617646096192}
   - component: {fileID: 8572780196993796686}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_Student_shoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3642562386380349816}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L UpperArm01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1217,7 +1217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2070492171335297207}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 LUpArmTwist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1385,7 +1385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 833138304086327402}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_ L Calf02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1416,7 +1416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1686497863608043756}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,7 +1448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6622086565321984125}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1478,7 +1478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7661429393179029966}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1510,7 +1510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 98905786770914330}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1543,7 +1543,7 @@ GameObject:
   - component: {fileID: 4165481432470318352}
   - component: {fileID: 8644567984224982969}
   - component: {fileID: 3416688845849715959}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: FX_Rcover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6353,7 +6353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7661592834585864313}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6384,7 +6384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7341997209260149963}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6416,7 +6416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372001771600201748}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_leap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6446,7 +6446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1495182949856281082}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R ForeTwist1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6476,7 +6476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6954514610435847796}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6507,7 +6507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5573415656212893305}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6539,7 +6539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100975740670389816}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6571,7 +6571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4663289972780189836}
   - component: {fileID: 344719933802470858}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_Student_bottoms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6665,7 +6665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9067111939682773401}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6695,7 +6695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3808827718870061290}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Thigh01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6725,7 +6725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7203115334516224998}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_eyeL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6755,7 +6755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1405540791523661151}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_ L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6785,7 +6785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5841333301595746421}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 LUpArmTwist1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6816,7 +6816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8317006095714497986}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger5_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6846,7 +6846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8349230169318139803}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 LThighTwist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6878,7 +6878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8486015369776953441}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6910,7 +6910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8687060574685369462}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6942,7 +6942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4121947410044762084}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6978,7 +6978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8077652863696013109}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7010,7 +7010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8120381035166503070}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Forearm02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7040,7 +7040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7950979028093428342}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7072,7 +7072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8525494895229170780}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Toe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7103,7 +7103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1202542014983750424}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7141,7 +7141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649791419432996386}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_breast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7171,7 +7171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4572039583600870243}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7203,7 +7203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4979466012935538849}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7234,7 +7234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7099528386358019526}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_eyeR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7264,7 +7264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6491141234731072861}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7296,7 +7296,7 @@ GameObject:
   - component: {fileID: 4252799112973959199}
   - component: {fileID: 5008895479478756261}
   - component: {fileID: 7434898045450181795}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_mouth002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7373,7 +7373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3975410405030323627}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Forearm02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7403,7 +7403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957674583712858989}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7434,7 +7434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4237746268481277805}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7466,7 +7466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6786596213848309572}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7496,7 +7496,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7816239360986015044}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7528,7 +7528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3290759196175547460}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7559,7 +7559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4696266459261668625}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L ForeTwist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7591,7 +7591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4643334833991250396}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7621,7 +7621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2102098452853034357}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Thigh02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7651,7 +7651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6673031260021403936}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7688,7 +7688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7390464775220632253}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger3_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7718,7 +7718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2626398798486979126}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_ L Calf01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7749,7 +7749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7463832123875093286}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7780,7 +7780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6127613522326740547}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7811,7 +7811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3516016685936732860}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger4_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7841,7 +7841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3357384401917944932}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7871,7 +7871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1459354760690986534}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R UpperArm02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7901,7 +7901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3312791013595365310}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 RThighTwist1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7932,7 +7932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4546910128695514277}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L UpperArm02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7962,7 +7962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2325279572079243341}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger5_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7992,7 +7992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4698969295542441543}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8023,7 +8023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7140836482649754998}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8053,7 +8053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7591147624260441839}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger3_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8083,7 +8083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6061444157556655781}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8121,7 +8121,7 @@ GameObject:
   - component: {fileID: 424344159399955823}
   - component: {fileID: 3703909112815767092}
   - component: {fileID: 6691128361833916298}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_eye006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8203,7 +8203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7949456234215675579}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger4_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8233,7 +8233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5395478385775924695}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_ R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8263,7 +8263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8514896377252722173}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8293,7 +8293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 725061858657530349}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Thigh01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8323,7 +8323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 783304348512564646}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_eyebrowR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8353,7 +8353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2737417488436123015}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8385,7 +8385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6602877144665767450}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8417,7 +8417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6962484882634998344}
   - component: {fileID: 1272571310193528078}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_Student_gloves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8525,7 +8525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5337291333434086084}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger4_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8555,7 +8555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5061324785279268917}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8586,7 +8586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5099863183738643338}
   - component: {fileID: 5859630925035218609}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Z_Student_accessory02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8685,7 +8685,7 @@ GameObject:
   - component: {fileID: 8908769393610281935}
   - component: {fileID: 7630760073247769549}
   - component: {fileID: 402463131882119232}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: FX_Heal_Sparkles_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13494,7 +13494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1434407479628417532}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Finger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13526,7 +13526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8632568270213290972}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13559,7 +13559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2949390232191082584}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13593,7 +13593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 244446086431733260}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger5_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13623,7 +13623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4667961346706791870}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_ R Calf01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13654,7 +13654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7112257513301980919}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13685,7 +13685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3186307048334361590}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -13716,7 +13716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5142230857899629734}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Finger4_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13746,7 +13746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3567753687146269254}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13776,7 +13776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406294116595887240}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13806,7 +13806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7021992101646848342}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 LThighTwist1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13837,7 +13837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522551324058562786}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13869,7 +13869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3252361304613222881}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Finger5_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13900,7 +13900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8033270035916809171}
   - component: {fileID: 2535785705562508901}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13943,7 +13943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8704870726863660799}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13976,7 +13976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2980102344423822680}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14008,7 +14008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5525641250846570722}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_R Toe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14039,7 +14039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506645066666520297}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bone_L Forearm01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14070,7 +14070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1961975670146594569}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L ForeTwist1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14100,7 +14100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2163496529182662835}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Bip001 L Finger41
   m_TagString: Untagged
   m_Icon: {fileID: 0}

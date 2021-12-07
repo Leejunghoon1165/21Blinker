@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
     bool Ondamage;
     bool DoDie;
     bool Hited;
+    bool LoosHP;
 
     Vector3 lookrotation;
 
@@ -63,6 +64,7 @@ public class Enemy : MonoBehaviour
         Ondamage = false;
         DoDie = false;
         Hited = false;
+        LoosHP = false;
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -225,8 +227,10 @@ public class Enemy : MonoBehaviour
             StartCoroutine(RecoverDelay());
         }
         //총알에 맞으면 피가 닳는다.
-        if (col.gameObject.tag == "Bullet_001")
-            CurHP -= 4;
+        if (col.gameObject.tag == "Bullet_001" && !LoosHP)
+        {
+            StartCoroutine(loosHP());
+        }
     }
     //2초동안 힐을 다시 못받게 딜레이 시킨다.
     IEnumerator RecoverDelay()
@@ -235,6 +239,14 @@ public class Enemy : MonoBehaviour
         HealDlay = false;
         RecoverFX.Stop();
     }
+
+    IEnumerator loosHP(){
+        LoosHP = true;
+        CurHP -= 4;
+        yield return new WaitForSeconds(.15f);
+        LoosHP = false;
+    }
+
     private void FixedUpdate() {
         targerting();
     }
