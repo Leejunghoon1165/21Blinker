@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
             CurHP = MAXHP;
             RecoverFX.Stop();
         }
-        Debug.Log(CurHP);
+        //Debug.Log(CurHP);
     }
 
     void Die()

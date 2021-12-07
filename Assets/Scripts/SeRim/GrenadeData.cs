@@ -47,7 +47,7 @@ public class GrenadeData : MonoBehaviour
         foreach(Collider hitobj in rayHits)
         {    
              Debug.Log(hitobj.name);
-             //hitobj.GetComponent<Enemy>().HitByGrenade();           
+             hitobj.GetComponent<Enemy>().HitByGrenade();           
         }
         
         

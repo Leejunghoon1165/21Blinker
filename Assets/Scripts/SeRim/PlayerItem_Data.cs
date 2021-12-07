@@ -28,7 +28,7 @@ public class PlayerItem_Data : MonoBehaviour
        grenade();
        heallingPotion();
        stimulant();
-
+        
     }
 
    

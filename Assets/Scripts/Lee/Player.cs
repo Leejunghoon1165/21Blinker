@@ -234,6 +234,7 @@ public class Player : MonoBehaviour
             int value = (int) item.type;
             if(value == 5)
             {
+                //GameManager.instamce.hascon += item.value;
                 item_Data.hasCoin += item.value;
                 Destroy(nearobject);
             }
