@@ -56,8 +56,8 @@ public class PlayerHpBar : MonoBehaviour
 
     public void Dmg2()
     {
-        Enemy enemyStr = GameObject.Find("Zombie_B").GetComponent<Enemy>();
-        currentHp -= enemyStr.Str;
+        // Enemy enemyStr = GameObject.Find("Zombie_B").GetComponent<Enemy>();
+        // currentHp -= enemyStr.Str;
         Invoke("BackHpFun", 0.5f);
         
 

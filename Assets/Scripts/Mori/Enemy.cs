@@ -240,7 +240,7 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator Bite()
     {
-        anim.SetBool("IsAttack", true);
+        //anim.SetBool("IsAttack", true);
         playerHP -= Str;
         // public으로 고쳐주면 실행 GameObject.Find("Player").GetComponent<Player>().Damage();
         yield return new WaitForSeconds(2.01f);
