@@ -11,7 +11,7 @@ public class PlayerHpBar : MonoBehaviour
     public Transform player;
     public static float maxHp;
     public static float currentHp;
-    public bool backHpHit = false;
+    public static bool backHpHit = false;
     public bool backHpHealing = false;
     public static float playerhealing;
     bool flag2;
@@ -46,23 +46,30 @@ public class PlayerHpBar : MonoBehaviour
 
     }
 
-    public void Dmg()   //피해를 받을때
+    public static void Dmg()   //피해를 받을때 basic좀비 근거리 호출
     {
-        Enemy enemyStr = GameObject.Find("ZombieA").GetComponent<Enemy>();
+        Enemy enemyStr = GameObject.Find("Zombie_Basic").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
-        Invoke("BackHpFun", 0.5f);
+        //invoke("BackHpFun",0.5);
+        BackHpFun();
     }
 
 
-    public void Dmg2()
+    public static void Dmg2()  //롱렌지 원거리좀비
     {
-        // Enemy enemyStr = GameObject.Find("Zombie_B").GetComponent<Enemy>();
-        // currentHp -= enemyStr.Str;
-        Invoke("BackHpFun", 0.5f);
-        
-
+        Enemy enemyStr = GameObject.Find("Zombie_LongRange").GetComponent<Enemy>();
+        currentHp -= enemyStr.Str;
+        BackHpFun();
     }
-    
+
+    public static void Dmg3()   //bomb 폭발 좀비 
+    {
+        Enemy enemyStr = GameObject.Find("Zombie_Bomb").GetComponent<Enemy>();
+        currentHp -= enemyStr.Str;
+        //invoke("BackHpFun",0.5);
+        BackHpFun();
+    }
+
 
     public void heal()
     {
@@ -77,7 +84,7 @@ public class PlayerHpBar : MonoBehaviour
     }
 
 
-    void BackHpFun()
+    public static void BackHpFun()
     {
         backHpHit = true;
     }

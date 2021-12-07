@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 public class Enemy : MonoBehaviour
 {
     public enum Type {A, B, C, D}
@@ -30,6 +29,7 @@ public class Enemy : MonoBehaviour
     public ParticleSystem RecoverFX;
     public ParticleSystem bomb1FX;
     public ParticleSystem bomb2FX;
+    public ParticleSystem Blood;
     Renderer rend;
     MeshRenderer[] meshs;
     float playerHP;
@@ -38,6 +38,9 @@ public class Enemy : MonoBehaviour
     bool Ondamage;
     bool DoDie;
     bool Hited;
+    bool LoosHP;
+
+    Vector3 lookrotation;
 
     private void Awake()
     {
@@ -46,10 +49,11 @@ public class Enemy : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         rend = GetComponent<Renderer>();
         meshs = GetComponentsInChildren<MeshRenderer>();
+
         grenadeData = GetComponent<GrenadeData>();
 
-    }
 
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +68,7 @@ public class Enemy : MonoBehaviour
         Ondamage = false;
         DoDie = false;
         Hited = false;
-
+        LoosHP = false;
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -74,7 +78,8 @@ public class Enemy : MonoBehaviour
         PlayerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
         RecoverFX.Pause();
-
+        Blood.Pause();
+        //처음 시작시 이펙트를 끄기
         switch (enemyType){
             case Type.C:
                 HealFX.Pause();
@@ -86,16 +91,18 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
-
-
     // Update is called once per frame
     void Update()
     {
+        //플레이어와 enemy의 거리계산
         Dist = Vector3.Distance(Enemytransform.position, PlayerTransform.position);
+        //플레이어 쫓기
         nav.SetDestination(target.position);
+        //플레이어 바라보는 속도를 프레임마다 계산해서 보다 빨리 돌아보게 만듦
+        lookrotation = nav.steeringTarget-transform.position;
 
         Attack();
-        
+
         if(CurHP <= 0 && !DoDie){
             Die();
         }
@@ -107,7 +114,6 @@ public class Enemy : MonoBehaviour
         }
         //Debug.Log(CurHP);
     }
-
     void Die()
     {
         this.nav.velocity = Vector3.zero;
@@ -115,7 +121,6 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, .66f);
         DoDie = true;
     }
-
     void Attack()
     {
         switch (enemyType){
@@ -136,7 +141,6 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
-
     void AttackMotion_A() //Basic_Enemy
     {
         if(AttackDist >= Dist && !Hited) //공격
@@ -151,27 +155,37 @@ public class Enemy : MonoBehaviour
             time += Time.deltaTime;
             if(time <= 1.25 && time >= 0.8)
                 this.nav.velocity = Vector3.zero;
+            transform.LookAt(PlayerTransform);
         }
         transform.LookAt(PlayerTransform);
     }
     void AttackMotion_B() //LR_Enemy
     {
+        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookrotation), 1*Time.deltaTime);
         if(AttackDist >= Dist && !RLAttack && !Hited)
         {
             StartCoroutine(Shot());
+            this.nav.velocity = Vector3.zero;
         }
         transform.LookAt(PlayerTransform);
-        
+
         if(AttackDist <= Dist)
+        if(AttackDist <= Dist) {
             anim.SetBool("IsWalk", true);
+            transform.LookAt(PlayerTransform);
+        }
         else
+        {
             anim.SetBool("IsWalk", false);
 
+            this.nav.velocity = Vector3.zero;
+        }
     }
     void AttackMotion_C() //HealEnemy
     {
         if(AttackDist >= Dist)
         {
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookrotation), 1*Time.deltaTime);
             anim.SetBool("IsWalk", false);
             this.nav.velocity = Vector3.zero;
             HealCheck.gameObject.SetActive(true);
@@ -179,6 +193,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            transform.LookAt(PlayerTransform);
             anim.SetBool("IsWalk", true);
             HealCheck.gameObject.SetActive(false);
             HealFX.Pause();
@@ -207,6 +222,8 @@ public class Enemy : MonoBehaviour
     {
         //힐범위와 충돌하면(피가10미만일때) 2초마다 체력2를 회복한다.
         if (col.gameObject.tag == "EnemyHeal" && HealDlay == false && CurHP <=10) 
+        //힐범위와 충돌하면(피가 MAXHP미만일때) 2초마다 체력2를 회복한다.
+        if (col.gameObject.tag == "EnemyHeal" && !HealDlay && CurHP <= MAXHP) 
         {
             CurHP += 2;
             RecoverFX.Play();
@@ -214,16 +231,24 @@ public class Enemy : MonoBehaviour
             StartCoroutine(RecoverDelay());
         }
         //총알에 맞으면 피가 닳는다.
-        if (col.gameObject.tag == "Bullet_001")
-            CurHP -= 4;
+        if (col.gameObject.tag == "Bullet_001" && !LoosHP)
+        {
+            StartCoroutine(loosHP());
+        }
     }
-
     //2초동안 힐을 다시 못받게 딜레이 시킨다.
     IEnumerator RecoverDelay()
     {
         yield return new WaitForSeconds(2f);
         HealDlay = false;
         RecoverFX.Stop();
+    }
+
+    IEnumerator loosHP(){
+        LoosHP = true;
+        CurHP -= 4;
+        yield return new WaitForSeconds(.15f);
+        LoosHP = false;
     }
 
     private void FixedUpdate() {
@@ -234,7 +259,6 @@ public class Enemy : MonoBehaviour
     {
         float targetRaius = 1f;
         float targetRange = 1.5f;
-
         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRaius, transform.forward, targetRange, LayerMask.GetMask("player"));
         StartCoroutine(Bite());
     }
@@ -245,7 +269,6 @@ public class Enemy : MonoBehaviour
         // public으로 고쳐주면 실행 GameObject.Find("Player").GetComponent<Player>().Damage();
         yield return new WaitForSeconds(2.01f);
     }
-
     IEnumerator Shot()//원거리 공격함수
     {
         RLAttack = true;
@@ -260,7 +283,6 @@ public class Enemy : MonoBehaviour
         anim.SetBool("IsLRAttack", false);
         RLAttack = false;
     }
-
     //총알에 맞았을 떄
     private void OnCollisionEnter(Collision collision)
     {
@@ -293,28 +315,14 @@ public class Enemy : MonoBehaviour
     //0.3초동안 제자리에 서있으면서 피격애니 실행
     IEnumerator hited() {
         Hited = true;
-
+        Blood.Play();
         anim.SetBool("IsHit", true);
         this.nav.velocity = Vector3.zero;
-
-        foreach(MeshRenderer meshs in meshs){
-            meshs.material.color = Color.red;
-        }
-
         yield return new WaitForSeconds(0.2f);
-
         anim.SetBool("IsHit", false);
-
         yield return new WaitForSeconds(0.1f);
-
-        if(CurHP > 0){
-            foreach(MeshRenderer meshs in meshs) {
-            meshs.material.color = Color.white;
-            }
-        }
         Hited = false;
     }
-
     IEnumerator ReadyToBomb()//폭발좀비 터지기전에 깜빡거리에 하기
     {
         BombZomColorChange = true;
