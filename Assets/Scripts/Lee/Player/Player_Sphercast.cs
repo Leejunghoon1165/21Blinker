@@ -31,7 +31,7 @@ public class Player_Sphercast : MonoBehaviour
         }
         else
         {
-            Debug.Log("하하");
+           
         }
 
 
