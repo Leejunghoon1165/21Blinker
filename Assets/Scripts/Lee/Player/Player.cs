@@ -1,13 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
 {
-    //[SerializeField] private int PlayerID = 0;
-    //[SerializeField] private Player player;
    
     public GameObject playerCanvas;
     public GameObject[] weapons;
@@ -20,8 +17,6 @@ public class Player : MonoBehaviour
     float hAxis;
     float vAxis;
 
-    bool DashButton = false;
-    public static bool AttkButton = false;
 
     bool DashDown;
     bool Attk;
@@ -50,21 +45,28 @@ public class Player : MonoBehaviour
     float PlayerHP;
     float CurrentHP;
 
-    void Start()
+    private void Start()
     {
+
         // player = ReInput.players.GetPlayer(PlayerID);
         GameManager.Instance.Time_start = true;
         GameManager.Instance.Time_count = true;
         PlayerHP = GameManager.Instance.player_hp; 
         CurrentHP = PlayerHP-50;
        //Debug.Log(CurrentHP);
+        PlayerHP = PlayerHpBar.maxHp;
+        CurrentHP = PlayerHpBar.currentHp;
+        //Debug.Log(PlayerHP);
+
     }
 
     void Awake()
     {
+        
         rigid = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();  //애니메이션
         //meshs = GetComponentsInChildren<MeshRenderer>();
+       
     }
 
     void Update()
@@ -78,11 +80,13 @@ public class Player : MonoBehaviour
         Swap();
         Die();
         Player_Skill();
-        Survival();
+
+
+        
     }
 
    
-    public void GetInput()  //입력받기 
+    void GetInput()  //입력받기 
     {
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
@@ -98,51 +102,38 @@ public class Player : MonoBehaviour
 
     }
 
-    public void Move(/*Vector3 inputDirection*/)  //플레이어 움직임
+    void Move()  //플레이어 움직임
     {
-       // moveVec = inputDirection;
-       //moveVec = new Vector3(InputDirection, 0, InputDirection).normalized;
-        if(!GameManager.Instance.Pause_Bt)
-        {
-             moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //normalized : 방향 값이 1로 보정된 벡터
-        if (doDie)
-            moveVec = Vector3.zero;
+
+        moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //normalized : 방향 값이 1로 보정된 벡터
+            if (doDie)
+                moveVec = Vector3.zero;
 
 
         transform.position += moveVec * speed * Time.deltaTime;
         anim.SetBool("isWalk", moveVec != Vector3.zero);
-        }
-       
         
         
     }
-   
 
     void Turn() //대각선 움직임
     {
         transform.LookAt(transform.position + moveVec);
     }
 
-    public void Dashbutton()
+    void Dash()  //대시 기능 
     {
-        DashButton = true;
-    }
-
-    public void Dash()  //대시 기능 
-    {
-        if(DashDown && moveVec != Vector3.zero && isDash == false && !doDie || DashButton)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
+        if(DashDown && moveVec != Vector3.zero && isDash == false && !doDie)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
         {
-            //Debug.Log("대시");
-            isDash = true; //isDash true로 변경
             anim.SetTrigger("doDash");   //대시 애니메이션 동작
-            Invoke("DashOff", 5f);    //1초 뒤 DashOff 함수 실행
+            isDash = true;             //isDash true로 변경
+            Invoke("DashOff", 1f);    //1초 뒤 DashOff 함수 실행
         }
     }
 
     void DashOff()    //isDash 거짓으로 변경
     {
         isDash = false;
-        DashButton = false;
     }
 
     void Swap()
@@ -184,11 +175,13 @@ public class Player : MonoBehaviour
             
             if(nearobject.tag =="Item")
             {
+                
                 FieldItemData item = nearobject.GetComponent<FieldItemData>();
                 PlayerItem_Data item_Data = GameObject.Find("Player").GetComponent<PlayerItem_Data>();
                 int value = (int) item.type;
                 if(value == 0) // 그레네이드
                 {
+                    
                     item_Data.hasGrenades++;
                     item_Data.Grenadehasstate = true;
                     
@@ -204,6 +197,7 @@ public class Player : MonoBehaviour
                 }
                 else if(value ==1) // 힐링포션
                 {
+                    
                     item_Data.hasHealingPotion++;
                     item_Data.heallingPotionhasstate = true;
                     
@@ -221,6 +215,7 @@ public class Player : MonoBehaviour
                 }
                 else if(value ==2) // 각성제
                 {
+                    
                      item_Data.hasStimulant++;
                     item_Data.stimulanthasstate = true;
                    
@@ -234,27 +229,37 @@ public class Player : MonoBehaviour
                         item_Data.hasStimulant = item_Data.MaxStimulant;
                     }
                 }
+                
 
 
                 Destroy(nearobject);
             }
         }
+        else if(nearobject != null)
+        {
+            FieldItemData item = nearobject.GetComponent<FieldItemData>();
+            PlayerItem_Data item_Data = GameObject.Find("Player").GetComponent<PlayerItem_Data>();
+            int value = (int) item.type;
+            if(value == 5)
+            {
+                //GameManager.instamce.hascon += item.value;
+                item_Data.hasCoin += item.value;
+                Destroy(nearobject);
+            }
+        }
     }
 
-    public void Attkbutton()
-    {
-        AttkButton = true;
-    }
+    
 
 
-    public void Attack()
+    void Attack()
     {
         if (earlyWeapon == null)
             return;
         fireDelay += Time.deltaTime;
         isFireReady = earlyWeapon.rate < fireDelay;
 
-        if(Attk && isFireReady && !isDash || AttkButton)
+        if(Attk && isFireReady && !isDash)
         {
             if(equiWeaponIndex == 0)
             {
@@ -268,7 +273,6 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("doShootMinigun");
                 fireDelay = 0;
             }
-            AttkButton = false;
             
         }
         
@@ -282,7 +286,6 @@ public class Player : MonoBehaviour
         if(!doDie)
         {
             CurrentHP = PlayerHpBar.currentHp;
-            //Debug.Log("아야");
             StartCoroutine(OnDamage());
         }
         
@@ -299,18 +302,9 @@ public class Player : MonoBehaviour
     {
         if (CurrentHP <= 0)
         {
-            StartCoroutine(Ending());  
-            //Destroy(gameObject, 2f)
-        }
-        IEnumerator Ending()
-        {
             doDie = true;
             anim.SetTrigger("doDie");
-            GameManager.Instance.Time_start = false;
-            GameManager.Instance.Time_count = false;
-            //GameManager.Instance.Survival = false;
-            yield return null;
-          
+            Destroy(gameObject, 2f);
         }
         //IEnumerator DODIE()
         //{
@@ -321,13 +315,7 @@ public class Player : MonoBehaviour
         //}
 
     }
-
-    void Survival()
-    {
-        GameManager.Instance.Survival = true;
-    }
-
-
+    
     void Player_Skill()
     {
         if (Player_skill1)
@@ -341,16 +329,10 @@ public class Player : MonoBehaviour
         }
         if (Player_skill2)
         {
-            StartCoroutine(healskill());
             //TestSkill player_skill2 = GetComponent<TestSkill>();
-            
+            TestSkill.healskill();
+            playerCanvas.GetComponent<PlayerHpBar>().heal();
         }
-    }
-    IEnumerator healskill()
-    {
-        TestSkill.healskill();
-        playerCanvas.GetComponent<PlayerHpBar>().heal();
-        yield return new WaitForSeconds(15f);
     }
 
 
@@ -367,7 +349,7 @@ public class Player : MonoBehaviour
             PlayerHpBar.Dmg2();
             //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
             Damage();
-        }            
+        }        
     }
    /*
     private void OnTriggerEnter(Collider other)
@@ -384,6 +366,8 @@ public class Player : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "weapon")
+            nearobject = other.gameObject;
+        if(other.tag == "Item")
             nearobject = other.gameObject;
     }
     

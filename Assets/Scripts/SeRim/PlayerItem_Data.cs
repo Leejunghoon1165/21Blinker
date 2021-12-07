@@ -5,6 +5,15 @@ using UnityEngine;
 public class PlayerItem_Data : MonoBehaviour
 {
 
+    void Awake()
+    {
+        
+        
+        anim = GetComponent<Animator>();  //애니메이션
+        //meshs = GetComponentsInChildren<MeshRenderer>();
+       
+    }
+
      void Start() {
         
       playerHp = GameObject.Find("Canvas").GetComponent<PlayerHpBar>();
@@ -19,12 +28,16 @@ public class PlayerItem_Data : MonoBehaviour
        grenade();
        heallingPotion();
        stimulant();
-
+        
     }
 
    
     Player playerState;
     PlayerHpBar playerHp;
+
+    GameObject nearobject;  // 플레이어와 코인 접촉체크
+
+    Animator anim;
 
     //플레이어가 배출할 오브젝트
     public GameObject grenadeObj;
@@ -87,13 +100,15 @@ public class PlayerItem_Data : MonoBehaviour
         }
         if(Grenadehasstate && playerState.Item_Use && Item_Use_OK)
         {
+            anim.SetTrigger("doShootGrenade");
             Debug.Log("grenade");
             Item_Use_OK = false;  
             
             
             GameObject Cr_Grenade = Instantiate(grenadeObj, grenadePos.position, grenadePos.rotation);
+            
             Rigidbody bulletRigid = Cr_Grenade.GetComponent<Rigidbody>();
-            bulletRigid.velocity = (grenadePos.forward  + grenadePos.up ) * 10;
+            bulletRigid.velocity = (grenadePos.forward  + grenadePos.up ) * 5;
 
             
             hasGrenades--;
@@ -165,8 +180,6 @@ public class PlayerItem_Data : MonoBehaviour
 
     }
    
-    
-    
     
 
 }
