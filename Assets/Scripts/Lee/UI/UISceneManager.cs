@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class UISceneManager : MonoBehaviour
 {
-    
+
+    [SerializeField]
+    private string Button_sd;
     private void Awake()
     {
         
@@ -33,11 +35,13 @@ public class UISceneManager : MonoBehaviour
     
     public void PauseButton()
     {
+        //SoundManager_Bg.instance.PlaySE(Button_sd);
         GameManager.Instance.Pause_Bt = true;
     }
 
     private void BackGameLobby()
     {
+        //SoundManager_Bg.instance.PlaySE(Button_sd);
         SceneManager.LoadScene("GamelobbyScene");
     }
 
@@ -48,11 +52,13 @@ public class UISceneManager : MonoBehaviour
 
     private void StageSelect()
     {
+        //SoundManager_Bg.instance.PlaySE(Button_sd);
         SceneManager.LoadScene("StageSelect");
     }
 
     private void Loadinggame()
     {
+        //SoundManager_Bg.instance.PlaySE(Button_sd);
         SceneManager.LoadScene("Loading");
     }
 }

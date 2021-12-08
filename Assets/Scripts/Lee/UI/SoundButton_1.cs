@@ -29,12 +29,20 @@ public class SoundButton_1 : MonoBehaviour
     public void SoundOn_Effect()
     {
         SoundOff_effect.SetActive(true);
+        for (int i = 0; i < SoundManager_Bg.instance.audioSourceEffects.Length; i++)
+        {
+            SoundManager_Bg.instance.audioSourceEffects[i].volume = 0;
+        }
         SoundOn_effect.SetActive(false);
     }
 
     public void SoundOff_Effect()
     {
         SoundOn_effect.SetActive(true);
+        for (int i = 0; i < SoundManager_Bg.instance.audioSourceEffects.Length; i++)
+        {
+            SoundManager_Bg.instance.audioSourceEffects[i].volume = 1;
+        }
         SoundOff_effect.SetActive(false);
     }
 

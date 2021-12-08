@@ -22,9 +22,10 @@ public class Scene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync()
     {
-        float timer = 0;
+        
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Map2");
         AsyncLoad.allowSceneActivation = false;
+        float timer = 0;
         while (!AsyncLoad.isDone)
         {
             yield return null;
@@ -38,7 +39,7 @@ public class Scene : MonoBehaviour
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 if (progressBar.fillAmount >= 1f)
                 {
-                   AsyncLoad.allowSceneActivation = true;
+                    AsyncLoad.allowSceneActivation = true;
                     yield break;
                 }
 
@@ -69,15 +70,15 @@ public class Scene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync2()  //비동기
     {
-        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
-        //AsyncLoad.allowSceneActivation = false;
-       // float timer = 0f;
-        while (!AsyncLoad.isDone)
+        AsyncOperation AsyncLoad2 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
+        //AsyncLoad2.allowSceneActivation = false;
+        //float timer = 0f;
+        while (!AsyncLoad2.isDone)
         {
             yield return null;
-            //if (AsyncLoad.progress < 0.9f)
+            //if (AsyncLoad2.progress < 0.9f)
             //{
-            //    progressBar.fillAmount = AsyncLoad.progress;
+            //    progressBar.fillAmount = AsyncLoad2.progress;
             //}
             //else
             //{
@@ -85,14 +86,14 @@ public class Scene : MonoBehaviour
             //    progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
             //    if (progressBar.fillAmount >= 1f)
             //    {
-            //        AsyncLoad.allowSceneActivation = true;
+            //        AsyncLoad2.allowSceneActivation = true;
             //        yield break;
             //    }
 
             //}
 
         }
-        Debug.Log(AsyncLoad.progress);
+        
     }
 
     IEnumerator LoadSceneAsync3()  //비동기

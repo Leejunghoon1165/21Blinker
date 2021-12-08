@@ -6,6 +6,8 @@ public class System_Button : MonoBehaviour
 {
     public GameObject SystemPanel;
     public bool System_Bt = false;
+    [SerializeField]
+    private string Button_sd2;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +35,13 @@ public class System_Button : MonoBehaviour
 
     public void System_Panel_On()
     {
+        SoundManager_Bg.instance.PlaySE(Button_sd2);
         System_Bt = true;
         SystemPanel.SetActive(true);
     }
     public void System_Panel_Off()
     {
+        SoundManager_Bg.instance.PlaySE(Button_sd2);
         System_Bt = false;
         SystemPanel.SetActive(false);
     }

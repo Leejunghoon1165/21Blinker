@@ -11,14 +11,14 @@ public class Player : MonoBehaviour
     public ParticleSystem DashParticle;
   
     public bool[] hasWeapons;
-
+    
 
     public float speed;
 
 
     float hAxis;
     float vAxis;
-
+    int weaponIndex = -1;
 
     bool DashDown;
     bool Attk;
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     bool isDash;
     bool sWeapon1;
     bool sWeapon2;
+    bool sWeapon3;
     bool isFireReady;
     bool doDie;
     public bool Item_Use;
@@ -38,12 +39,11 @@ public class Player : MonoBehaviour
     Rigidbody rigid;
     Animator anim;
     //MeshRenderer[] meshs;
-
     Enemy StrAtk;
     GameObject nearobject;
     Weapon earlyWeapon;
     int equiWeaponIndex = -1;
-    public float fireDelay;
+    public float fireDelay=0.01f;
     float PlayerHP;
     float CurrentHP;
 
@@ -51,7 +51,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
+        sWeapon3 = true;
+        
+        //earlyWeapon = weapons[2].GetComponent<Weapon>();
         // player = ReInput.players.GetPlayer(PlayerID);
         GameManager.Instance.Time_start = true;
         GameManager.Instance.Time_count = true;
@@ -61,12 +63,11 @@ public class Player : MonoBehaviour
         PlayerHP = PlayerHpBar.maxHp;
         CurrentHP = PlayerHpBar.currentHp;
         //Debug.Log(PlayerHP);
-
+        
     }
 
     void Awake()
-    {
-        
+    {   
         rigid = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();  //애니메이션
         //meshs = GetComponentsInChildren<MeshRenderer>();
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (sWeapon3 == true) Check();
         GetInput();
         Move();
         Turn();
@@ -84,8 +86,13 @@ public class Player : MonoBehaviour
         Swap();
         Die();
         Player_Skill();
-
-
+    }
+    void Check()
+    {
+        //if (sWeapon3) weaponIndex = 2;
+        //Debug.Log(weaponIndex);
+        hasWeapons[2] = true;
+        Swap();
         
     }
 
@@ -99,6 +106,7 @@ public class Player : MonoBehaviour
         ItemGet = Input.GetButtonDown("Get");
         sWeapon1 = Input.GetButtonDown("Swap1");
         sWeapon2 = Input.GetButtonDown("Swap2");
+        sWeapon3 = Input.GetButtonDown("Swap3");
         Item_Use = Input.GetButtonDown("ItemUse");
 
         Player_skill1 = Input.GetButtonDown("Skill1");
@@ -108,14 +116,12 @@ public class Player : MonoBehaviour
 
     void Move()  //플레이어 움직임
     {
-
+        
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //normalized : 방향 값이 1로 보정된 벡터
             if (doDie)
                 moveVec = Vector3.zero;
-
-
         transform.position += moveVec * speed * Time.deltaTime;
-        //anim.SetBool("isWalk", moveVec != Vector3.zero);
+        anim.SetBool("isWalk", moveVec != Vector3.zero);
         
         
     }
@@ -147,15 +153,17 @@ public class Player : MonoBehaviour
             return;
         if (sWeapon2 && (!hasWeapons[1] || equiWeaponIndex == 1))
             return;
+        if (sWeapon3 && (!hasWeapons[2] || equiWeaponIndex == 2))
+            return;
 
-
-        int weaponIndex = -1;
         if (sWeapon1) weaponIndex = 0;
         if (sWeapon2) weaponIndex = 1;
-
-        if(sWeapon1 || sWeapon2)
+        if (sWeapon3) weaponIndex = 2;
+        //if (sWeapon3) weaponIndex = 2;
+      
+        if (sWeapon1 || sWeapon2 || sWeapon3)
         {
-            if(earlyWeapon != null)
+            if (earlyWeapon != null)
                 earlyWeapon.gameObject.SetActive(false);
 
             equiWeaponIndex = weaponIndex;
@@ -269,7 +277,7 @@ public class Player : MonoBehaviour
             if(equiWeaponIndex == 0)
             {
                 earlyWeapon.Use();
-                TestSound.Gunsounds();
+                //TestSound.Gunsounds();
                 anim.SetTrigger("doShoot");
                 fireDelay = 0;
             }
@@ -277,6 +285,12 @@ public class Player : MonoBehaviour
             {
                 earlyWeapon.Use();
                 anim.SetTrigger("doShootMinigun");
+                fireDelay = 0;
+            }
+            else if(equiWeaponIndex == 2)
+            {
+                earlyWeapon.Use();
+                 anim.SetTrigger("doShoot");
                 fireDelay = 0;
             }
             
@@ -306,12 +320,15 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        //if (CurrentHP <= 0)
-        //{
-        //    doDie = true;
-        //    anim.SetTrigger("doDie");
-        //    Destroy(gameObject, 2f);
-        //}
+        if (CurrentHP <= 0)
+        {
+            doDie = true;
+            anim.SetTrigger("doDie");
+            Destroy(gameObject, 2f);
+            GameManager.Instance.EndingCanvas.SetActive(true);
+            GameManager.Instance.Ending_DIE.SetActive(true);
+            
+        }
         //IEnumerator DODIE()
         //{
         //    anim.SetTrigger("doDie");

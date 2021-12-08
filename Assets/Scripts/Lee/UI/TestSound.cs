@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestSound : MonoBehaviour
 {
-    public static AudioSource Sound;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class TestSound : MonoBehaviour
 
     public static void Gunsounds()
     {
-        Sound.Play();
+       
     }
 
 }
