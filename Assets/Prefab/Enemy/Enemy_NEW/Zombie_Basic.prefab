@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 5198815999566871349}
   - component: {fileID: 4648736814974925069}
   - component: {fileID: 2964008960811205936}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 5264839938831292127}
   - component: {fileID: 1989610966767380469}
   - component: {fileID: 5295872379578065600}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Zombie_Basic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1332,7 +1332,6 @@ MonoBehaviour:
   AttackDist: 1.25
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
-  grenadeData: {fileID: 0}
   MAXHP: 100
   CurHP: 0
   HealCheck: {fileID: 0}

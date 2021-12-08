@@ -204,10 +204,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4990696528300553093, guid: d36ee3421c74db441a7252c2a589d550,
         type: 3}
+    - target: {fileID: 6832221080614576949, guid: b1f9a0371baf5454d99a81a4efd2aa43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 9213198520636430537, guid: b1f9a0371baf5454d99a81a4efd2aa43,
         type: 3}
       propertyPath: m_Name
       value: Zombie_LongRange
+      objectReference: {fileID: 0}
+    - target: {fileID: 9213198520636430537, guid: b1f9a0371baf5454d99a81a4efd2aa43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9213198520636430537, guid: b1f9a0371baf5454d99a81a4efd2aa43,
         type: 3}
@@ -229,6 +239,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1222518798601023756, guid: 2573410c82e7b744aa2c8172a46a217c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1989610966767380469, guid: 2573410c82e7b744aa2c8172a46a217c,
         type: 3}
       propertyPath: m_StoppingDistance
@@ -256,6 +271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566092579240815920, guid: 2573410c82e7b744aa2c8172a46a217c,
         type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566092579240815920, guid: 2573410c82e7b744aa2c8172a46a217c,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -272,7 +292,7 @@ PrefabInstance:
     - target: {fileID: 5027356555309613725, guid: 2573410c82e7b744aa2c8172a46a217c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.555
+      value: 25.7
       objectReference: {fileID: 0}
     - target: {fileID: 5027356555309613725, guid: 2573410c82e7b744aa2c8172a46a217c,
         type: 3}
@@ -353,10 +373,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2754395063659527421, guid: 91548174293ef6c409f36997d4d0fadd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3457610807190732883, guid: 91548174293ef6c409f36997d4d0fadd,
         type: 3}
       propertyPath: m_Name
       value: Zombie_Heal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457610807190732883, guid: 91548174293ef6c409f36997d4d0fadd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3457610807190732883, guid: 91548174293ef6c409f36997d4d0fadd,
         type: 3}
@@ -449,6 +479,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1161600215324287536, guid: 9965b940b76c6ef40b816ef92f0c7106,
         type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161600215324287536, guid: 9965b940b76c6ef40b816ef92f0c7106,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -471,6 +506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2907348369896363123, guid: 9965b940b76c6ef40b816ef92f0c7106,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3155848064491019451, guid: 9965b940b76c6ef40b816ef92f0c7106,
         type: 3}
