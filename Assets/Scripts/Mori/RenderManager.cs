@@ -8,7 +8,6 @@ public class RenderManager : MonoBehaviour
 
     public GameObject body;
 
-    float time;
     void Start()
     {
         hide();

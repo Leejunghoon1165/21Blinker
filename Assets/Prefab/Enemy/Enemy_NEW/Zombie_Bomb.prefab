@@ -15302,7 +15302,7 @@ GameObject:
   - component: {fileID: 308612093092843335}
   - component: {fileID: 183100388619882638}
   - component: {fileID: 1345296228713581743}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Zombie_Bomb
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -15392,7 +15392,6 @@ MonoBehaviour:
   AttackDist: 1.5
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
-  grenadeData: {fileID: 0}
   MAXHP: 100
   CurHP: 0
   HealCheck: {fileID: 0}
@@ -21611,7 +21610,7 @@ GameObject:
   - component: {fileID: 8384365083146534232}
   - component: {fileID: 2295654749922707985}
   - component: {fileID: 2710783533021827924}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

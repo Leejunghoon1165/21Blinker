@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
     bool DoDie;
     bool Hited;
     bool LoosHP;
+    bool basic_attack;
+    bool bomb_attack;
 
     Vector3 lookrotation;
 
@@ -49,15 +51,11 @@ public class Enemy : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         rend = GetComponent<Renderer>();
         meshs = GetComponentsInChildren<MeshRenderer>();
-
         grenadeData = GetComponent<GrenadeData>();
-
-
     }
     // Start is called before the first frame update
     void Start()
     {
-        anim.SetBool("IsWalk", true);
         BombZomColorChange = false;
         playerHP = PlayerHpBar.currentHp;
         RLAttack = false;
@@ -69,6 +67,8 @@ public class Enemy : MonoBehaviour
         DoDie = false;
         Hited = false;
         LoosHP = false;
+        basic_attack = false;
+        bomb_attack = false;
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -145,30 +145,28 @@ public class Enemy : MonoBehaviour
     {
         if(AttackDist >= Dist && !Hited) //공격
         {
-            anim.SetBool("IsAttack", true);
             this.nav.velocity = Vector3.zero;
             time = 0;
+            targerting();
         }
         else //쫓기
         {
+            anim.SetBool("IsWalk", true);
             anim.SetBool("IsAttack", false);
             time += Time.deltaTime;
             if(time <= 1.25 && time >= 0.8)
                 this.nav.velocity = Vector3.zero;
             transform.LookAt(PlayerTransform);
         }
-        transform.LookAt(PlayerTransform);
     }
     void AttackMotion_B() //LR_Enemy
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookrotation), 1*Time.deltaTime);
         if(AttackDist >= Dist && !RLAttack && !Hited)
         {
             StartCoroutine(Shot());
             this.nav.velocity = Vector3.zero;
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookrotation), 1*Time.deltaTime);
         }
-        transform.LookAt(PlayerTransform);
-
         if(AttackDist <= Dist)
         if(AttackDist <= Dist) {
             anim.SetBool("IsWalk", true);
@@ -177,7 +175,6 @@ public class Enemy : MonoBehaviour
         else
         {
             anim.SetBool("IsWalk", false);
-
             this.nav.velocity = Vector3.zero;
         }
     }
@@ -198,7 +195,6 @@ public class Enemy : MonoBehaviour
             HealCheck.gameObject.SetActive(false);
             HealFX.Pause();
         }
-        transform.LookAt(PlayerTransform);
     }
     void AttackMotion_D() //BombEnemy
     {
@@ -208,6 +204,8 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("DoDie");
             bomb1FX.Play();
             bomb2FX.Play();
+            if(!bomb_attack)
+                Bomb();
             this.nav.velocity = Vector3.zero;
             Destroy(gameObject, 0.5f);
             playerHP -= Str;
@@ -250,24 +248,25 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(.15f);
         LoosHP = false;
     }
-
+    /*
     private void FixedUpdate() {
         targerting();
     }
+    */
     //근접공격함수
     void targerting()
     {
         float targetRaius = 1f;
         float targetRange = 1.5f;
-        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRaius, transform.forward, targetRange, LayerMask.GetMask("player"));
-        StartCoroutine(Bite());
+        RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRaius, transform.forward, targetRange, LayerMask.GetMask("player")); 
+        if(!basic_attack)
+            StartCoroutine(Bite());
     }
-    IEnumerator Bite()
+    void Bomb()
     {
-        //anim.SetBool("IsAttack", true);
-        playerHP -= Str;
-        // public으로 고쳐주면 실행 GameObject.Find("Player").GetComponent<Player>().Damage();
-        yield return new WaitForSeconds(2.01f);
+        bomb_attack = true;
+        PlayerHpBar.Dmg3();
+        //Debug.Log("공격중");
     }
     IEnumerator Shot()//원거리 공격함수
     {
@@ -282,6 +281,16 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.67f);
         anim.SetBool("IsLRAttack", false);
         RLAttack = false;
+    }
+
+    IEnumerator Bite()
+    {
+        basic_attack = true;
+        anim.SetBool("IsAttack", true);
+        PlayerHpBar.Dmg();
+        //Debug.Log("공격중");
+        yield return new WaitForSeconds(2.01f);
+        basic_attack = false;
     }
     //총알에 맞았을 떄
     private void OnCollisionEnter(Collision collision)
