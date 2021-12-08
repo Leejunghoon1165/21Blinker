@@ -133,6 +133,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapBox
       objectReference: {fileID: 0}
+    - target: {fileID: 7571323783268242409, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571323783268242409, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571323783268242409, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7877310295276509226, guid: 64aa7060a0038d04c82db7079693f0fd,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -192,6 +207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112692167280010962, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8112692168938962074, guid: 64aa7060a0038d04c82db7079693f0fd,
         type: 3}
