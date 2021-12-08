@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
    
     public GameObject playerCanvas;
     public GameObject[] weapons;
+    public ParticleSystem DashParticle;
+  
     public bool[] hasWeapons;
 
 
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour
     float PlayerHP;
     float CurrentHP;
 
+
+
     private void Start()
     {
 
@@ -52,7 +56,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.Time_start = true;
         GameManager.Instance.Time_count = true;
         PlayerHP = GameManager.Instance.player_hp; 
-        CurrentHP = PlayerHP-50;
+        CurrentHP = PlayerHP;
        //Debug.Log(CurrentHP);
         PlayerHP = PlayerHpBar.maxHp;
         CurrentHP = PlayerHpBar.currentHp;
@@ -125,6 +129,7 @@ public class Player : MonoBehaviour
     {
         if(DashDown &&!isDash) /*&& moveVec != Vector3.zero && isDash == false && !doDie*/  //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
         {
+            DashParticle.Play();
             anim.SetTrigger("doDash");   //대시 애니메이션 동작
             isDash = true;             //isDash true로 변경
             Invoke("DashOff", 5f);    //1초 뒤 DashOff 함수 실행
@@ -264,6 +269,7 @@ public class Player : MonoBehaviour
             if(equiWeaponIndex == 0)
             {
                 earlyWeapon.Use();
+                TestSound.Gunsounds();
                 anim.SetTrigger("doShoot");
                 fireDelay = 0;
             }
@@ -300,12 +306,12 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        if (CurrentHP <= 0)
-        {
-            doDie = true;
-            anim.SetTrigger("doDie");
-            Destroy(gameObject, 2f);
-        }
+        //if (CurrentHP <= 0)
+        //{
+        //    doDie = true;
+        //    anim.SetTrigger("doDie");
+        //    Destroy(gameObject, 2f);
+        //}
         //IEnumerator DODIE()
         //{
         //    anim.SetTrigger("doDie");
