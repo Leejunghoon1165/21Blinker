@@ -10720,7 +10720,7 @@ GameObject:
   - component: {fileID: 4124593699068036597}
   - component: {fileID: 1922051081470712109}
   - component: {fileID: 4242322397537916797}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17314,7 +17314,7 @@ GameObject:
   - component: {fileID: 7434616078174781038}
   - component: {fileID: 6051675022684018025}
   - component: {fileID: 4103463285260556259}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Zombie_LongRange
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -17405,7 +17405,6 @@ MonoBehaviour:
   AttackDist: 10.5
   bulletPos: {fileID: 86880726270724421}
   bullet: {fileID: 4990696528300553093, guid: 242d0f0348d46cf44b24753d3caaac85, type: 3}
-  grenadeData: {fileID: 0}
   MAXHP: 100
   CurHP: 0
   HealCheck: {fileID: 0}

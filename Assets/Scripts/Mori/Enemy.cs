@@ -266,7 +266,7 @@ public class Enemy : MonoBehaviour
     {
         bomb_attack = true;
         PlayerHpBar.Dmg3();
-        Debug.Log("공격중");
+        //Debug.Log("공격중");
     }
     IEnumerator Shot()//원거리 공격함수
     {
@@ -288,7 +288,7 @@ public class Enemy : MonoBehaviour
         basic_attack = true;
         anim.SetBool("IsAttack", true);
         PlayerHpBar.Dmg();
-        Debug.Log("공격중");
+        //Debug.Log("공격중");
         yield return new WaitForSeconds(2.01f);
         basic_attack = false;
     }

@@ -16924,7 +16924,7 @@ GameObject:
   - component: {fileID: 1510287844690199850}
   - component: {fileID: 1231477064236820246}
   - component: {fileID: 4205159521470650618}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27178,7 +27178,7 @@ GameObject:
   - component: {fileID: 4289696481770850901}
   - component: {fileID: 2821203281901245085}
   - component: {fileID: 8867881689470342460}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Zombie_Heal
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -27268,7 +27268,6 @@ MonoBehaviour:
   AttackDist: 10.5
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
-  grenadeData: {fileID: 0}
   MAXHP: 100
   CurHP: 0
   HealCheck: {fileID: 1958900333405621006, guid: b14c1f3d86f8eb440866683a534476e2,
