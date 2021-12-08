@@ -14,7 +14,7 @@ public class Scene : MonoBehaviour
         StartCoroutine(LoadSceneAsync());
         StartCoroutine(LoadSceneAsync2());
         StartCoroutine(LoadSceneAsync3());
-        StartCoroutine(LoadSceneAsync4());
+        //StartCoroutine(LoadSceneAsync4());
 
         //SceneManager.LoadScene("Player", LoadSceneMode.Additive);  //동기
         // SceneManager.LoadScene("Enemy", LoadSceneMode.Additive);
@@ -22,13 +22,13 @@ public class Scene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync()
     {
+        float timer = 0;
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Map2");
         AsyncLoad.allowSceneActivation = false;
-        float timer = 0f;
         while (!AsyncLoad.isDone)
         {
             yield return null;
-            if(AsyncLoad.progress < 0.9f)
+            if (AsyncLoad.progress < 0.9f)
             {
                 progressBar.fillAmount = AsyncLoad.progress;
             }
@@ -38,20 +38,59 @@ public class Scene : MonoBehaviour
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 if (progressBar.fillAmount >= 1f)
                 {
-                    AsyncLoad.allowSceneActivation = true;
+                   AsyncLoad.allowSceneActivation = true;
                     yield break;
                 }
-                
+
             }
         }
-       
+        //AsyncLoad.allowSceneActivation = false;
+        //float timer = 0f;
+        //while (!AsyncLoad.isDone)
+        //{
+        //    yield return null;
+        //    if (AsyncLoad.progress < 0.9f)
+        //{
+        //    progressBar.fillAmount = AsyncLoad.progress;
+        //}
+        //else
+        //{
+        //    timer += Time.unscaledDeltaTime;
+        //    progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
+        //    if (progressBar.fillAmount >= 1f)
+        //    {
+        //        AsyncLoad.allowSceneActivation = true;
+        //        yield break;
+        //    }
+
+        //}
+        //}
+
     }
     IEnumerator LoadSceneAsync2()  //비동기
     {
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
+        //AsyncLoad.allowSceneActivation = false;
+       // float timer = 0f;
         while (!AsyncLoad.isDone)
         {
             yield return null;
+            //if (AsyncLoad.progress < 0.9f)
+            //{
+            //    progressBar.fillAmount = AsyncLoad.progress;
+            //}
+            //else
+            //{
+            //    timer += Time.unscaledDeltaTime;
+            //    progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
+            //    if (progressBar.fillAmount >= 1f)
+            //    {
+            //        AsyncLoad.allowSceneActivation = true;
+            //        yield break;
+            //    }
+
+            //}
+
         }
         Debug.Log(AsyncLoad.progress);
     }
@@ -66,15 +105,15 @@ public class Scene : MonoBehaviour
         Debug.Log(AsyncLoad.progress);
     }
 
-    IEnumerator LoadSceneAsync4()  //비동기
-    {
-        AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Item", LoadSceneMode.Additive);
-        while (!AsyncLoad.isDone)
-        {
-            yield return null;
-        }
-        Debug.Log(AsyncLoad.progress);
-    }
+    //IEnumerator LoadSceneAsync4()  //비동기
+    //{
+    //    AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Item", LoadSceneMode.Additive);
+    //    while (!AsyncLoad.isDone)
+    //    {
+    //        yield return null;
+    //    }
+    //    Debug.Log(AsyncLoad.progress);
+    //}
 
     // Update is called once per frame
     void Update()

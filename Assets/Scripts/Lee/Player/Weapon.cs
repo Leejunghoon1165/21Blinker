@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public enum Type { Melee, Range, Shot };
+    public enum Type { Melee, Range, Shot, Fire };
     public Type type;
     public int damage;
     public float rate;
@@ -20,7 +20,6 @@ public class Weapon : MonoBehaviour
 
     public void Awake()
     {
-    
         pellets = new List<Quaternion>(Count);   
         for (int i = 0; i < Count; i++)
         {
@@ -40,6 +39,10 @@ public class Weapon : MonoBehaviour
             StartCoroutine("Shot2");
            // fire();
         }
+        else if(type == Type.Fire)
+        {
+            StartCoroutine("Fire");
+        }
 
     }
     //일반 다른 무기
@@ -55,7 +58,6 @@ public class Weapon : MonoBehaviour
     //샷건 무기 코르틴
     IEnumerator Shot2()
     {
-
         //Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
         //bulletRigid.velocity = bulletPos.forward * 50;
 
@@ -67,6 +69,11 @@ public class Weapon : MonoBehaviour
             intantBullet.transform.rotation = Quaternion.RotateTowards(intantBullet.transform.rotation, pellets[i], Angle);
             intantBullet.GetComponent<Rigidbody>().AddForce(intantBullet.transform.forward * 100);   //발사 힘 
         }
+        yield return null;
+    }
+    IEnumerator Fire()
+    {
+        Flash.Play();
         yield return null;
     }
 

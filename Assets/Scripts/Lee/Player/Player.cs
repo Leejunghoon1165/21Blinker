@@ -123,11 +123,11 @@ public class Player : MonoBehaviour
 
     void Dash()  //대시 기능 
     {
-        if(DashDown && moveVec != Vector3.zero && isDash == false && !doDie)   //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
+        if(DashDown &&!isDash) /*&& moveVec != Vector3.zero && isDash == false && !doDie*/  //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
         {
             anim.SetTrigger("doDash");   //대시 애니메이션 동작
             isDash = true;             //isDash true로 변경
-            Invoke("DashOff", 1f);    //1초 뒤 DashOff 함수 실행
+            Invoke("DashOff", 5f);    //1초 뒤 DashOff 함수 실행
         }
     }
 
