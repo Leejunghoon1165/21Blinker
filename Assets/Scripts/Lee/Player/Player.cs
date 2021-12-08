@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 
 
         transform.position += moveVec * speed * Time.deltaTime;
-        anim.SetBool("isWalk", moveVec != Vector3.zero);
+        //anim.SetBool("isWalk", moveVec != Vector3.zero);
         
         
     }
