@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
     bool LoosHP;
     bool basic_attack;
     bool bomb_attack;
+    bool bombFX;
+    bool bombtimer;
 
     Vector3 lookrotation;
 
@@ -69,6 +71,8 @@ public class Enemy : MonoBehaviour
         LoosHP = false;
         basic_attack = false;
         bomb_attack = false;
+        bombFX = false;
+        bombtimer = false;
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -193,27 +197,29 @@ public class Enemy : MonoBehaviour
             transform.LookAt(PlayerTransform);
             anim.SetBool("IsWalk", true);
             HealCheck.gameObject.SetActive(false);
-            HealFX.Pause();
+            HealFX.Clear();
         }
     }
     void AttackMotion_D() //BombEnemy
     {
         anim.SetBool("IsWalk", true);
-        if(AttackDist >= Dist && !Hited)
+        if(Dist <= 10)
         {
-            anim.SetTrigger("DoDie");
-            bomb1FX.Play();
-            bomb2FX.Play();
-            if(!bomb_attack)
-                Bomb();
-            this.nav.velocity = Vector3.zero;
-            Destroy(gameObject, 0.5f);
-            playerHP -= Str;
+            if(!BombZomColorChange)
+                StartCoroutine(ReadyToBomb());
+            bombtimer = true;
         }
+        if(bombtimer)
+            time += Time.deltaTime;
+        if(time >= 3 && !bombFX)
+            {
+                BombFX();
+                if(AttackDist >= Dist && !bomb_attack)
+                    BombDamage();
+            }
         else
-            transform.LookAt(PlayerTransform);
-        if(Dist <= 15 && !BombZomColorChange)
-            StartCoroutine(ReadyToBomb());
+        transform.LookAt(PlayerTransform);
+        Debug.Log(time);
     }
 
     private void OnTriggerStay(Collider col)
@@ -262,12 +268,22 @@ public class Enemy : MonoBehaviour
         if(!basic_attack)
             StartCoroutine(Bite());
     }
-    void Bomb()
+    void BombDamage()
     {
         bomb_attack = true;
         PlayerHpBar.Dmg3();
         //Debug.Log("공격중");
     }
+
+    void BombFX()
+    {
+        bombFX = true;
+        this.nav.velocity = Vector3.zero;
+        bomb1FX.Play();
+        bomb2FX.Play();
+        anim.SetTrigger("DoDie");
+        Destroy(gameObject, 0.5f);
+    } 
     IEnumerator Shot()//원거리 공격함수
     {
         RLAttack = true;
@@ -302,6 +318,11 @@ public class Enemy : MonoBehaviour
             //if(!Ondamage)
             //    StartCoroutine(OnDamage());
         }
+        else if (collision.gameObject.tag == "SGBullet") {
+            CurHP -= 8;
+            if(!Hited)
+                StartCoroutine(hited());
+        }
     }
     /*
     IEnumerator OnDamage()//데미지를 입을 때 마다 색깔이 바뀜
@@ -323,8 +344,8 @@ public class Enemy : MonoBehaviour
     */
     //0.3초동안 제자리에 서있으면서 피격애니 실행
     IEnumerator hited() {
-        Hited = true;
         Blood.Play();
+        Hited = true;
         anim.SetBool("IsHit", true);
         this.nav.velocity = Vector3.zero;
         yield return new WaitForSeconds(0.2f);

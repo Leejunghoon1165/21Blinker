@@ -133,6 +133,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2753023764184951287, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753023764184951287, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753023764184951287, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753023764803013242, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753023764803013242, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753023764803013242, guid: 64aa7060a0038d04c82db7079693f0fd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8086324212590788031, guid: 64aa7060a0038d04c82db7079693f0fd,
         type: 3}
       propertyPath: m_RootOrder
