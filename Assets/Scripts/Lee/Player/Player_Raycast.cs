@@ -27,11 +27,12 @@ public class Player_Raycast : MonoBehaviour
     {
         //트랜스폼을 받아온다
         m_tr = GetComponent<Transform>();
-        r_tr.position = r_tr.position + new Vector3(0f, 1f, 0);
+        r_tr.position = r_tr.position + new Vector3(0f, 0.5f, 0);
     }
 
     private void FixedUpdate()
     {
+        OnDrawRayLine();
         //레이 세팅
         Ray ray = new Ray();
 
@@ -54,10 +55,11 @@ public class Player_Raycast : MonoBehaviour
         {
             for (int i = 0; i < hits.Length; i++)
             {
-                hits[i].collider.gameObject.GetComponent<RenderManager>().show();
+                hits[i].collider.GetComponent<RenderManager>().show();
+                //hits[i].collider.gameObject.GetComponent<RenderManager>().show();
                 //hits[i].collider.gameObject.GetComponent<Mesh>();
                 // hits[i].collider.gameObject.
-                //print(hits[i].collider.gameObject.name + " " + i);
+               // print(hits[i].collider.gameObject.name + " " + i);
                // hits[i].collider.gameObject.GetComponent<EnemyFinder>().Look();
             }
         }
@@ -65,7 +67,7 @@ public class Player_Raycast : MonoBehaviour
         {
             return;
         }
-        OnDrawRayLine();
+       
     }
     public void OnDrawRayLine()
     {
