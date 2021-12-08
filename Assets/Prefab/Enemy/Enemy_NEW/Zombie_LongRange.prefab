@@ -17314,6 +17314,7 @@ GameObject:
   - component: {fileID: 7434616078174781038}
   - component: {fileID: 6051675022684018025}
   - component: {fileID: 4103463285260556259}
+  - component: {fileID: 4216764630698465130}
   m_Layer: 0
   m_Name: Zombie_LongRange
   m_TagString: Enemy
@@ -17406,7 +17407,6 @@ MonoBehaviour:
   bulletPos: {fileID: 86880726270724421}
   bullet: {fileID: 4990696528300553093, guid: 242d0f0348d46cf44b24753d3caaac85, type: 3}
   MAXHP: 50
-  CurHP: 0
   HealCheck: {fileID: 0}
   HealFX: {fileID: 0}
   RecoverFX: {fileID: 7694277978411834222}
@@ -17435,6 +17435,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4216764630698465130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9213198520636430537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36bdc48c4284be54d93b304f06650097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnpoint: {fileID: 8322777801462279636, guid: cff4b963d380b5043957186641a199ed,
+    type: 3}
+  spawnpoint1: {fileID: 3714968734194994100, guid: 8cbe94492206ba8448633fe7809f1f72,
+    type: 3}
+  spawnpoint2: {fileID: 9206195819077709571, guid: 522418730cd782b43b136d4b0c099068,
+    type: 3}
+  spawnpoint3: {fileID: 8054858993117495263, guid: 009bba6823c2c534ab7b3237e5769ea5,
+    type: 3}
 --- !u!1 &9213204083667299848
 GameObject:
   m_ObjectHideFlags: 0

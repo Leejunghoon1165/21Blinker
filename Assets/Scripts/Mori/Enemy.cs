@@ -43,8 +43,12 @@ public class Enemy : MonoBehaviour
     bool bomb_attack;
     bool bombFX;
     bool bombtimer;
-
     Vector3 lookrotation;
+    public Transform spawnpoint1;
+    public Transform spawnpoint2;
+    public Transform spawnpoint3;
+    public Transform spawnpoint4;
+    public float  RamdomNum;
 
     private void Awake()
     {
@@ -104,12 +108,11 @@ public class Enemy : MonoBehaviour
         nav.SetDestination(target.position);
         //플레이어 바라보는 속도를 프레임마다 계산해서 보다 빨리 돌아보게 만듦
         lookrotation = nav.steeringTarget-transform.position;
-
-        Attack();
-
-        if(CurHP <= 0 && !DoDie){
-            Die();
-        }
+        if(CurHP <= 0)
+            StartCoroutine(DieAndRecoverHP());
+        else
+            Attack();
+        
         
         if(CurHP >= MAXHP)
         {
@@ -118,27 +121,20 @@ public class Enemy : MonoBehaviour
         }
         //Debug.Log(CurHP);
     }
-    void Die()
-    {
-        this.nav.velocity = Vector3.zero;
-        anim.SetTrigger("DoDie");
-        Destroy(gameObject, .66f);
-        DoDie = true;
-    }
     void Attack()
     {
         switch (enemyType){
             case Type.A:
                 AttackMotion_A();
-                 transform.LookAt(PlayerTransform);
+                transform.LookAt(PlayerTransform);
                 break;
             case Type.B:    
                 AttackMotion_B();
-                 transform.LookAt(PlayerTransform);
+                transform.LookAt(PlayerTransform);
                 break;
             case Type.C:
                 AttackMotion_C();
-                 transform.LookAt(PlayerTransform);
+                transform.LookAt(PlayerTransform);
                 break;
             case Type.D:
                 AttackMotion_D();
@@ -218,8 +214,7 @@ public class Enemy : MonoBehaviour
                     BombDamage();
             }
         else
-        transform.LookAt(PlayerTransform);
-        Debug.Log(time);
+            transform.LookAt(PlayerTransform);
     }
 
     private void OnTriggerStay(Collider col)
@@ -282,7 +277,7 @@ public class Enemy : MonoBehaviour
         bomb1FX.Play();
         bomb2FX.Play();
         anim.SetTrigger("DoDie");
-        Destroy(gameObject, 0.5f);
+        CurHP = 0;
     } 
     IEnumerator Shot()//원거리 공격함수
     {
@@ -315,8 +310,6 @@ public class Enemy : MonoBehaviour
             CurHP -= 4;
             if(!Hited)
                 StartCoroutine(hited());
-            //if(!Ondamage)
-            //    StartCoroutine(OnDamage());
         }
         else if (collision.gameObject.tag == "SGBullet") {
             CurHP -= 8;
@@ -344,10 +337,10 @@ public class Enemy : MonoBehaviour
     */
     //0.3초동안 제자리에 서있으면서 피격애니 실행
     IEnumerator hited() {
+        this.nav.velocity = Vector3.zero;
         Blood.Play();
         Hited = true;
         anim.SetBool("IsHit", true);
-        this.nav.velocity = Vector3.zero;
         yield return new WaitForSeconds(0.2f);
         anim.SetBool("IsHit", false);
         yield return new WaitForSeconds(0.1f);
@@ -365,9 +358,39 @@ public class Enemy : MonoBehaviour
         }
         yield return new WaitForSeconds(0.3f);
         BombZomColorChange = false;
-
     }
-    
+    IEnumerator DieAndRecoverHP()
+    {
+        anim.SetTrigger("DoDie");
+        this.nav.velocity = Vector3.zero;
+        yield return new WaitForSeconds(.5f);
+        SpawnRamdom();
+        yield return new WaitForSeconds(.2f);
+        CurHP = MAXHP;
+    }
+
+    void SpawnRamdom()
+    {
+        RamdomNum = Random.Range(0, 4);
+        if(RamdomNum == 0)
+        {
+            Enemytransform.position = spawnpoint1.position ;
+        }
+        else if(RamdomNum == 1)
+        {
+            Enemytransform.position = spawnpoint2.position;
+        }
+        else if(RamdomNum == 2)
+        {
+            Enemytransform.position = spawnpoint3.position;
+        }
+        else if(RamdomNum == 3)
+        {
+            Enemytransform.position = spawnpoint4.position;
+        }
+        Debug.Log(RamdomNum);
+    }
+
     public void HitByGrenade()
     {
         Debug.Log("monster a!!");

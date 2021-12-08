@@ -27178,6 +27178,7 @@ GameObject:
   - component: {fileID: 4289696481770850901}
   - component: {fileID: 2821203281901245085}
   - component: {fileID: 8867881689470342460}
+  - component: {fileID: 6647086041298427049}
   m_Layer: 0
   m_Name: Zombie_Heal
   m_TagString: Enemy
@@ -27269,7 +27270,6 @@ MonoBehaviour:
   bulletPos: {fileID: 0}
   bullet: {fileID: 0}
   MAXHP: 70
-  CurHP: 0
   HealCheck: {fileID: 1958900333405621006, guid: b14c1f3d86f8eb440866683a534476e2,
     type: 3}
   HealFX: {fileID: 2242913293238046394}
@@ -27299,6 +27299,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6647086041298427049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457610807190732883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36bdc48c4284be54d93b304f06650097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnpoint: {fileID: 8322777801462279636, guid: cff4b963d380b5043957186641a199ed,
+    type: 3}
+  spawnpoint1: {fileID: 3714968734194994100, guid: 8cbe94492206ba8448633fe7809f1f72,
+    type: 3}
+  spawnpoint2: {fileID: 9206195819077709571, guid: 522418730cd782b43b136d4b0c099068,
+    type: 3}
+  spawnpoint3: {fileID: 8054858993117495263, guid: 009bba6823c2c534ab7b3237e5769ea5,
+    type: 3}
 --- !u!1 &3548091682477438167
 GameObject:
   m_ObjectHideFlags: 0
