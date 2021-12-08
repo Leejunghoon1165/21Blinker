@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public int MAXHP;
     public int CurHP;
     bool HealDlay;
+    bool IsSpawn;
     public GameObject HealCheck;
     public ParticleSystem HealFX;
     public ParticleSystem RecoverFX;
@@ -42,13 +43,13 @@ public class Enemy : MonoBehaviour
     bool basic_attack;
     bool bomb_attack;
     bool bombFX;
-    bool bombtimer;
+    bool bombcount;
     Vector3 lookrotation;
     public Transform spawnpoint1;
     public Transform spawnpoint2;
     public Transform spawnpoint3;
     public Transform spawnpoint4;
-    public float  RamdomNum;
+    public float RamdomNum;
 
     private void Awake()
     {
@@ -76,7 +77,8 @@ public class Enemy : MonoBehaviour
         basic_attack = false;
         bomb_attack = false;
         bombFX = false;
-        bombtimer = false;
+        bombcount = false;
+        IsSpawn = false;
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -108,10 +110,13 @@ public class Enemy : MonoBehaviour
         nav.SetDestination(target.position);
         //플레이어 바라보는 속도를 프레임마다 계산해서 보다 빨리 돌아보게 만듦
         lookrotation = nav.steeringTarget-transform.position;
+        
         if(CurHP <= 0)
             StartCoroutine(DieAndRecoverHP());
         else
             Attack();
+        
+        //Debug.Log(CurHP);
         
         
         if(CurHP >= MAXHP)
@@ -167,7 +172,6 @@ public class Enemy : MonoBehaviour
             this.nav.velocity = Vector3.zero;
             transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(lookrotation), 1*Time.deltaTime);
         }
-        if(AttackDist <= Dist)
         if(AttackDist <= Dist) {
             anim.SetBool("IsWalk", true);
             transform.LookAt(PlayerTransform);
@@ -198,29 +202,29 @@ public class Enemy : MonoBehaviour
     }
     void AttackMotion_D() //BombEnemy
     {
-        anim.SetBool("IsWalk", true);
-        if(Dist <= 10)
+        if(Dist <= 7)
         {
             if(!BombZomColorChange)
                 StartCoroutine(ReadyToBomb());
-            bombtimer = true;
+            bombcount = true;
         }
-        if(bombtimer)
+        if(bombcount)
             time += Time.deltaTime;
-        if(time >= 3 && !bombFX)
+        if(time >= 1 && !bombFX)
             {
-                BombFX();
+                StartCoroutine(BombFX());
                 if(AttackDist >= Dist && !bomb_attack)
                     BombDamage();
+                time = 0;
+                bombcount = false;
             }
-        else
-            transform.LookAt(PlayerTransform);
+        transform.LookAt(PlayerTransform);
+        if(CurHP == MAXHP)
+            anim.SetBool("IsWalk", true);
     }
 
     private void OnTriggerStay(Collider col)
     {
-        //힐범위와 충돌하면(피가10미만일때) 2초마다 체력2를 회복한다.
-        if (col.gameObject.tag == "EnemyHeal" && HealDlay == false && CurHP <=10) 
         //힐범위와 충돌하면(피가 MAXHP미만일때) 2초마다 체력2를 회복한다.
         if (col.gameObject.tag == "EnemyHeal" && !HealDlay && CurHP <= MAXHP) 
         {
@@ -230,10 +234,21 @@ public class Enemy : MonoBehaviour
             StartCoroutine(RecoverDelay());
         }
         //총알에 맞으면 피가 닳는다.
-        if (col.gameObject.tag == "Bullet_001" && !LoosHP)
+        else if (col.gameObject.tag == "Bullet_001" && !LoosHP)
         {
+            CurHP -= 4;
             StartCoroutine(loosHP());
+            if(!Hited)
+                StartCoroutine(hited());
         }
+        else if (col.gameObject.tag == "SGBullet" && !LoosHP)
+        {
+            CurHP -= 8;
+            StartCoroutine(loosHP());
+            if(!Hited)
+                StartCoroutine(hited());
+        }
+        
     }
     //2초동안 힐을 다시 못받게 딜레이 시킨다.
     IEnumerator RecoverDelay()
@@ -270,14 +285,16 @@ public class Enemy : MonoBehaviour
         //Debug.Log("공격중");
     }
 
-    void BombFX()
+    IEnumerator BombFX()
     {
-        bombFX = true;
-        this.nav.velocity = Vector3.zero;
         bomb1FX.Play();
         bomb2FX.Play();
         anim.SetTrigger("DoDie");
+        bombFX = true;
+        this.nav.velocity = Vector3.zero;
         CurHP = 0;
+        yield return new WaitForSeconds(1f);
+        bombFX = false;
     } 
     IEnumerator Shot()//원거리 공격함수
     {
@@ -303,6 +320,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(2.01f);
         basic_attack = false;
     }
+    /*
     //총알에 맞았을 떄
     private void OnCollisionEnter(Collision collision)
     {
@@ -310,13 +328,19 @@ public class Enemy : MonoBehaviour
             CurHP -= 4;
             if(!Hited)
                 StartCoroutine(hited());
+            if(!LoosHP)
+                StartCoroutine(loosHP());
         }
         else if (collision.gameObject.tag == "SGBullet") {
             CurHP -= 8;
+            StartCoroutine(loosHP());
             if(!Hited)
                 StartCoroutine(hited());
+             if(!LoosHP)
+                StartCoroutine(loosHP());
         }
     }
+    */
     /*
     IEnumerator OnDamage()//데미지를 입을 때 마다 색깔이 바뀜
     {
@@ -364,13 +388,15 @@ public class Enemy : MonoBehaviour
         anim.SetTrigger("DoDie");
         this.nav.velocity = Vector3.zero;
         yield return new WaitForSeconds(.5f);
-        SpawnRamdom();
+        if(!IsSpawn)
+            StartCoroutine(SpawnRamdom());
         yield return new WaitForSeconds(.2f);
         CurHP = MAXHP;
     }
 
-    void SpawnRamdom()
+    IEnumerator SpawnRamdom()
     {
+        IsSpawn = true;
         RamdomNum = Random.Range(0, 4);
         if(RamdomNum == 0)
         {
@@ -388,16 +414,17 @@ public class Enemy : MonoBehaviour
         {
             Enemytransform.position = spawnpoint4.position;
         }
-        Debug.Log(RamdomNum);
+        yield return new WaitForSeconds(2f);
+        IsSpawn = false;
     }
 
     public void HitByGrenade()
     {
-        Debug.Log("monster a!!");
+        //Debug.Log("monster a!!");
         //체력 - 수류탄 데미지;
         CurHP -= 100;
 
-        Debug.Log("monster b!!");
+        //Debug.Log("monster b!!");
         //모리의 피격 로직StartCoroutine();
     }
 }
