@@ -204,13 +204,17 @@ public class Enemy : MonoBehaviour
         }
         if(bombcount)
             time += Time.deltaTime;
-        if(time >= 1 && !bombFX)
+        if(time >= 4 && !bombFX)
             {
                 StartCoroutine(BombFX());
                 if(AttackDist >= Dist && !bomb_attack)
                     BombDamage();
-                time = 0;
                 bombcount = false;
+            }
+        else if(time >= 5.5)
+            {
+                bomb_attack = false;
+                time = 0;
             }
         transform.LookAt(PlayerTransform);
         if(CurHP == MAXHP)

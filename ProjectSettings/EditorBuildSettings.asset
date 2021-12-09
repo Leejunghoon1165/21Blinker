@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UIScene/EndScene.unity
     guid: 79c8786b798243840952d45f2232dbd9
+  - enabled: 1
+    path: Assets/Scenes/Map2.unity
+    guid: bdfb3f3e7f42bd049b0b9ff402ea8e29
   m_configObjects: {}
