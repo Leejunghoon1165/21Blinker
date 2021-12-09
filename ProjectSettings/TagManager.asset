@@ -16,6 +16,7 @@ TagManager:
   - EnemyAttack
   - EnemyHeal
   - SGBullet
+  - EndZone
   layers:
   - Default
   - TransparentFX

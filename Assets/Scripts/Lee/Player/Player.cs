@@ -321,19 +321,23 @@ public class Player : MonoBehaviour
     {
         if(GameManager.Instance.Die == true)
         {
-            Debug.Log("죽음");
-        }
-        if (CurrentHP <= 0)
-        {
             doDie = true;
             anim.SetTrigger("doDie");
             Time.timeScale = 0f;
             GameManager.Instance.EndingCanvas.SetActive(true);
             GameManager.Instance.Ending_DIE.SetActive(true);
-            Destroy(gameObject, 2f);
-            
-            
         }
+        //if (CurrentHP <= 0)
+        //{
+        //    doDie = true;
+        //    anim.SetTrigger("doDie");
+        //    Time.timeScale = 0f;
+        //    GameManager.Instance.EndingCanvas.SetActive(true);
+        //    GameManager.Instance.Ending_DIE.SetActive(true);
+        //    Destroy(gameObject, 2f);
+            
+            
+        //}
         //IEnumerator DODIE()
         //{
         //    anim.SetTrigger("doDie");
@@ -355,12 +359,20 @@ public class Player : MonoBehaviour
                 Debug.Log("불가능");
 
         }
-        if (Player_skill2)
+        if (Player_skill2 && !skillready)
         {
-            //TestSkill player_skill2 = GetComponent<TestSkill>();
+            skillready = true;
             TestSkill.healskill();
             playerCanvas.GetComponent<PlayerHpBar>().heal();
+            Invoke("skilloff()", 15f);
+            //TestSkill player_skill2 = GetComponent<TestSkill>();
+            
         }
+    }
+
+    void skilloff()
+    {
+        skillready = false;
     }
 
     void TimeOver()
@@ -388,17 +400,27 @@ public class Player : MonoBehaviour
             //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
         }        
     }
-   /*
+    /*
+     private void OnTriggerEnter(Collider other)
+     {
+         if (other.tag == "Enemy")
+         {
+             playerCanvas.GetComponent<PlayerHpBar>().Dmg();
+             Damage();
+
+         }
+
+     }*/
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if(other.tag =="EndZone")
         {
-            playerCanvas.GetComponent<PlayerHpBar>().Dmg();
-            Damage();
-
+            Time.timeScale = 0f;
+            GameManager.Instance.EndingCanvas.SetActive(true);
+            GameManager.Instance.Ending_Win.SetActive(true);
         }
-            
-    }*/
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -407,8 +429,8 @@ public class Player : MonoBehaviour
         if(other.tag == "Item")
             nearobject = other.gameObject;
     }
-    
 
+    
     private void OnTriggerExit(Collider other)
     {
         nearobject = null;

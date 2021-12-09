@@ -72,7 +72,7 @@ public class PlayerHpBar : MonoBehaviour
         
         Enemy enemyStr = GameObject.Find("Zombie_Bomb(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
-        dmg.Damage();
+       // dmg.Damage();
         //invoke("BackHpFun",0.5);
         BackHpFun();
     }
