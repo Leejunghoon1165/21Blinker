@@ -60,8 +60,8 @@ public class Player : MonoBehaviour
         PlayerHP = GameManager.Instance.player_hp; 
         CurrentHP = PlayerHP;
        //Debug.Log(CurrentHP);
-        PlayerHP = PlayerHpBar.maxHp;
-        CurrentHP = PlayerHpBar.currentHp;
+        //PlayerHP = PlayerHpBar.maxHp;
+        //CurrentHP = PlayerHpBar.currentHp;
         //Debug.Log(PlayerHP);
         
     }
@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
         Swap();
         Die();
         Player_Skill();
+        TimeOver();
     }
     void Check()
     {
@@ -324,9 +325,11 @@ public class Player : MonoBehaviour
         {
             doDie = true;
             anim.SetTrigger("doDie");
-            Destroy(gameObject, 2f);
+            Time.timeScale = 0f;
             GameManager.Instance.EndingCanvas.SetActive(true);
             GameManager.Instance.Ending_DIE.SetActive(true);
+            Destroy(gameObject, 2f);
+            
             
         }
         //IEnumerator DODIE()
@@ -358,16 +361,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    void TimeOver()
+    {
+        if(GameManager.Instance.End == true)
+        {
+            Time.timeScale = 0f;
+            GameManager.Instance.EndingCanvas.SetActive(true);
+            GameManager.Instance.Ending_DIE.SetActive(true);
+        }
+    }
+
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "EnemyAttack")
-        {
-            PlayerHpBar.Dmg();
-           // playerCanvas.GetComponent<PlayerHpBar>().Dmg();
-            Damage();
-        }
-        else if(other.gameObject.tag == "EnemyBullet")
+        //if (other.gameObject.tag == "EnemyAttack")
+        //{
+        //    PlayerHpBar.Dmg();
+        //   // playerCanvas.GetComponent<PlayerHpBar>().Dmg();
+        //    Damage();
+        //}
+        if(other.gameObject.tag == "EnemyBullet")
         {
             PlayerHpBar.Dmg2();
             //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
