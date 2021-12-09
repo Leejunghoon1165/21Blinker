@@ -15,7 +15,7 @@ public class UISceneManager : MonoBehaviour
     
     public void StartButton()
     {
-        Invoke("startgame", 0.2f);
+        SceneManager.LoadScene("GamelobbyScene");
     }
 
     public void LobbyStageButton()
@@ -46,7 +46,7 @@ public class UISceneManager : MonoBehaviour
 
     private void startgame()
     {
-        SceneManager.LoadScene("GamelobbyScene");
+        
     }
 
 }

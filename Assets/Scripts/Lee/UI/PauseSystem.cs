@@ -10,6 +10,7 @@ public class PauseSystem : MonoBehaviour
     void Start()
     {
         Pause_Panel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
