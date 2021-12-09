@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     float Dist;
     public float AttackDist;
     float time;
-    float attacktime;
     public Transform bulletPos;
     public GameObject bullet;
     GrenadeData grenadeData;
@@ -36,8 +35,6 @@ public class Enemy : MonoBehaviour
     float playerHP;
     bool RLAttack;
     bool BombZomColorChange;
-    bool Ondamage;
-    bool DoDie;
     bool Hited;
     bool LoosHP;
     bool basic_attack;
@@ -68,10 +65,7 @@ public class Enemy : MonoBehaviour
         RLAttack = false;
         CurHP = MAXHP;
         HealDlay = false;
-        attacktime = 0;
         time = 0;
-        Ondamage = false;
-        DoDie = false;
         Hited = false;
         LoosHP = false;
         basic_attack = false;
