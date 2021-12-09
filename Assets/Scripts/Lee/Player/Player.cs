@@ -414,14 +414,17 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag =="EndZone")
+        if (other.tag == "EndZone")
         {
             Time.timeScale = 0f;
             GameManager.Instance.EndingCanvas.SetActive(true);
             GameManager.Instance.Ending_Win.SetActive(true);
         }
+        else if (other.gameObject.tag == "EnemyBullet")
+        {
+            PlayerHpBar.Dmg2();
+        }
     }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "weapon")
