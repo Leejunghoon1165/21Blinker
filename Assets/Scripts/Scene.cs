@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class Scene : MonoBehaviour
 {
+    bool ready;
     [SerializeField]
     Image progressBar;
     // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(LoadSceneAsync());
@@ -22,9 +24,9 @@ public class Scene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync()
     {
-        
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync("Map2");
         AsyncLoad.allowSceneActivation = false;
+        //AsyncLoad.allowSceneActivation = false;
         float timer = 0;
         while (!AsyncLoad.isDone)
         {
@@ -32,9 +34,11 @@ public class Scene : MonoBehaviour
             if (AsyncLoad.progress < 0.9f)
             {
                 progressBar.fillAmount = AsyncLoad.progress;
+                Debug.Log(progressBar.fillAmount);
             }
             else
             {
+                Debug.Log("큼");
                 timer += Time.unscaledDeltaTime;
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 if (progressBar.fillAmount >= 1f)
@@ -45,6 +49,8 @@ public class Scene : MonoBehaviour
 
             }
         }
+       
+    }
         //AsyncLoad.allowSceneActivation = false;
         //float timer = 0f;
         //while (!AsyncLoad.isDone)
@@ -67,7 +73,6 @@ public class Scene : MonoBehaviour
         //}
         //}
 
-    }
     IEnumerator LoadSceneAsync2()  //비동기
     {
         AsyncOperation AsyncLoad2 = SceneManager.LoadSceneAsync("Player", LoadSceneMode.Additive);
@@ -75,6 +80,7 @@ public class Scene : MonoBehaviour
         //float timer = 0f;
         while (!AsyncLoad2.isDone)
         {
+            
             yield return null;
             //if (AsyncLoad2.progress < 0.9f)
             //{
