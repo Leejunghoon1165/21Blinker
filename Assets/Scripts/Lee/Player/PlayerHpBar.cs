@@ -48,7 +48,7 @@ public class PlayerHpBar : MonoBehaviour
 
     public static void Dmg()   //피해를 받을때 basic좀비 근거리 호출
     {
-        Enemy enemyStr = GameObject.Find("Zombie_Basic").GetComponent<Enemy>();
+        Enemy enemyStr = GameObject.Find("Zombie_Basic(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
         //invoke("BackHpFun",0.5);
         BackHpFun();
@@ -57,14 +57,14 @@ public class PlayerHpBar : MonoBehaviour
 
     public static void Dmg2()  //롱렌지 원거리좀비
     {
-        Enemy enemyStr = GameObject.Find("Zombie_LongRange").GetComponent<Enemy>();
+        Enemy enemyStr = GameObject.Find("Zombie_LongRange(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
         BackHpFun();
     }
 
     public static void Dmg3()   //bomb 폭발 좀비 
     {
-        Enemy enemyStr = GameObject.Find("Zombie_Bomb").GetComponent<Enemy>();
+        Enemy enemyStr = GameObject.Find("Zombie_Bomb(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
         //invoke("BackHpFun",0.5);
         BackHpFun();

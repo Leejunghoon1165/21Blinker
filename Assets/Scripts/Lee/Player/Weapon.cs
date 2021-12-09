@@ -18,6 +18,16 @@ public class Weapon : MonoBehaviour
     public float Angle;  //각도
     List<Quaternion> pellets;  //쿼터니언 담을 배열
 
+    [SerializeField]
+    private string pistiol_sd;
+    [SerializeField]
+    private string shotgun_sd;
+    [SerializeField]
+    private string sniper_sd;
+    [SerializeField]
+    private string minigun_sd;
+
+
     public void Awake()
     {
         pellets = new List<Quaternion>(Count);   
@@ -48,6 +58,7 @@ public class Weapon : MonoBehaviour
     //일반 다른 무기
     IEnumerator Shot()
     {
+       // SoundManager_Bg.instance.PlaySE(minigun_sd);
         Flash.Play();
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
@@ -60,7 +71,7 @@ public class Weapon : MonoBehaviour
     {
         //Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
         //bulletRigid.velocity = bulletPos.forward * 50;
-
+        //SoundManager_Bg.instance.PlaySE(shotgun_sd);
         Flash.Play();
         for (int i = 0; i < Count; i++)
         {

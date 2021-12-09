@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     public float time;  //남은 시간 
     public float time2;  //플레이 시간
 
-    public bool Survival = true;
-
+    //public bool Survival;
+    public bool End;
     public bool Pause_Bt = false;
 
 
@@ -79,17 +79,19 @@ public class GameManager : MonoBehaviour
 
     void EndScene()
     {
-        
-        //if(Survival)
+
+        //if (Survival)
         //{
-        //    EndingCanvas.SetActive(true);
-        //    Ending_DIE.SetActive(false);
             
+        //    EndingCanvas.SetActive(true);
+        //    Ending_Win.SetActive(true);
+
         //}
-        //else if(!Survival)
+        //else if (!Survival)
         //{
         //    EndingCanvas.SetActive(true);
-        //    Ending_Win.SetActive(false);
+        //    Ending_DIE.SetActive(true);
+            
         //}
     }
 
@@ -102,6 +104,13 @@ public class GameManager : MonoBehaviour
             text_time[1].text = ((int)time % 60).ToString();
             text_time[2].text = ((int)time / 60 % 60).ToString();
             text_time[3].text = ((int)time % 60).ToString();
+            if (time <= 0)
+            {
+               
+                End = true;
+              
+            }
+                
 
         } 
         //플레이어가 죽었을 경우 시간 나타냄
@@ -116,7 +125,9 @@ public class GameManager : MonoBehaviour
         if(Time_count)
         {
             time2 += Time.deltaTime;
-            
+            text_PlayeTime[0].text = ((int)time2 / 60 % 60).ToString();
+            text_PlayeTime[1].text = ((int)time2 % 60).ToString();
+
         }
         else if(!Time_count)
         {

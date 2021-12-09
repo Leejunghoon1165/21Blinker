@@ -8,15 +8,17 @@ public class Player : MonoBehaviour
    
     public GameObject playerCanvas;
     public GameObject[] weapons;
+    public ParticleSystem DashParticle;
+  
     public bool[] hasWeapons;
-
+    
 
     public float speed;
 
 
     float hAxis;
     float vAxis;
-
+    int weaponIndex = -1;
 
     bool DashDown;
     bool Attk;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     bool isDash;
     bool sWeapon1;
     bool sWeapon2;
+    bool sWeapon3;
     bool isFireReady;
     bool doDie;
     public bool Item_Use;
@@ -36,33 +39,35 @@ public class Player : MonoBehaviour
     Rigidbody rigid;
     Animator anim;
     //MeshRenderer[] meshs;
-
     Enemy StrAtk;
     GameObject nearobject;
     Weapon earlyWeapon;
     int equiWeaponIndex = -1;
-    public float fireDelay;
+    public float fireDelay=0.01f;
     float PlayerHP;
     float CurrentHP;
 
+
+
     private void Start()
     {
-
+        sWeapon3 = true;
+        
+        //earlyWeapon = weapons[2].GetComponent<Weapon>();
         // player = ReInput.players.GetPlayer(PlayerID);
         GameManager.Instance.Time_start = true;
         GameManager.Instance.Time_count = true;
         PlayerHP = GameManager.Instance.player_hp; 
-        CurrentHP = PlayerHP-50;
+        CurrentHP = PlayerHP;
        //Debug.Log(CurrentHP);
-        PlayerHP = PlayerHpBar.maxHp;
-        CurrentHP = PlayerHpBar.currentHp;
+        //PlayerHP = PlayerHpBar.maxHp;
+        //CurrentHP = PlayerHpBar.currentHp;
         //Debug.Log(PlayerHP);
-
+        
     }
 
     void Awake()
-    {
-        
+    {   
         rigid = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();  //애니메이션
         //meshs = GetComponentsInChildren<MeshRenderer>();
@@ -71,6 +76,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (sWeapon3 == true) Check();
         GetInput();
         Move();
         Turn();
@@ -80,8 +86,14 @@ public class Player : MonoBehaviour
         Swap();
         Die();
         Player_Skill();
-
-
+        TimeOver();
+    }
+    void Check()
+    {
+        //if (sWeapon3) weaponIndex = 2;
+        //Debug.Log(weaponIndex);
+        hasWeapons[2] = true;
+        Swap();
         
     }
 
@@ -95,6 +107,7 @@ public class Player : MonoBehaviour
         ItemGet = Input.GetButtonDown("Get");
         sWeapon1 = Input.GetButtonDown("Swap1");
         sWeapon2 = Input.GetButtonDown("Swap2");
+        sWeapon3 = Input.GetButtonDown("Swap3");
         Item_Use = Input.GetButtonDown("ItemUse");
 
         Player_skill1 = Input.GetButtonDown("Skill1");
@@ -104,14 +117,12 @@ public class Player : MonoBehaviour
 
     void Move()  //플레이어 움직임
     {
-
+        
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //normalized : 방향 값이 1로 보정된 벡터
             if (doDie)
                 moveVec = Vector3.zero;
-
-
         transform.position += moveVec * speed * Time.deltaTime;
-        //anim.SetBool("isWalk", moveVec != Vector3.zero);
+        anim.SetBool("isWalk", moveVec != Vector3.zero);
         
         
     }
@@ -125,6 +136,7 @@ public class Player : MonoBehaviour
     {
         if(DashDown &&!isDash) /*&& moveVec != Vector3.zero && isDash == false && !doDie*/  //대시버튼이 눌림, 제자리에 서있지 않음, isDash가 거짓일 경우
         {
+            DashParticle.Play();
             anim.SetTrigger("doDash");   //대시 애니메이션 동작
             isDash = true;             //isDash true로 변경
             Invoke("DashOff", 5f);    //1초 뒤 DashOff 함수 실행
@@ -142,15 +154,17 @@ public class Player : MonoBehaviour
             return;
         if (sWeapon2 && (!hasWeapons[1] || equiWeaponIndex == 1))
             return;
+        if (sWeapon3 && (!hasWeapons[2] || equiWeaponIndex == 2))
+            return;
 
-
-        int weaponIndex = -1;
         if (sWeapon1) weaponIndex = 0;
         if (sWeapon2) weaponIndex = 1;
-
-        if(sWeapon1 || sWeapon2)
+        if (sWeapon3) weaponIndex = 2;
+        //if (sWeapon3) weaponIndex = 2;
+      
+        if (sWeapon1 || sWeapon2 || sWeapon3)
         {
-            if(earlyWeapon != null)
+            if (earlyWeapon != null)
                 earlyWeapon.gameObject.SetActive(false);
 
             equiWeaponIndex = weaponIndex;
@@ -264,6 +278,7 @@ public class Player : MonoBehaviour
             if(equiWeaponIndex == 0)
             {
                 earlyWeapon.Use();
+                //TestSound.Gunsounds();
                 anim.SetTrigger("doShoot");
                 fireDelay = 0;
             }
@@ -271,6 +286,12 @@ public class Player : MonoBehaviour
             {
                 earlyWeapon.Use();
                 anim.SetTrigger("doShootMinigun");
+                fireDelay = 0;
+            }
+            else if(equiWeaponIndex == 2)
+            {
+                earlyWeapon.Use();
+                 anim.SetTrigger("doShoot");
                 fireDelay = 0;
             }
             
@@ -304,7 +325,12 @@ public class Player : MonoBehaviour
         {
             doDie = true;
             anim.SetTrigger("doDie");
+            Time.timeScale = 0f;
+            GameManager.Instance.EndingCanvas.SetActive(true);
+            GameManager.Instance.Ending_DIE.SetActive(true);
             Destroy(gameObject, 2f);
+            
+            
         }
         //IEnumerator DODIE()
         //{
@@ -335,16 +361,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    void TimeOver()
+    {
+        if(GameManager.Instance.End == true)
+        {
+            Time.timeScale = 0f;
+            GameManager.Instance.EndingCanvas.SetActive(true);
+            GameManager.Instance.Ending_DIE.SetActive(true);
+        }
+    }
+
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "EnemyAttack")
-        {
-            PlayerHpBar.Dmg();
-           // playerCanvas.GetComponent<PlayerHpBar>().Dmg();
-            Damage();
-        }
-        else if(other.gameObject.tag == "EnemyBullet")
+        //if (other.gameObject.tag == "EnemyAttack")
+        //{
+        //    PlayerHpBar.Dmg();
+        //   // playerCanvas.GetComponent<PlayerHpBar>().Dmg();
+        //    Damage();
+        //}
+        if(other.gameObject.tag == "EnemyBullet")
         {
             PlayerHpBar.Dmg2();
             //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
