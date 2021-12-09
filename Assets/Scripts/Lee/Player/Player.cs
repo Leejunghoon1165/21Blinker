@@ -420,6 +420,11 @@ public class Player : MonoBehaviour
             GameManager.Instance.EndingCanvas.SetActive(true);
             GameManager.Instance.Ending_Win.SetActive(true);
         }
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+            PlayerHpBar.Dmg2();
+            //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
+        }
     }
 
     private void OnTriggerStay(Collider other)
