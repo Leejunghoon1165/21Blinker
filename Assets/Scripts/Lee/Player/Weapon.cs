@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public enum Type { Melee, Range, Shot, Fire };
+    public enum Type { Melee, Range, Basic, Shot, Fire };
     public Type type;
     public int damage;
     public float rate;
@@ -44,6 +44,10 @@ public class Weapon : MonoBehaviour
         {
             StartCoroutine("Shot");
         }
+        if(type == Type.Basic)
+        {
+            StartCoroutine("Shot3");
+        }
         else if(type == Type.Shot)
         {
             StartCoroutine("Shot2");
@@ -58,7 +62,17 @@ public class Weapon : MonoBehaviour
     //일반 다른 무기
     IEnumerator Shot()
     {
-       // SoundManager_Bg.instance.PlaySE(minigun_sd);
+        SoundManager_Bg.instance.PlaySE(minigun_sd);
+        Flash.Play();
+        GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
+        Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
+        bulletRigid.velocity = bulletPos.forward * 50;
+
+        yield return null;
+    }
+    IEnumerator Shot3()
+    {
+        SoundManager_Bg.instance.PlaySE(pistiol_sd);
         Flash.Play();
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
@@ -71,7 +85,7 @@ public class Weapon : MonoBehaviour
     {
         //Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
         //bulletRigid.velocity = bulletPos.forward * 50;
-        //SoundManager_Bg.instance.PlaySE(shotgun_sd);
+        SoundManager_Bg.instance.PlaySE(shotgun_sd);
         Flash.Play();
         for (int i = 0; i < Count; i++)
         {
