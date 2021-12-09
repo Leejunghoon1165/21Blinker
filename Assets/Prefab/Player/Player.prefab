@@ -240,6 +240,10 @@ MonoBehaviour:
   Flash: {fileID: 1594068613528662847}
   Count: 0
   Angle: 0
+  pistiol_sd: 
+  shotgun_sd: 
+  sniper_sd: 
+  minigun_sd: 
 --- !u!114 &1594068612218748083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +265,10 @@ MonoBehaviour:
   Flash: {fileID: 6572128544713850545, guid: 8f937156354d6ec4c9e6d33b3bb5bee3, type: 3}
   Count: 0
   Angle: 0
+  pistiol_sd: 
+  shotgun_sd: 
+  sniper_sd: 
+  minigun_sd: 
 --- !u!1 &1594068612226889944
 GameObject:
   m_ObjectHideFlags: 0
@@ -5537,10 +5545,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab466c3ab23261e4d8747fb6ce2ce028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCanvas: {fileID: 0}
+  playerCanvas: {fileID: 978997834382244535, guid: 4e3540b11381c944dafd475e7e680eb6,
+    type: 3}
   weapons:
   - {fileID: 5092818710483290846}
   - {fileID: 1594068612218748081}
+  DashParticle: {fileID: 0}
   hasWeapons: 0000
   speed: 10
   ItemGet: 0
@@ -5584,7 +5594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933984ca4be2a2a42b6fe943547151b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadeObj: {fileID: 4756968543020724216, guid: 92f6cafe7274ce34081f17718e5c2c22,
+  grenadeObj: {fileID: 3050055915645181234, guid: 92f6cafe7274ce34081f17718e5c2c22,
     type: 3}
   grenadePos: {fileID: 1594068613565314443}
   hasGrenades: 0
@@ -10777,6 +10787,10 @@ MonoBehaviour:
   Flash: {fileID: 4980021879668331581}
   Count: 5
   Angle: 15
+  pistiol_sd: 
+  shotgun_sd: 
+  sniper_sd: 
+  minigun_sd: 
 --- !u!1 &1594068612538126679
 GameObject:
   m_ObjectHideFlags: 0
@@ -27728,6 +27742,10 @@ MonoBehaviour:
   Flash: {fileID: 1594068612691924846}
   Count: 0
   Angle: 0
+  pistiol_sd: 
+  shotgun_sd: 
+  sniper_sd: 
+  minigun_sd: 
 --- !u!114 &1594068613636091534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27749,6 +27767,10 @@ MonoBehaviour:
   Flash: {fileID: 6572128544713850545, guid: 8f937156354d6ec4c9e6d33b3bb5bee3, type: 3}
   Count: 0
   Angle: 0
+  pistiol_sd: 
+  shotgun_sd: 
+  sniper_sd: 
+  minigun_sd: 
 --- !u!1 &1594068613647522227
 GameObject:
   m_ObjectHideFlags: 0
@@ -53181,6 +53203,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3821296829326035904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092818710483290846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fadf8e9979b4740be48b20d15dac00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  value: 0
 --- !u!114 &7594441122456132073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53202,20 +53238,10 @@ MonoBehaviour:
   Flash: {fileID: 1667672846804066173}
   Count: 0
   Angle: 0
---- !u!114 &3821296829326035904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5092818710483290846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fadf8e9979b4740be48b20d15dac00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  value: 0
+  pistiol_sd: 
+  shotgun_sd: 
+  sniper_sd: 
+  minigun_sd: 
 --- !u!1 &7594441121732838379
 GameObject:
   m_ObjectHideFlags: 0
