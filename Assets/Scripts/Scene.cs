@@ -38,7 +38,7 @@ public class Scene : MonoBehaviour
             }
             else
             {
-                Debug.Log("큼");
+                //Debug.Log("큼");
                 timer += Time.unscaledDeltaTime;
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 if (progressBar.fillAmount >= 1f)
