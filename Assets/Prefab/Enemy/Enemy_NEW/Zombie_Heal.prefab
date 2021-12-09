@@ -29253,7 +29253,7 @@ GameObject:
   - component: {fileID: 1337746376242890016}
   - component: {fileID: 1337746376242890019}
   - component: {fileID: 1337746376242890018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zombie_Heal
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -29352,13 +29352,13 @@ MonoBehaviour:
   bomb1FX: {fileID: 0}
   bomb2FX: {fileID: 0}
   Blood: {fileID: 1337746376017912188}
-  spawnpoint1: {fileID: 3732391708244633421, guid: 23e1c1d2f2f68144ba1b2b9001cc5291,
+  spawnpoint1: {fileID: 1329801465554021768, guid: 23e1c1d2f2f68144ba1b2b9001cc5291,
     type: 3}
-  spawnpoint2: {fileID: 858287427162547836, guid: 9ab144336a1596b45957480ffb5a1097,
+  spawnpoint2: {fileID: 8315092617801312347, guid: 9ab144336a1596b45957480ffb5a1097,
     type: 3}
-  spawnpoint3: {fileID: 227906786302882269, guid: df908aaa99d05f741843e3539240e712,
+  spawnpoint3: {fileID: 8627903914853434412, guid: df908aaa99d05f741843e3539240e712,
     type: 3}
-  spawnpoint4: {fileID: 9099840716374490644, guid: 2a8bcd719c82d034e9fd5564c14f7a8e,
+  spawnpoint4: {fileID: 1610454457051541385, guid: 2a8bcd719c82d034e9fd5564c14f7a8e,
     type: 3}
   RamdomNum: 0
 --- !u!195 &1337746376242890018
