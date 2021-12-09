@@ -143,8 +143,8 @@ MonoBehaviour:
   Effectobj: {fileID: 7965696813250467043}
   Gr_rigid: {fileID: 4731359641739292202}
   Damage: 999
-  Range: 0
-  Exp_Time: 3
+  Range: 5
+  Exp_Time: 2
 --- !u!96 &3050055915645181233
 TrailRenderer:
   serializedVersion: 2

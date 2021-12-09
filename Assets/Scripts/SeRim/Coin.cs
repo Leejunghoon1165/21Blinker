@@ -12,15 +12,19 @@ public class Coin : MonoBehaviour
     float velocity; // 한프레임의 가속도
 
     void Start() {
-        playerpos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        
     }
+
+	
     void Update() {
+		playerpos = GameObject.FindWithTag("Player").GetComponent<Transform>();
         CoinMove();
+		
     }
 
     public void CoinMove()
 	{
-
+		
 		dir= (playerpos.position - transform.position).normalized;
 
 		acceleration= 0.2f;
