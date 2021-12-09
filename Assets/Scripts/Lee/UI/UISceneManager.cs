@@ -20,17 +20,21 @@ public class UISceneManager : MonoBehaviour
 
     public void LobbyStageButton()
     {
-        Invoke("StageSelect", 0.1f);
+        SoundManager_Bg.instance.PlaySE(Button_sd);
+        SceneManager.LoadScene("StageSelect");
     }
 
     public void StageSelect_1Button()
     {
-        Invoke("Loadinggame", 0.1f);
+        SoundManager_Bg.instance.PlaySE(Button_sd);
+        SceneManager.LoadScene("Loading");
+        
     }
 
     public void BackLobbyStageButton()
     {
         // Invoke("BackGameLobby",0.1f);
+        SoundManager_Bg.instance.PlaySE(Button_sd);
         SceneManager.LoadScene("GamelobbyScene");
     }
     
@@ -40,27 +44,9 @@ public class UISceneManager : MonoBehaviour
         GameManager.Instance.Pause_Bt = true;
     }
 
-    private void BackGameLobby()
-    {
-        
-        SoundManager_Bg.instance.PlaySE(Button_sd);
-        
-    }
-
     private void startgame()
     {
         SceneManager.LoadScene("GamelobbyScene");
     }
 
-    private void StageSelect()
-    {
-        SoundManager_Bg.instance.PlaySE(Button_sd);
-        SceneManager.LoadScene("StageSelect");
-    }
-
-    private void Loadinggame()
-    {
-        SoundManager_Bg.instance.PlaySE(Button_sd);
-        SceneManager.LoadScene("Loading");
-    }
 }
