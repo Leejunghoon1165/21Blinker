@@ -17,17 +17,29 @@ public class Coin : MonoBehaviour
 
 	
     void Update() {
-		playerpos = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        CoinMove();
+		
+        
 		
     }
+
+	private void OnTriggerStay(Collider other) {
+
+
+		if(other.tag == "Player")
+		{	
+			playerpos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+			CoinMove();
+		}
+
+	}
+
 
     public void CoinMove()
 	{
 		
 		dir= (playerpos.position - transform.position).normalized;
 
-		acceleration= 0.2f;
+		acceleration= 0.5f;
 
 		velocity = (velocity + acceleration* Time.deltaTime);
 
@@ -35,7 +47,7 @@ public class Coin : MonoBehaviour
 
 		
 
-        if (distance <= 5.0f)
+        if (distance <= 10.0f)
 
 		{
 
