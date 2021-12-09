@@ -258,7 +258,7 @@ public class Player : MonoBehaviour
             {
                 //GameManager.instamce.hascon += item.value;
                 item_Data.hasCoin += item.value;
-                Destroy(nearobject);
+                Destroy(nearobject, 1.0f);
             }
         }
     }
