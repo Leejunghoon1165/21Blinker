@@ -384,7 +384,9 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         if(!IsSpawn)
             StartCoroutine(SpawnRamdom());
+        anim.SetTrigger("GoIdle");
         yield return new WaitForSeconds(.2f);
+        anim.SetBool("IsWalk", true);
         CurHP = MAXHP;
     }
 
