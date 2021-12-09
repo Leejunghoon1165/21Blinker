@@ -7656,7 +7656,7 @@ GameObject:
   - component: {fileID: 250776602071657899}
   - component: {fileID: 250776602071657898}
   - component: {fileID: 250776602071657893}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zombie_LongRange
   m_TagString: Enemy
   m_Icon: {fileID: 0}

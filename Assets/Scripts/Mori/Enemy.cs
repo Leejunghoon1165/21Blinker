@@ -230,14 +230,14 @@ public class Enemy : MonoBehaviour
         //총알에 맞으면 피가 닳는다.
         else if (col.gameObject.tag == "Bullet_001" && !LoosHP)
         {
-            CurHP -= 4;
+            CurHP -= 30;
             StartCoroutine(loosHP());
             if(!Hited)
                 StartCoroutine(hited());
         }
         else if (col.gameObject.tag == "SGBullet" && !LoosHP)
         {
-            CurHP -= 8;
+            CurHP -= 24;
             StartCoroutine(loosHP());
             if(!Hited)
                 StartCoroutine(hited());
