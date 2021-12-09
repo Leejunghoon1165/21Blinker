@@ -7743,7 +7743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  Str: 0
+  Str: 10
   AttackDist: 10
   bulletPos: {fileID: 250776603342024919}
   bullet: {fileID: 4990696528300553093, guid: d36ee3421c74db441a7252c2a589d550, type: 3}
