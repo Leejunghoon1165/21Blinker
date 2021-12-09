@@ -5,87 +5,140 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    public Transform spawnpoint;
     public Transform spawnpoint1;
     public Transform spawnpoint2;
     public Transform spawnpoint3;
+    public Transform spawnpoint4;
+    public GameObject Enemy_Basic;
+    public GameObject Enemy_LR;
+    public GameObject Enemy_Heal;
+    public GameObject Enemy_Bomb;
+    public float RamdomNum;
+    public float RamdomEnem;
+    bool IsSpawn;
+    float SpawnCount;
 
-    public int MaxEnemy = 20;
-    public int CurEnemy;
-    public GameObject EnemyA;
-
-    public GameObject EnemyB;
-
-    float RamdomNum;
-
-    float SpawnTime;
-
-
-    private void Awake()
-    {
-        CurEnemy = 0;
-        SpawnTime = 0;
+    private void Start() {
+        SpawnCount = 0;
+        IsSpawn = false;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Update() {
+        if(!IsSpawn && SpawnCount <= 30)
+            StartCoroutine(Spawn());
     }
 
-    void SpawnRamdom()
+    IEnumerator Spawn()
     {
-         RamdomNum = Random.Range(0, 4);
-            if(RamdomNum == 0)
-            {
-                Instantiate(EnemyA, spawnpoint.position, spawnpoint.rotation);
-                Instantiate(EnemyB, spawnpoint.position, spawnpoint.rotation);
-                CurEnemy += 2;
-            }
-
-            if(RamdomNum == 1)
-            {
-                Instantiate(EnemyA, spawnpoint1.position, spawnpoint1.rotation);
-                Instantiate(EnemyB, spawnpoint1.position, spawnpoint1.rotation);
-                CurEnemy += 2;
-            }
-
-            if(RamdomNum == 2)
-            {
-                Instantiate(EnemyA, spawnpoint2.position, spawnpoint2.rotation);
-                Instantiate(EnemyB, spawnpoint2.position, spawnpoint2.rotation);
-                CurEnemy += 2;
-            }
-
-            if(RamdomNum == 3)
-            {
-                Instantiate(EnemyA, spawnpoint3.position, spawnpoint3.rotation);
-                Instantiate(EnemyB, spawnpoint3.position, spawnpoint3.rotation);
-                CurEnemy += 2;
-            }
-            
-    }
-
-    
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        if(CurEnemy <= MaxEnemy)
+        IsSpawn = true;
+        RamdomNum = Random.Range(0, 7);
+        if(RamdomNum == 0 || RamdomNum == 1 || RamdomNum == 2)
         {
-            SpawnTime += Time.deltaTime;
-            //Debug.Log(SpawnTime);
-
-            if(SpawnTime >= 5 || SpawnTime <= 5.25)
-            {
-                SpawnRamdom();
-            }
+            SpawnRamdom1();
         }
-
+        else if(RamdomNum == 3 || RamdomNum == 4)
+        {
+            SpawnRamdom2();
+        }
+        else if(RamdomNum == 5)
+        {
+            SpawnRamdom3();
+        }
+        else if(RamdomNum == 6)
+        {
+            SpawnRamdom4();
+        }
+        yield return new WaitForSeconds(.2f);
+        SpawnCount += 1;
+        if(SpawnCount == 10 || SpawnCount == 20 || SpawnCount == 30)
+            yield return new WaitForSeconds(30f);
+        IsSpawn = false;
     }
+   
+    public void SpawnRamdom1()
+    {
+        RamdomEnem = Random.Range(0, 4);
+        if(RamdomNum == 0)
+        {
+            Instantiate(Enemy_Basic, spawnpoint1.position, spawnpoint1.rotation);
+        }
+        if(RamdomEnem == 1)
+        {
+            Instantiate(Enemy_LR, spawnpoint1.position, spawnpoint1.rotation);
+        }
+        if(RamdomEnem == 2)
+        {
+            Instantiate(Enemy_Heal, spawnpoint1.position, spawnpoint1.rotation);
+        }
+        if(RamdomEnem == 3)
+        {
+            Instantiate(Enemy_Bomb, spawnpoint1.position, spawnpoint1.rotation);
+        } 
+    }
+
+    public void SpawnRamdom2()
+    {
+        RamdomEnem = Random.Range(0, 4);
+        if(RamdomNum == 0)
+        {
+            Instantiate(Enemy_Basic, spawnpoint2.position, spawnpoint2.rotation);
+        }
+        if(RamdomEnem == 1)
+        {
+            Instantiate(Enemy_LR, spawnpoint2.position, spawnpoint2.rotation);
+        }
+        if(RamdomEnem == 2)
+        {
+            Instantiate(Enemy_Heal, spawnpoint2.position, spawnpoint2.rotation);
+        }
+        if(RamdomEnem == 3)
+        {
+            Instantiate(Enemy_Bomb, spawnpoint2.position, spawnpoint2.rotation);
+        } 
+    }
+
+    public void SpawnRamdom3()
+    {
+        RamdomEnem = Random.Range(0, 4);
+        if(RamdomNum == 0)
+        {
+            Instantiate(Enemy_Basic, spawnpoint3.position, spawnpoint3.rotation);
+        }
+        if(RamdomEnem == 1)
+        {
+            Instantiate(Enemy_LR, spawnpoint3.position, spawnpoint3.rotation);
+        }
+        if(RamdomEnem == 2)
+        {
+            Instantiate(Enemy_Heal, spawnpoint3.position, spawnpoint3.rotation);
+        }
+        if(RamdomEnem == 3)
+        {
+            Instantiate(Enemy_Bomb, spawnpoint3.position, spawnpoint3.rotation);
+        } 
+    }
+
+    public void SpawnRamdom4()
+    {
+        RamdomEnem = Random.Range(0, 4);
+        if(RamdomNum == 0)
+        {
+            Instantiate(Enemy_Basic, spawnpoint4.position, spawnpoint4.rotation);
+        }
+        if(RamdomEnem == 1)
+        {
+            Instantiate(Enemy_LR, spawnpoint4.position, spawnpoint4.rotation);
+        }
+        if(RamdomEnem == 2)
+        {
+            Instantiate(Enemy_Heal, spawnpoint4.position, spawnpoint4.rotation);
+        }
+        if(RamdomEnem == 3)
+        {
+            Instantiate(Enemy_Bomb, spawnpoint4.position, spawnpoint4.rotation);
+        } 
+    }
+
 
 
 }
