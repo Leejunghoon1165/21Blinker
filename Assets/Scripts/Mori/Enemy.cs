@@ -211,7 +211,7 @@ public class Enemy : MonoBehaviour
                     BombDamage();
                 bombcount = false;
             }
-        else if(time >= 5.5)
+        if(time >= 5.5)
             {
                 bomb_attack = false;
                 time = 0;
@@ -285,10 +285,10 @@ public class Enemy : MonoBehaviour
 
     IEnumerator BombFX()
     {
+        bombFX = true;
         bomb1FX.Play();
         bomb2FX.Play();
         anim.SetTrigger("DoDie");
-        bombFX = true;
         this.nav.velocity = Vector3.zero;
         CurHP = 0;
         yield return new WaitForSeconds(1f);
