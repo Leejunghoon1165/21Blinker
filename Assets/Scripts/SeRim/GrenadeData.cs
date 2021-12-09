@@ -11,7 +11,7 @@ public class GrenadeData : MonoBehaviour
     public GameObject Effectobj;    //  이펙트 오브젝트
     public Rigidbody Gr_rigid;     
     public int Damage = 50;
-    public int Range;
+    public float Range = 4f;
     
     public float Exp_Time = 3.0f; // 터지는 타이머
    
@@ -31,7 +31,7 @@ public class GrenadeData : MonoBehaviour
         //Meshobj.enabled = false;   
 
         //int layerMask = 1 << LayerMask.NameToLayer("Enemy");
-        int layerMask = 1 << 11;
+        int layerMask = 1 << 9;
         //RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, 30f, Vector3.up, 0f, 1 << LayerMask.NameToLayer("Enemy"));
         // Debug.DrawRay(transform.position, Vector3.up ,Color.red);
         // Debug.Log(rayHits);
@@ -42,7 +42,7 @@ public class GrenadeData : MonoBehaviour
         //     hitobj.transform.GetComponent<Enemy>().HitByGrenade();           
         // }
 
-        Collider[] rayHits = Physics.OverlapSphere(transform.position, 30f, layerMask);
+        Collider[] rayHits = Physics.OverlapSphere(transform.position, Range, layerMask);
         Debug.Log(rayHits);
         foreach(Collider hitobj in rayHits)
         {    
@@ -59,20 +59,34 @@ public class GrenadeData : MonoBehaviour
 
     }
 
-   /*
+   
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("수류탄과의 플레이어충돌발생");
-        }
+
+        Debug.Log("수류탄과의 물체충돌발생");
+            Gr_rigid.velocity = Vector3.zero;
+            Gr_rigid.angularVelocity = Vector3.zero;
+            //Effectobj.SetActive(true);  // 이펙트 끄기
+            //Meshobj.SetActive(false);  //렌더링 꺼버리기
+            Meshobj.enabled = false;
 
         if(other.gameObject.tag == "Enemy")
         {
             Debug.Log("수류탄과의 몬스터충돌발생");
+            int layerMask = 1 << 9;
+            Collider[] rayHits = Physics.OverlapSphere(transform.position, Range, layerMask);
+            Debug.Log(rayHits);
+            foreach(Collider hitobj in rayHits)
+            {    
+                Debug.Log(hitobj.name);
+                hitobj.GetComponent<Enemy>().HitByGrenade();           
+            }
         }
+
+        Destroy(gameObject, 5);
         
     }
-
+    
+    
     private void OnCollisionEnter(Collision collision)
     {
         
@@ -86,11 +100,21 @@ public class GrenadeData : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             Debug.Log("수류탄과의 몬스터충돌발생");
+            int layerMask = 1 << 9;
+            Collider[] rayHits = Physics.OverlapSphere(transform.position, Range, layerMask);
+            Debug.Log(rayHits);
+            foreach(Collider hitobj in rayHits)
+            {    
+                Debug.Log(hitobj.name);
+                hitobj.GetComponent<Enemy>().HitByGrenade();           
+            }
         }
+
+        Destroy(gameObject, 5);
 
             
     }
-    */
+    
    
 
     
