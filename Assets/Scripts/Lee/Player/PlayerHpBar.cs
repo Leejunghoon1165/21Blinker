@@ -14,6 +14,7 @@ public class PlayerHpBar : MonoBehaviour
     public static bool backHpHit = false;
     public bool backHpHealing = false;
     public static float playerhealing;
+    public static Player dmg;
     bool flag2;
     // Start is called before the first frame update
     void Start()
@@ -43,11 +44,13 @@ public class PlayerHpBar : MonoBehaviour
         {
 
         }
+        DieFlag();
 
     }
 
     public static void Dmg()   //피해를 받을때 basic좀비 근거리 호출
     {
+        //dmg.Damage();
         Enemy enemyStr = GameObject.Find("Zombie_Basic(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
         //invoke("BackHpFun",0.5);
@@ -59,13 +62,17 @@ public class PlayerHpBar : MonoBehaviour
     {
         Enemy enemyStr = GameObject.Find("Zombie_LongRange(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
+        //dmg.Damage();
+        //Debug.Log(currentHp);
         BackHpFun();
     }
 
     public static void Dmg3()   //bomb 폭발 좀비 
     {
+        
         Enemy enemyStr = GameObject.Find("Zombie_Bomb(Clone)").GetComponent<Enemy>();
         currentHp -= enemyStr.Str;
+        dmg.Damage();
         //invoke("BackHpFun",0.5);
         BackHpFun();
     }
@@ -83,6 +90,11 @@ public class PlayerHpBar : MonoBehaviour
         Invoke("BackHpHeal", 0.5f);
     }
 
+    public void DieFlag()
+    {
+        if(currentHp <=0)
+            GameManager.Instance.Die = true;
+    }
 
     public static void BackHpFun()
     {
