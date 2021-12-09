@@ -300,15 +300,13 @@ public class Player : MonoBehaviour
         
     }
 
-    void Damage()
+    public void Damage()
     {
         //Enemy 공격력 가져옴
         // HP = HP - enemyStr.Str;
-        if(!doDie)
-        {
             CurrentHP = PlayerHpBar.currentHp;
             StartCoroutine(OnDamage());
-        }
+      
         
     }
     IEnumerator OnDamage()
@@ -321,6 +319,10 @@ public class Player : MonoBehaviour
 
     void Die()
     {
+        if(GameManager.Instance.Die == true)
+        {
+            Debug.Log("죽음");
+        }
         if (CurrentHP <= 0)
         {
             doDie = true;
@@ -384,7 +386,6 @@ public class Player : MonoBehaviour
         {
             PlayerHpBar.Dmg2();
             //playerCanvas.GetComponent<PlayerHpBar>().Dmg2();
-            Damage();
         }        
     }
    /*

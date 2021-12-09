@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     //public bool Survival;
     public bool End;
     public bool Pause_Bt = false;
-
+    public bool Die;
 
     public GameObject EndingCanvas;
     public GameObject Ending_DIE;
