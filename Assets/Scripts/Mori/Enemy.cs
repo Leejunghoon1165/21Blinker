@@ -196,23 +196,25 @@ public class Enemy : MonoBehaviour
     }
     void AttackMotion_D() //BombEnemy
     {
-        if(Dist <= 5f)
+        if(Dist <= 5f && !bombFX)
         {
-            if(!BombZomColorChange)
-                StartCoroutine(ReadyToBomb());
             bombcount = true;
         }
-        else if(Dist <= 1f)
+        if(Dist <= 1)
             this.nav.velocity = Vector3.zero;
         if(bombcount)
+        {
             time += Time.deltaTime;
+            if(!BombZomColorChange)
+                StartCoroutine(ReadyToBomb());
+        }
         if(time >= 4 && !bombFX)
             {
                 StartCoroutine(BombFX());
                 if(AttackDist >= Dist && !bomb_attack)
                     BombDamage();
             }
-        if(time >= 4.75)
+        if(time >= 4.1)
             {
                 bombcount = false;
                 bomb_attack = false;
@@ -295,6 +297,9 @@ public class Enemy : MonoBehaviour
         CurHP = 0;
         yield return new WaitForSeconds(.1f);
         bombFX = false;
+        yield return new WaitForSeconds(1f);
+        bomb1FX.Clear();
+        bomb2FX.Clear();
     } 
     IEnumerator Shot()//원거리 공격함수
     {
