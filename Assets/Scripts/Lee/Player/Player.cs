@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     GameObject nearobject;
     Weapon earlyWeapon;
     int equiWeaponIndex = -1;
-    public float fireDelay=0.01f;
+    public float fireDelay=0f;
     float PlayerHP;
     float CurrentHP;
 
@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         sWeapon3 = true;
-        
         //earlyWeapon = weapons[2].GetComponent<Weapon>();
         // player = ReInput.players.GetPlayer(PlayerID);
         GameManager.Instance.Time_start = true;
@@ -93,7 +92,7 @@ public class Player : MonoBehaviour
         //if (sWeapon3) weaponIndex = 2;
         //Debug.Log(weaponIndex);
         hasWeapons[2] = true;
-        Swap();
+       // Swap();
         
     }
 
@@ -273,7 +272,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = earlyWeapon.rate < fireDelay;
 
-        if(Attk && isFireReady && !isDash)
+        if(Attk && isFireReady)
         {
             if(equiWeaponIndex == 0)
             {
