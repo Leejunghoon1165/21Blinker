@@ -28,7 +28,7 @@ public class Enemy_new : MonoBehaviour
 
     private void Awake()
     {
-        maxHP = curHP;
+        curHP = maxHP;
         rigid = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         meshs = GetComponentsInChildren<MeshRenderer>();
